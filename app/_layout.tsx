@@ -1,23 +1,27 @@
-import { DarkColors, LightColors } from "@/constants/Colors";
+// app/_layout.tsx
+import { Colors } from "@/constants/Colors";
+import { ThemeContext } from "@/constants/ThemeContext";
 import { Slot } from "expo-router";
 import { StatusBar } from "expo-status-bar";
-import { StyleSheet, useColorScheme } from "react-native";
+import { Appearance, StyleSheet } from "react-native";
 import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
 
 export default function RootLayout() {
-  const colorScheme = useColorScheme();
-  const Colors = colorScheme === "dark" ? DarkColors : LightColors;
+  const colorScheme = Appearance.getColorScheme(); // 'light' | 'dark'
+  const theme = colorScheme === "dark" ? Colors.dark : Colors.light;
 
   return (
-    <SafeAreaProvider>
-      <SafeAreaView
-        style={[styles.container, { backgroundColor: Colors.background }]}
-        edges={["top"]}
-      >
-        <StatusBar style={colorScheme === "dark" ? "light" : "dark"} />
-        <Slot />
-      </SafeAreaView>
-    </SafeAreaProvider>
+    <ThemeContext.Provider value={theme}>
+      <SafeAreaProvider>
+        <SafeAreaView
+          style={[styles.container, { backgroundColor: theme.background }]}
+          edges={["top"]}
+        >
+          <StatusBar style={colorScheme === "dark" ? "light" : "dark"} />
+          <Slot />
+        </SafeAreaView>
+      </SafeAreaProvider>
+    </ThemeContext.Provider>
   );
 }
 
