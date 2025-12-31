@@ -35,7 +35,7 @@ export default function ThemedModal({
   return (
     <Modal
       visible={visible}
-      transparent
+      transparent={true}
       animationType="fade"
       onRequestClose={onClose}
     >
@@ -81,7 +81,6 @@ const styles = StyleSheet.create({
     paddingHorizontal: SPACING.sm,
     paddingBottom: SPACING.sm,
     maxHeight: "80%",
-    alignItems: "stretch",
     ...SHADOW.default,
   },
   closeButton: {

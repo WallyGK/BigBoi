@@ -1,10 +1,12 @@
 // screens/EditTemplate.tsx
+import AddExerciseToTemplateForm from "@/components/AddExerciseToTemplateForm";
 import Button from "@/components/Button";
 import ConfirmDeleteModal from "@/components/ConfirmDeleteModal";
 import ExerciseListItem from "@/components/ExerciseListItem";
 import FloatingButton from "@/components/FloatingButton";
 import ScreenTitle from "@/components/ScreenTitle";
 import SectionTitle from "@/components/SectionTitle";
+import ThemedModal from "@/components/ThemedModal";
 import {
   BORDER_RADIUS,
   FONT_SIZE,
@@ -21,15 +23,7 @@ import { Exercise } from "@/types";
 import { Ionicons } from "@expo/vector-icons";
 import { useLocalSearchParams, useRouter } from "expo-router";
 import React, { useContext, useState } from "react";
-import {
-  FlatList,
-  Modal,
-  StyleSheet,
-  Text,
-  TextInput,
-  TouchableOpacity,
-  View,
-} from "react-native";
+import { FlatList, StyleSheet, Text, TextInput, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 export default function EditTemplate() {
@@ -133,8 +127,12 @@ export default function EditTemplate() {
   const [reps, setReps] = useState("");
   const [sets, setSets] = useState("");
   const [weight, setWeight] = useState("");
+  // For editing an existing exercise in the template
+  const [editExerciseIndex, setEditExerciseIndex] = useState<number | null>(
+    null
+  );
 
-  // Load all saved exercises when modal opens
+  // Open modal for adding a new exercise
   const openAddExerciseModal = async () => {
     const dbExercises = await searchExercisesAsync("");
     setAllExercises(dbExercises);
@@ -142,20 +140,48 @@ export default function EditTemplate() {
     setReps("");
     setSets("");
     setWeight("");
+    setEditExerciseIndex(null);
     setModalVisible(true);
   };
 
+  // Open modal for editing an existing exercise in the template
+  const openEditExerciseModal = async (idx: number) => {
+    const dbExercises = await searchExercisesAsync("");
+    setAllExercises(dbExercises);
+    const exObj = exercises[idx];
+    setSelectedExercise(exObj.exercise);
+    setReps(exObj.reps);
+    setSets(exObj.sets);
+    setWeight(exObj.weight);
+    setEditExerciseIndex(idx);
+    setModalVisible(true);
+  };
+
+  // Add or update exercise in template
   const handleAddExercise = () => {
     if (!selectedExercise) return;
-    setExercises([
-      ...exercises,
-      {
+    if (editExerciseIndex !== null) {
+      // Update existing
+      const updated = [...exercises];
+      updated[editExerciseIndex] = {
         exercise: selectedExercise,
         reps,
         sets,
         weight,
-      },
-    ]);
+      };
+      setExercises(updated);
+    } else {
+      // Add new
+      setExercises([
+        ...exercises,
+        {
+          exercise: selectedExercise,
+          reps,
+          sets,
+          weight,
+        },
+      ]);
+    }
     setModalVisible(false);
   };
 
@@ -208,6 +234,7 @@ export default function EditTemplate() {
             weight={item.weight}
             onRemove={() => handleRemoveExercise(index)}
             displayMode="name"
+            onPress={() => openEditExerciseModal(index)}
           />
         )}
         ListEmptyComponent={
@@ -250,111 +277,24 @@ export default function EditTemplate() {
       />
 
       {/* Modal for adding exercise */}
-
-      <FloatingButton
-        onPress={openAddExerciseModal}
-        style={{
-          bottom: (insets.bottom || 16) + 72,
-          right: SPACING.md,
-        }}
-      >
-        {"+"}
-      </FloatingButton>
-
-      <Modal
+      <ThemedModal
         visible={modalVisible}
-        animationType="slide"
-        transparent
-        onRequestClose={() => setModalVisible(false)}
+        onClose={() => setModalVisible(false)}
       >
-        <View style={styles.modalOverlay}>
-          <View style={[styles.modalContent, { backgroundColor: colors.card }]}>
-            <SectionTitle>Add Exercise</SectionTitle>
-            <FlatList
-              data={allExercises}
-              keyExtractor={(item) => item.id}
-              renderItem={({ item }) => (
-                <TouchableOpacity
-                  style={[
-                    styles.exerciseOption,
-                    selectedExercise?.id === item.id && {
-                      backgroundColor: colors.primary + "33",
-                    },
-                  ]}
-                  onPress={() => setSelectedExercise(item)}
-                >
-                  <Text style={{ color: colors.text }}>{item.name}</Text>
-                  <Text
-                    style={{
-                      color: colors.textSecondary,
-                      fontSize: FONT_SIZE.sm,
-                    }}
-                  >
-                    {item.muscleGroup}
-                  </Text>
-                </TouchableOpacity>
-              )}
-              style={{ maxHeight: 180 }}
-            />
-            <TextInput
-              placeholder="Sets"
-              placeholderTextColor={colors.textSecondary}
-              value={sets}
-              onChangeText={setSets}
-              keyboardType="numeric"
-              style={[
-                styles.input,
-                {
-                  color: colors.text,
-                  borderColor: colors.border,
-                  backgroundColor: colors.background,
-                },
-              ]}
-            />
-            <TextInput
-              placeholder="Reps"
-              placeholderTextColor={colors.textSecondary}
-              value={reps}
-              onChangeText={setReps}
-              keyboardType="numeric"
-              style={[
-                styles.input,
-                {
-                  color: colors.text,
-                  borderColor: colors.border,
-                  backgroundColor: colors.background,
-                },
-              ]}
-            />
-            <TextInput
-              placeholder="Weight (lb)"
-              placeholderTextColor={colors.textSecondary}
-              value={weight}
-              onChangeText={setWeight}
-              keyboardType="numeric"
-              style={[
-                styles.input,
-                {
-                  color: colors.text,
-                  borderColor: colors.border,
-                  backgroundColor: colors.background,
-                },
-              ]}
-            />
-            <Button
-              title="Add to Template"
-              onPress={handleAddExercise}
-              disabled={!selectedExercise || !reps || !sets}
-              style={{ marginTop: SPACING.md }}
-            />
-            <Button
-              title="Cancel"
-              onPress={() => setModalVisible(false)}
-              style={{ marginTop: SPACING.sm, backgroundColor: colors.error }}
-            />
-          </View>
-        </View>
-      </Modal>
+        <AddExerciseToTemplateForm
+          allExercises={allExercises}
+          selectedExercise={selectedExercise}
+          setSelectedExercise={setSelectedExercise}
+          reps={reps}
+          setReps={setReps}
+          sets={sets}
+          setSets={setSets}
+          weight={weight}
+          setWeight={setWeight}
+          onAdd={handleAddExercise}
+          onCancel={() => setModalVisible(false)}
+        />
+      </ThemedModal>
 
       {/* Save Button */}
       <View style={{ paddingBottom: insets.bottom || 16 }}>
@@ -379,23 +319,6 @@ const styles = StyleSheet.create({
     padding: SPACING.md,
     marginBottom: SPACING.md,
     fontSize: FONT_SIZE.md,
-  },
-  modalOverlay: {
-    flex: 1,
-    backgroundColor: "rgba(0,0,0,0.3)",
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  modalContent: {
-    width: "90%",
-    borderRadius: BORDER_RADIUS.lg,
-    padding: SPACING.lg,
-    alignItems: "stretch",
-  },
-  exerciseOption: {
-    padding: SPACING.sm,
-    borderRadius: BORDER_RADIUS.sm,
-    marginBottom: SPACING.xs,
   },
   saveButton: {
     marginTop: SPACING.lg,

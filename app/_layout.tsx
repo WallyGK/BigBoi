@@ -5,33 +5,15 @@ import { Stack, useRouter } from "expo-router";
 import { StatusBar } from "expo-status-bar";
 import { useContext } from "react";
 import { TouchableOpacity } from "react-native";
-import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
 
 function AppLayout({ children }: { children: React.ReactNode }) {
-  const { colors, darkMode } = useContext(ThemeContext);
+  const { darkMode } = useContext(ThemeContext);
   return (
-    <SafeAreaProvider>
+    <>
       {/* Global background color overlay */}
-      <SafeAreaView
-        style={{
-          position: "absolute",
-          top: 0,
-          left: 0,
-          right: 0,
-          bottom: 0,
-          backgroundColor: colors.background,
-          zIndex: -1,
-        }}
-        edges={[]}
-      />
-      <SafeAreaView
-        style={{ flex: 1, backgroundColor: colors.background }}
-        edges={["bottom"]}
-      >
-        <StatusBar style={darkMode ? "light" : "dark"} />
-        {children}
-      </SafeAreaView>
-    </SafeAreaProvider>
+      <StatusBar style={darkMode ? "light" : "dark"} />
+      {children}
+    </>
   );
 }
 
@@ -50,7 +32,6 @@ export default function RootLayout() {
           headerLeft: ({ canGoBack }) =>
             canGoBack ? (
               <TouchableOpacity
-                style={{ marginLeft: 12 }}
                 onPress={() => router.back()}
                 hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
               >
