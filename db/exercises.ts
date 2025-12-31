@@ -15,9 +15,15 @@ export async function addExercise(
       `INSERT INTO exercises (
                 id,
                 name,
-                muscleGroup
-            ) VALUES (?, ?, ?);`,
-      [exerciseId, exercise.name, exercise.muscleGroup || ""]
+                muscleGroup,
+                description
+            ) VALUES (?, ?, ?, ?);`,
+      [
+        exerciseId,
+        exercise.name,
+        exercise.muscleGroup || "",
+        exercise.description || "",
+      ]
     );
 
     const newExercise = await db.getFirstAsync<Exercise>(
@@ -39,7 +45,7 @@ export async function searchExercisesAsync(
   const db = await getDb();
   try {
     const query = `
-      SELECT * FROM exercises 
+      SELECT id, name, muscleGroup, description FROM exercises 
       WHERE is_deleted = 0
       AND (name LIKE ? OR muscleGroup LIKE ?)
       ORDER BY name ASC
@@ -60,7 +66,7 @@ export async function getExerciseById(id: string): Promise<Exercise | null> {
   const db = await getDb();
   try {
     return await db.getFirstAsync<Exercise>(
-      `SELECT * FROM exercises WHERE id = ? AND is_deleted = 0`,
+      `SELECT id, name, muscleGroup, description FROM exercises WHERE id = ? AND is_deleted = 0`,
       [id]
     );
   } catch (error) {
@@ -78,10 +84,16 @@ export async function updateExerciseAsync(exercise: Exercise): Promise<void> {
     UPDATE exercises
     SET
       name = ?,
-      muscleGroup = ?
+      muscleGroup = ?,
+      description = ?
     WHERE id = ?;
     `,
-    [exercise.name, exercise.muscleGroup ?? "", exercise.id]
+    [
+      exercise.name,
+      exercise.muscleGroup ?? "",
+      exercise.description ?? "",
+      exercise.id,
+    ]
   );
 }
 

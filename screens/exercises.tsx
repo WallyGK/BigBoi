@@ -83,6 +83,15 @@ export default function Exercises() {
               <Text style={[styles.muscle, { color: colors.textSecondary }]}>
                 {item.muscleGroup || "Unspecified"}
               </Text>
+              {item.description ? (
+                <Text
+                  style={[styles.description, { color: colors.textSecondary }]}
+                  numberOfLines={2}
+                  ellipsizeMode="tail"
+                >
+                  {item.description}
+                </Text>
+              ) : null}
             </Card>
           </TouchableOpacity>
         )}
@@ -159,5 +168,9 @@ const styles = StyleSheet.create({
     color: "#fff",
     fontSize: FONT_SIZE.xl,
     fontWeight: "600",
+  },
+  description: {
+    fontSize: FONT_SIZE.sm,
+    marginTop: SPACING.xs,
   },
 });

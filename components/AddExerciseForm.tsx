@@ -25,6 +25,7 @@ export default function AddExerciseForm({
 
   const [name, setName] = useState(exercise?.name || "");
   const [muscleGroup, setMuscleGroup] = useState(exercise?.muscleGroup || "");
+  const [description, setDescription] = useState(exercise?.description || "");
   const [loading, setLoading] = useState(false);
 
   const handleSave = async () => {
@@ -36,9 +37,11 @@ export default function AddExerciseForm({
         id: exercise?.id,
         name: name.trim(),
         muscleGroup: muscleGroup.trim(),
+        description: description.trim(),
       });
       setName("");
       setMuscleGroup("");
+      setDescription("");
       onClose();
     } catch (error) {
       console.error("Failed to save exercise:", error);
@@ -73,6 +76,20 @@ export default function AddExerciseForm({
         placeholderTextColor={colors.textSecondary}
         value={muscleGroup}
         onChangeText={setMuscleGroup}
+        style={[
+          styles.input,
+          {
+            color: colors.text,
+            borderColor: colors.border,
+            backgroundColor: colors.background,
+          },
+        ]}
+      />
+      <TextInput
+        placeholder="Description"
+        placeholderTextColor={colors.textSecondary}
+        value={description}
+        onChangeText={setDescription}
         style={[
           styles.input,
           {

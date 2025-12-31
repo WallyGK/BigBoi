@@ -14,9 +14,10 @@ export async function addTemplate(
     await db.runAsync(
       `INSERT INTO templates (
                 id,
-                name
-            ) VALUES (?, ?);`,
-      [templateId, template.name]
+                name,
+                description
+            ) VALUES (?, ?, ?);`,
+      [templateId, template.name, template.description || ""]
     );
 
     const newTemplate = await db.getFirstAsync<Template>(
@@ -76,10 +77,11 @@ export async function updateTemplateAsync(template: Template): Promise<void> {
     `
     UPDATE templates
     SET
-      name = ?
+      name = ?,
+      description = ?
     WHERE id = ?;
     `,
-    [template.name, template.id]
+    [template.name, template.description || "", template.id]
   );
 }
 
@@ -101,14 +103,15 @@ export async function addExerciseToTemplate(
   templateId: string,
   exerciseId: string,
   sets: number = 0,
-  reps: number = 0
+  reps: number = 0,
+  notes: string = ""
 ) {
   const db = await getDb();
   try {
     await db.runAsync(
-      `INSERT OR REPLACE INTO template_exercises (template_id, exercise_id, sets, reps)
-       VALUES (?, ?, ?, ?)`,
-      [templateId, exerciseId, sets, reps]
+      `INSERT OR REPLACE INTO template_exercises (template_id, exercise_id, sets, reps, notes)
+       VALUES (?, ?, ?, ?, ?)`,
+      [templateId, exerciseId, sets, reps, notes]
     );
   } catch (error) {
     console.error("Error adding exercise to template:", error);
@@ -137,7 +140,7 @@ export async function getExercisesForTemplate(
 ): Promise<TemplateExercise[]> {
   const db = await getDb();
   return await db.getAllAsync<TemplateExercise>(
-    `SELECT e.*, te.sets, te.reps
+    `SELECT e.*, te.sets, te.reps, te.notes
      FROM exercises e
      INNER JOIN template_exercises te ON e.id = te.exercise_id
      WHERE te.template_id = ? AND e.is_deleted = 0`,
@@ -149,13 +152,14 @@ export async function updateTemplateExercise(
   templateId: string,
   exerciseId: string,
   sets: number,
-  reps: number
+  reps: number,
+  notes: string
 ) {
   const db = await getDb();
   await db.runAsync(
     `UPDATE template_exercises
-     SET sets = ?, reps = ?
+     SET sets = ?, reps = ?, notes = ?
      WHERE template_id = ? AND exercise_id = ?`,
-    [sets, reps, templateId, exerciseId]
+    [sets, reps, notes, templateId, exerciseId]
   );
 }

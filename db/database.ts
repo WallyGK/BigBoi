@@ -23,6 +23,7 @@ export async function migrateDbIfNeeded(db: SQLiteDatabase) {
         id TEXT PRIMARY KEY,
         name TEXT NOT NULL,
         muscleGroup TEXT DEFAULT '',
+        description TEXT DEFAULT '',
         is_deleted BOOLEAN DEFAULT 0
       );
     `);
@@ -32,6 +33,7 @@ export async function migrateDbIfNeeded(db: SQLiteDatabase) {
       CREATE TABLE IF NOT EXISTS templates (
         id TEXT PRIMARY KEY,
         name TEXT NOT NULL,
+        description TEXT DEFAULT '',
         is_deleted BOOLEAN DEFAULT 0
       );
     `);
@@ -43,6 +45,7 @@ export async function migrateDbIfNeeded(db: SQLiteDatabase) {
         exercise_id TEXT NOT NULL,
         sets INTEGER NOT NULL DEFAULT 0,
         reps INTEGER NOT NULL DEFAULT 0,
+        notes TEXT DEFAULT '',
         PRIMARY KEY (template_id, exercise_id),
         FOREIGN KEY (template_id) REFERENCES templates(id),
         FOREIGN KEY (exercise_id) REFERENCES exercises(id)
@@ -66,6 +69,7 @@ export async function migrateDbIfNeeded(db: SQLiteDatabase) {
         sets INTEGER NOT NULL DEFAULT 0,
         reps INTEGER NOT NULL DEFAULT 0,
         weight REAL NOT NULL DEFAULT 0,
+        notes TEXT DEFAULT '',
         PRIMARY KEY (workout_id, exercise_id),
         FOREIGN KEY (workout_id) REFERENCES workout_logs(id),
         FOREIGN KEY (exercise_id) REFERENCES exercises(id)
