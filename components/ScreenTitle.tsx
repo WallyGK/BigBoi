@@ -15,10 +15,10 @@ export default function ScreenTitle({
         fontSize: FONT_SIZE.xxl,
         fontWeight: "bold",
         color: colors.text,
-        marginTop: 0,
+        marginTop: SPACING.md,
         marginBottom: SPACING.lg,
         paddingHorizontal: SPACING.sm,
-        backgroundColor: colors.background,
+        backgroundColor: "transparent",
       }}
       accessibilityRole="header"
     >

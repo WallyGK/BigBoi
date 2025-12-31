@@ -18,6 +18,7 @@ export default function ListItem({
   showRemove = true,
   onPress,
   children,
+  style,
 }: {
   title: string;
   subtitle?: string;
@@ -28,12 +29,13 @@ export default function ListItem({
   showRemove?: boolean;
   onPress?: () => void;
   children?: React.ReactNode;
+  style?: any;
 }) {
   const { colors } = useContext(ThemeContext);
   const Wrapper = onPress ? TouchableOpacity : View;
   return (
     <Wrapper
-      style={[styles.card, { backgroundColor: colors.card }]}
+      style={[styles.card, { backgroundColor: colors.card }, style]}
       {...(onPress ? { onPress } : {})}
     >
       <View style={{ flex: 1 }}>
@@ -85,7 +87,7 @@ const styles = StyleSheet.create({
   card: {
     flexDirection: "row",
     alignItems: "center",
-    padding: SPACING.md,
+    padding: SPACING.sm,
     borderRadius: BORDER_RADIUS.md,
     marginBottom: SPACING.sm,
   },

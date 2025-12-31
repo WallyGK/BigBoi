@@ -1,4 +1,5 @@
 import Button from "@/components/Button";
+import ListItem from "@/components/ListItem";
 import SectionTitle from "@/components/SectionTitle";
 import {
   BORDER_RADIUS,
@@ -8,14 +9,7 @@ import {
 } from "@/constants/Theme";
 import { Exercise } from "@/types";
 import { useContext } from "react";
-import {
-  ScrollView,
-  StyleSheet,
-  Text,
-  TextInput,
-  TouchableOpacity,
-  View,
-} from "react-native";
+import { ScrollView, StyleSheet, TextInput, View } from "react-native";
 
 interface AddExerciseToTemplateFormProps {
   allExercises: Exercise[];
@@ -57,26 +51,19 @@ export default function AddExerciseToTemplateForm({
       >
         <ScrollView keyboardShouldPersistTaps="handled">
           {allExercises.map((item) => (
-            <TouchableOpacity
+            <ListItem
               key={item.id}
+              title={item.name}
+              subtitle={item.muscleGroup}
+              onPress={() => setSelectedExercise(item)}
               style={[
-                styles.exerciseOption,
+                { backgroundColor: colors.cardList },
                 selectedExercise?.id === item.id && {
-                  backgroundColor: colors.primary + "33",
+                  borderColor: colors.primary,
+                  borderWidth: 2,
                 },
               ]}
-              onPress={() => setSelectedExercise(item)}
-            >
-              <Text style={{ color: colors.text }}>{item.name}</Text>
-              <Text
-                style={{
-                  color: colors.textSecondary,
-                  fontSize: FONT_SIZE.sm,
-                }}
-              >
-                {item.muscleGroup}
-              </Text>
-            </TouchableOpacity>
+            />
           ))}
         </ScrollView>
       </View>
@@ -158,11 +145,6 @@ export default function AddExerciseToTemplateForm({
 }
 
 const styles = StyleSheet.create({
-  exerciseOption: {
-    padding: SPACING.sm,
-    borderRadius: BORDER_RADIUS.sm,
-    marginBottom: SPACING.xs,
-  },
   input: {
     borderWidth: 1,
     borderRadius: BORDER_RADIUS.md,

@@ -1,13 +1,9 @@
 import FloatingButton from "@/components/FloatingButton";
+import ListItem from "@/components/ListItem";
 import SectionTitle from "@/components/SectionTitle";
-import {
-  BORDER_RADIUS,
-  FONT_SIZE,
-  SPACING,
-  ThemeContext,
-} from "@/constants/Theme";
+import { SPACING, ThemeContext } from "@/constants/Theme";
 import { useContext } from "react";
-import { FlatList, StyleSheet, Text, TouchableOpacity } from "react-native";
+import { FlatList } from "react-native";
 
 interface TemplateSelectFormProps {
   templates: any[];
@@ -32,36 +28,18 @@ export default function TemplateSelectForm({
         data={templates}
         keyExtractor={(item) => item.id}
         renderItem={({ item }) => (
-          <TouchableOpacity
+          <ListItem
+            title={item.name}
+            description={item.description}
+            onPress={() => setSelectedTemplate(item)}
             style={[
-              styles.templateItem,
               selectedTemplate?.id === item.id && {
                 borderColor: colors.primary,
                 borderWidth: 2,
               },
             ]}
-            onPress={() => setSelectedTemplate(item)}
-            activeOpacity={0.7}
-          >
-            <Text
-              style={{ color: colors.text, fontWeight: "600", fontSize: 18 }}
-            >
-              {item.name}
-            </Text>
-            {item.description ? (
-              <Text
-                style={{
-                  color: colors.textSecondary,
-                  fontSize: FONT_SIZE.sm,
-                  marginTop: 2,
-                }}
-                numberOfLines={2}
-                ellipsizeMode="tail"
-              >
-                {item.description}
-              </Text>
-            ) : null}
-          </TouchableOpacity>
+            showRemove={false}
+          />
         )}
         style={{ maxHeight: 300 }}
         contentContainerStyle={{ paddingBottom: 80 }}
@@ -82,13 +60,3 @@ export default function TemplateSelectForm({
     </>
   );
 }
-
-const styles = StyleSheet.create({
-  templateItem: {
-    width: "100%",
-    padding: SPACING.sm,
-    borderRadius: BORDER_RADIUS.md,
-    marginBottom: SPACING.sm,
-    backgroundColor: "rgba(0,0,0,0.03)",
-  },
-});

@@ -1,13 +1,9 @@
 import Button from "@/components/Button";
-import {
-  BORDER_RADIUS,
-  FONT_SIZE,
-  SPACING,
-  ThemeContext,
-} from "@/constants/Theme";
+import ScreenTitle from "@/components/ScreenTitle";
+import { BORDER_RADIUS, SPACING, ThemeContext } from "@/constants/Theme";
 import { Exercise, NewExercise } from "@/types";
 import { useContext, useState } from "react";
-import { Alert, StyleSheet, Text, TextInput, View } from "react-native";
+import { Alert, StyleSheet, TextInput, View } from "react-native";
 
 interface AddExerciseFormProps {
   onClose: () => void;
@@ -53,9 +49,7 @@ export default function AddExerciseForm({
 
   return (
     <View style={[styles.container, { backgroundColor: colors.card }]}>
-      <Text style={[styles.title, { color: colors.text }]}>
-        {isEdit ? "Edit Exercise" : "Add New Exercise"}
-      </Text>
+      <ScreenTitle>{isEdit ? "Edit Exercise" : "Add New Exercise"}</ScreenTitle>
 
       <TextInput
         placeholder="Name"
@@ -106,7 +100,7 @@ export default function AddExerciseForm({
         }
         onPress={handleSave}
         disabled={!name.trim() || loading}
-        style={styles.saveButton}
+        style={{ marginTop: SPACING.sm }}
       />
     </View>
   );
@@ -119,19 +113,10 @@ const styles = StyleSheet.create({
     position: "relative",
     justifyContent: "flex-start",
   },
-  title: {
-    fontSize: FONT_SIZE.xl,
-    fontWeight: "700",
-    textAlign: "center",
-    marginBottom: SPACING.lg,
-  },
   input: {
     borderWidth: 1,
     borderRadius: BORDER_RADIUS.md,
     padding: SPACING.md,
     marginBottom: SPACING.md,
-  },
-  saveButton: {
-    marginTop: SPACING.sm,
   },
 });
