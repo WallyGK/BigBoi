@@ -22,6 +22,7 @@ export type NewTemplate = Omit<Template, "id">;
 export interface TemplateExercise extends Exercise {
   sets?: number;
   reps?: number;
+  weight?: number;
   notes?: string;
 }
 

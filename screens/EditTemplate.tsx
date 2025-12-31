@@ -2,8 +2,8 @@
 import AddExerciseToTemplateForm from "@/components/AddExerciseToTemplateForm";
 import Button from "@/components/Button";
 import ConfirmDeleteModal from "@/components/ConfirmDeleteModal";
-import ExerciseListItem from "@/components/ExerciseListItem";
 import FloatingButton from "@/components/FloatingButton";
+import ListItem from "@/components/ListItem";
 import ScreenTitle from "@/components/ScreenTitle";
 import SectionTitle from "@/components/SectionTitle";
 import ThemedModal from "@/components/ThemedModal";
@@ -54,7 +54,8 @@ export default function EditTemplate() {
             exercise: ex,
             reps: ex.reps?.toString() || "",
             sets: ex.sets?.toString() || "",
-            weight: "", // Add weight if you store it
+            weight: ex.weight?.toString() || "",
+            notes: ex.notes || "",
           }));
           setExercises(mappedExercises);
           setOriginalExercises(mappedExercises);
@@ -108,7 +109,8 @@ export default function EditTemplate() {
             ex.exercise.id,
             Number(ex.sets) || 0,
             Number(ex.reps) || 0,
-            ""
+            Number(ex.weight) || 0,
+            ex.notes || ""
           );
         }
       }
@@ -127,6 +129,7 @@ export default function EditTemplate() {
   const [reps, setReps] = useState("");
   const [sets, setSets] = useState("");
   const [weight, setWeight] = useState("");
+  const [notes, setNotes] = useState("");
   // For editing an existing exercise in the template
   const [editExerciseIndex, setEditExerciseIndex] = useState<number | null>(
     null
@@ -140,6 +143,7 @@ export default function EditTemplate() {
     setReps("");
     setSets("");
     setWeight("");
+    setNotes("");
     setEditExerciseIndex(null);
     setModalVisible(true);
   };
@@ -153,6 +157,7 @@ export default function EditTemplate() {
     setReps(exObj.reps);
     setSets(exObj.sets);
     setWeight(exObj.weight);
+    setNotes(exObj.notes || "");
     setEditExerciseIndex(idx);
     setModalVisible(true);
   };
@@ -168,6 +173,7 @@ export default function EditTemplate() {
         reps,
         sets,
         weight,
+        notes,
       };
       setExercises(updated);
     } else {
@@ -179,6 +185,7 @@ export default function EditTemplate() {
           reps,
           sets,
           weight,
+          notes,
         },
       ]);
     }
@@ -227,13 +234,17 @@ export default function EditTemplate() {
         data={exercises}
         keyExtractor={(_, idx) => idx.toString()}
         renderItem={({ item, index }) => (
-          <ExerciseListItem
-            exercise={item.exercise}
-            reps={item.reps}
-            sets={item.sets}
-            weight={item.weight}
+          <ListItem
+            title={item.exercise?.name || ""}
+            subtitle={
+              item.reps || item.sets || item.weight
+                ? `${item.reps || "-"} reps x ${item.sets || "-"} sets @ ${
+                    item.weight || "-"
+                  }lbs`
+                : undefined
+            }
+            description={item.notes}
             onRemove={() => handleRemoveExercise(index)}
-            displayMode="name"
             onPress={() => openEditExerciseModal(index)}
           />
         )}
@@ -291,13 +302,15 @@ export default function EditTemplate() {
           setSets={setSets}
           weight={weight}
           setWeight={setWeight}
+          notes={notes}
+          setNotes={setNotes}
           onAdd={handleAddExercise}
           onCancel={() => setModalVisible(false)}
         />
       </ThemedModal>
 
       {/* Save Button */}
-      <View style={{ paddingBottom: insets.bottom || 16 }}>
+      <View style={{ paddingBottom: insets.bottom || SPACING.md }}>
         <Button
           title="Save Template"
           onPress={handleSaveTemplate}

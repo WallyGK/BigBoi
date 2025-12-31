@@ -27,6 +27,8 @@ interface AddExerciseToTemplateFormProps {
   setSets: (v: string) => void;
   weight: string;
   setWeight: (v: string) => void;
+  notes: string;
+  setNotes: (v: string) => void;
   onAdd: () => void;
   onCancel: () => void;
 }
@@ -41,6 +43,8 @@ export default function AddExerciseToTemplateForm({
   setSets,
   weight,
   setWeight,
+  notes,
+  setNotes,
   onAdd,
   onCancel,
 }: AddExerciseToTemplateFormProps) {
@@ -113,6 +117,21 @@ export default function AddExerciseToTemplateForm({
           value={weight}
           onChangeText={setWeight}
           keyboardType="numeric"
+          style={[
+            styles.input,
+            {
+              color: colors.text,
+              borderColor: colors.border,
+              backgroundColor: colors.background,
+            },
+          ]}
+        />
+        <TextInput
+          placeholder="Notes (optional)"
+          placeholderTextColor={colors.textSecondary}
+          value={notes}
+          onChangeText={setNotes}
+          keyboardType="default"
           style={[
             styles.input,
             {

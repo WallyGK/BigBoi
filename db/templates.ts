@@ -104,14 +104,15 @@ export async function addExerciseToTemplate(
   exerciseId: string,
   sets: number = 0,
   reps: number = 0,
+  weight: number = 0,
   notes: string = ""
 ) {
   const db = await getDb();
   try {
     await db.runAsync(
-      `INSERT OR REPLACE INTO template_exercises (template_id, exercise_id, sets, reps, notes)
-       VALUES (?, ?, ?, ?, ?)`,
-      [templateId, exerciseId, sets, reps, notes]
+      `INSERT OR REPLACE INTO template_exercises (template_id, exercise_id, sets, reps, weight, notes)
+       VALUES (?, ?, ?, ?, ?, ?)`,
+      [templateId, exerciseId, sets, reps, weight, notes]
     );
   } catch (error) {
     console.error("Error adding exercise to template:", error);
@@ -140,7 +141,7 @@ export async function getExercisesForTemplate(
 ): Promise<TemplateExercise[]> {
   const db = await getDb();
   return await db.getAllAsync<TemplateExercise>(
-    `SELECT e.*, te.sets, te.reps, te.notes
+    `SELECT e.*, te.sets, te.reps, te.weight, te.notes
      FROM exercises e
      INNER JOIN template_exercises te ON e.id = te.exercise_id
      WHERE te.template_id = ? AND e.is_deleted = 0`,

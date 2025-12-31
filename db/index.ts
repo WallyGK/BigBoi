@@ -15,7 +15,7 @@ export async function getDb(): Promise<SQLiteDatabase> {
   }
 
   // Open (or create) the database
-  dbInstance = await openDatabaseAsync("workout_v3.db");
+  dbInstance = await openDatabaseAsync("workout_v4.db");
 
   // Run migrations if needed
   await migrateDbIfNeeded(dbInstance);

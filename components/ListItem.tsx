@@ -8,24 +8,26 @@ import {
 import { useContext } from "react";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
-export default function ExerciseListItem({
-  exercise,
-  reps,
-  sets,
-  weight,
+export default function ListItem({
+  title,
+  subtitle,
+  description,
+  details,
+  notes,
   onRemove,
   showRemove = true,
   onPress,
-  displayMode = "full",
+  children,
 }: {
-  exercise: { name: string; muscleGroup?: string; description?: string };
-  reps?: string;
-  sets?: string;
-  weight?: string;
+  title: string;
+  subtitle?: string;
+  description?: string;
+  details?: string;
+  notes?: string;
   onRemove?: () => void;
   showRemove?: boolean;
   onPress?: () => void;
-  displayMode?: "name" | "full";
+  children?: React.ReactNode;
 }) {
   const { colors } = useContext(ThemeContext);
   const Wrapper = onPress ? TouchableOpacity : View;
@@ -35,34 +37,38 @@ export default function ExerciseListItem({
       {...(onPress ? { onPress } : {})}
     >
       <View style={{ flex: 1 }}>
-        <Text style={[styles.name, { color: colors.text }]}>
-          {exercise.name}
-        </Text>
-        {displayMode === "full" && (
-          <>
-            {exercise.muscleGroup && (
-              <Text
-                style={{ color: colors.textSecondary, fontSize: FONT_SIZE.sm }}
-              >
-                {exercise.muscleGroup}
-              </Text>
-            )}
-            {exercise.description && (
-              <Text
-                style={{ color: colors.textSecondary, fontSize: FONT_SIZE.sm }}
-                numberOfLines={2}
-                ellipsizeMode="tail"
-              >
-                {exercise.description}
-              </Text>
-            )}
-          </>
-        )}
-        {(reps || sets || weight) && (
+        <Text style={[styles.name, { color: colors.text }]}>{title}</Text>
+        {subtitle && (
           <Text style={{ color: colors.textSecondary, fontSize: FONT_SIZE.sm }}>
-            {reps} reps x {sets} sets @ {weight}kg
+            {subtitle}
           </Text>
         )}
+        {description && (
+          <Text
+            style={{ color: colors.textSecondary, fontSize: FONT_SIZE.sm }}
+            numberOfLines={2}
+            ellipsizeMode="tail"
+          >
+            {description}
+          </Text>
+        )}
+        {details && (
+          <Text style={{ color: colors.textSecondary, fontSize: FONT_SIZE.sm }}>
+            {details}
+          </Text>
+        )}
+        {notes && (
+          <Text
+            style={{
+              color: colors.textSecondary,
+              fontSize: FONT_SIZE.sm,
+              marginTop: 2,
+            }}
+          >
+            {notes}
+          </Text>
+        )}
+        {children}
       </View>
       {showRemove && onRemove && (
         <TouchableOpacity onPress={onRemove}>

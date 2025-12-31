@@ -45,6 +45,7 @@ export async function migrateDbIfNeeded(db: SQLiteDatabase) {
         exercise_id TEXT NOT NULL,
         sets INTEGER NOT NULL DEFAULT 0,
         reps INTEGER NOT NULL DEFAULT 0,
+        weight REAL NOT NULL DEFAULT 0,
         notes TEXT DEFAULT '',
         PRIMARY KEY (template_id, exercise_id),
         FOREIGN KEY (template_id) REFERENCES templates(id),

@@ -1,7 +1,7 @@
 import AddExerciseForm from "@/components/AddExerciseForm";
 import ConfirmDeleteModal from "@/components/ConfirmDeleteModal";
-import ExerciseListItem from "@/components/ExerciseListItem";
 import FloatingButton from "@/components/FloatingButton";
+import ExerciseListItem from "@/components/ListItem";
 import ThemedModal from "@/components/ThemedModal";
 import { FONT_SIZE, SPACING, ThemeContext } from "@/constants/Theme";
 import {
