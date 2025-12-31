@@ -39,11 +39,11 @@ export const SPACING = {
 };
 
 export const FONT_SIZE = {
-  sm: 12,
-  md: 14,
-  lg: 16,
-  xl: 18,
-  xxl: 24,
+  sm: 14,
+  md: 16,
+  lg: 18,
+  xl: 24,
+  xxl: 32,
 };
 
 export const BORDER_RADIUS = {

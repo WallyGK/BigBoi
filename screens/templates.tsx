@@ -1,6 +1,12 @@
 // app/(tabs)/templates.tsx
 import Card from "@/components/Card";
-import { SHADOW, SPACING, ThemeContext } from "@/constants/Theme";
+import {
+  BORDER_RADIUS,
+  FONT_SIZE,
+  SHADOW,
+  SPACING,
+  ThemeContext,
+} from "@/constants/Theme";
 import { getExercisesForTemplate, searchTemplatesAsync } from "@/db/templates";
 import { Template, TemplateExercise } from "@/types";
 import { useContext, useEffect, useState } from "react";
@@ -103,21 +109,25 @@ export default function Templates() {
 
 const styles = StyleSheet.create({
   container: { flex: 1, paddingHorizontal: SPACING.md },
-  title: { fontSize: 20, fontWeight: "700", marginVertical: SPACING.md },
-  name: { fontSize: 16, fontWeight: "600" },
-  preview: { fontSize: 14, marginTop: SPACING.xs },
+  title: {
+    fontSize: FONT_SIZE.xl,
+    fontWeight: "700",
+    marginVertical: SPACING.sm,
+  },
+  name: { fontSize: FONT_SIZE.lg, fontWeight: "600" },
+  preview: { fontSize: FONT_SIZE.md, marginTop: SPACING.xs },
   addButton: {
     position: "absolute",
     right: SPACING.xl,
     width: 56,
     height: 56,
-    borderRadius: 28,
+    borderRadius: BORDER_RADIUS.xl,
     justifyContent: "center",
     alignItems: "center",
   },
   addButtonText: {
     color: "#fff",
-    fontSize: 28,
+    fontSize: FONT_SIZE.xl,
     fontWeight: "600",
   },
 });

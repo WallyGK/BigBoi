@@ -6,28 +6,18 @@ import {
   ThemeContext,
 } from "@/constants/Theme";
 import { Exercise, NewExercise } from "@/types";
-import { Ionicons } from "@expo/vector-icons";
 import { useContext, useState } from "react";
-import {
-  Alert,
-  StyleSheet,
-  Text,
-  TextInput,
-  TouchableOpacity,
-  View,
-} from "react-native";
+import { Alert, StyleSheet, Text, TextInput, View } from "react-native";
 
 interface AddExerciseFormProps {
   onClose: () => void;
   onSave: (exerciseData: Exercise | NewExercise) => void;
-  onDelete?: (exerciseId: string) => void;
   exercise?: Exercise | null;
 }
 
 export default function AddExerciseForm({
   onClose,
   onSave,
-  onDelete,
   exercise,
 }: AddExerciseFormProps) {
   const { colors } = useContext(ThemeContext);
@@ -58,41 +48,12 @@ export default function AddExerciseForm({
     }
   };
 
-  const handleDelete = () => {
-    if (!exercise?.id || !onDelete) return;
-
-    Alert.alert(
-      "Delete Exercise",
-      "Are you sure you want to delete this exercise?",
-      [
-        { text: "Cancel", style: "cancel" },
-        {
-          text: "Delete",
-          style: "destructive",
-          onPress: () => {
-            onDelete(exercise.id);
-            onClose();
-          },
-        },
-      ]
-    );
-  };
-
   return (
     <View style={[styles.container, { backgroundColor: colors.card }]}>
-      {/* Trash icon for delete */}
-      {isEdit && onDelete && exercise?.id && (
-        <TouchableOpacity style={styles.deleteIcon} onPress={handleDelete}>
-          <Ionicons name="trash-outline" size={24} color={colors.error} />
-        </TouchableOpacity>
-      )}
-
-      {/* Title */}
       <Text style={[styles.title, { color: colors.text }]}>
         {isEdit ? "Edit Exercise" : "Add New Exercise"}
       </Text>
 
-      {/* Inputs */}
       <TextInput
         placeholder="Name"
         placeholderTextColor={colors.textSecondary}
@@ -122,7 +83,6 @@ export default function AddExerciseForm({
         ]}
       />
 
-      {/* Save / Update button */}
       <Button
         title={
           loading ? "Saving..." : isEdit ? "Update Exercise" : "Save Exercise"
@@ -141,12 +101,6 @@ const styles = StyleSheet.create({
     borderRadius: BORDER_RADIUS.lg,
     position: "relative",
     justifyContent: "flex-start",
-  },
-  deleteIcon: {
-    position: "absolute",
-    top: SPACING.sm,
-    left: SPACING.sm,
-    zIndex: 1,
   },
   title: {
     fontSize: FONT_SIZE.xl,

@@ -19,6 +19,7 @@ interface ThemedModalProps {
   visible: boolean;
   onClose: () => void;
   children: React.ReactNode;
+  onDelete?: () => void;
   style?: ViewStyle;
 }
 
@@ -26,6 +27,7 @@ export default function ThemedModal({
   visible,
   onClose,
   children,
+  onDelete,
   style,
 }: ThemedModalProps) {
   const { colors } = useContext(ThemeContext);
@@ -47,8 +49,15 @@ export default function ThemedModal({
         >
           {/* Close button */}
           <TouchableOpacity style={styles.closeButton} onPress={onClose}>
-            <Ionicons name="close" size={24} color={colors.text} />
+            <Ionicons name="close" size={32} color={colors.text} />
           </TouchableOpacity>
+
+          {/* Delete button, only render if onDelete provided */}
+          {onDelete && (
+            <TouchableOpacity style={styles.deleteButton} onPress={onDelete}>
+              <Ionicons name="trash-outline" size={32} color={colors.error} />
+            </TouchableOpacity>
+          )}
 
           {/* Modal content */}
           <View style={styles.content}>{children}</View>
@@ -78,6 +87,12 @@ const styles = StyleSheet.create({
     position: "absolute",
     top: SPACING.sm,
     right: SPACING.sm,
+    zIndex: 1,
+  },
+  deleteButton: {
+    position: "absolute",
+    top: SPACING.sm,
+    left: SPACING.sm,
     zIndex: 1,
   },
   content: {

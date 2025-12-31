@@ -1,8 +1,13 @@
-// app/(tabs)/exercises.tsx
 import AddExerciseForm from "@/components/AddExerciseForm";
 import Card from "@/components/Card";
 import ThemedModal from "@/components/ThemedModal";
-import { SHADOW, SPACING, ThemeContext } from "@/constants/Theme";
+import {
+  BORDER_RADIUS,
+  FONT_SIZE,
+  SHADOW,
+  SPACING,
+  ThemeContext,
+} from "@/constants/Theme";
 import {
   addExercise,
   deleteExerciseAsync,
@@ -29,7 +34,6 @@ export default function Exercises() {
   );
   const insets = useSafeAreaInsets();
 
-  // Load exercises from SQLite
   const loadExercises = async () => {
     const allExercises = await searchExercisesAsync("");
     setExercises(allExercises);
@@ -46,6 +50,13 @@ export default function Exercises() {
       await addExercise(exerciseData);
     }
     await loadExercises();
+    setModalVisible(false);
+  };
+
+  const handleDeleteExercise = async (id: string) => {
+    await deleteExerciseAsync(id);
+    await loadExercises();
+    setModalVisible(false);
   };
 
   return (
@@ -96,18 +107,20 @@ export default function Exercises() {
         <Text style={styles.addButtonText}>+</Text>
       </TouchableOpacity>
 
+      {/* Modal */}
       <ThemedModal
         visible={modalVisible}
         onClose={() => setModalVisible(false)}
+        onDelete={
+          selectedExercise
+            ? () => handleDeleteExercise(selectedExercise.id)
+            : undefined
+        }
       >
         <AddExerciseForm
           exercise={selectedExercise}
           onClose={() => setModalVisible(false)}
           onSave={handleSaveExercise}
-          onDelete={async (id: string) => {
-            await deleteExerciseAsync(id);
-            await loadExercises();
-          }}
         />
       </ThemedModal>
     </View>
@@ -120,16 +133,16 @@ const styles = StyleSheet.create({
     paddingHorizontal: SPACING.md,
   },
   title: {
-    fontSize: 20,
+    fontSize: FONT_SIZE.xl,
     fontWeight: "700",
-    marginVertical: SPACING.md,
+    marginVertical: SPACING.sm,
   },
   name: {
-    fontSize: 16,
+    fontSize: FONT_SIZE.lg,
     fontWeight: "600",
   },
   muscle: {
-    fontSize: 14,
+    fontSize: FONT_SIZE.md,
     marginTop: SPACING.xs,
   },
   addButton: {
@@ -137,14 +150,14 @@ const styles = StyleSheet.create({
     right: SPACING.xl,
     width: 56,
     height: 56,
-    borderRadius: 28,
+    borderRadius: BORDER_RADIUS.xl,
     justifyContent: "center",
     alignItems: "center",
     ...SHADOW.default,
   },
   addButtonText: {
     color: "#fff",
-    fontSize: 28,
+    fontSize: FONT_SIZE.xl,
     fontWeight: "600",
   },
 });
