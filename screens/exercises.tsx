@@ -1,13 +1,9 @@
 import AddExerciseForm from "@/components/AddExerciseForm";
-import Card from "@/components/Card";
+import ConfirmDeleteModal from "@/components/ConfirmDeleteModal";
+import ExerciseListItem from "@/components/ExerciseListItem";
+import FloatingButton from "@/components/FloatingButton";
 import ThemedModal from "@/components/ThemedModal";
-import {
-  BORDER_RADIUS,
-  FONT_SIZE,
-  SHADOW,
-  SPACING,
-  ThemeContext,
-} from "@/constants/Theme";
+import { FONT_SIZE, SPACING, ThemeContext } from "@/constants/Theme";
 import {
   addExercise,
   deleteExerciseAsync,
@@ -16,13 +12,7 @@ import {
 } from "@/db/exercises";
 import { Exercise, NewExercise } from "@/types";
 import { useContext, useEffect, useState } from "react";
-import {
-  FlatList,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-} from "react-native";
+import { FlatList, StyleSheet, Text, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 export default function Exercises() {
@@ -32,6 +22,7 @@ export default function Exercises() {
   const [selectedExercise, setSelectedExercise] = useState<Exercise | null>(
     null
   );
+  const [deleteConfirmVisible, setDeleteConfirmVisible] = useState(false);
   const insets = useSafeAreaInsets();
 
   const loadExercises = async () => {
@@ -53,9 +44,11 @@ export default function Exercises() {
     setModalVisible(false);
   };
 
-  const handleDeleteExercise = async (id: string) => {
-    await deleteExerciseAsync(id);
+  const handleDeleteExercise = async () => {
+    if (!selectedExercise) return;
+    await deleteExerciseAsync(selectedExercise.id);
     await loadExercises();
+    setDeleteConfirmVisible(false);
     setModalVisible(false);
   };
 
@@ -69,42 +62,22 @@ export default function Exercises() {
         data={exercises}
         keyExtractor={(item) => item.id}
         renderItem={({ item }) => (
-          <TouchableOpacity
-            activeOpacity={0.7}
+          <ExerciseListItem
+            exercise={item}
             onPress={() => {
               setSelectedExercise(item);
               setModalVisible(true);
             }}
-          >
-            <Card style={{ backgroundColor: colors.card }}>
-              <Text style={[styles.name, { color: colors.text }]}>
-                {item.name}
-              </Text>
-              <Text style={[styles.muscle, { color: colors.textSecondary }]}>
-                {item.muscleGroup || "Unspecified"}
-              </Text>
-              {item.description ? (
-                <Text
-                  style={[styles.description, { color: colors.textSecondary }]}
-                  numberOfLines={2}
-                  ellipsizeMode="tail"
-                >
-                  {item.description}
-                </Text>
-              ) : null}
-            </Card>
-          </TouchableOpacity>
+          />
         )}
         contentContainerStyle={{ paddingVertical: SPACING.md }}
         ItemSeparatorComponent={() => <View style={{ height: SPACING.xs }} />}
       />
 
       {/* Floating Add Button */}
-      <TouchableOpacity
+      <FloatingButton
         style={[
-          styles.addButton,
           {
-            backgroundColor: colors.primary,
             bottom: SPACING.xl + insets.bottom,
           },
         ]}
@@ -113,17 +86,15 @@ export default function Exercises() {
           setModalVisible(true);
         }}
       >
-        <Text style={styles.addButtonText}>+</Text>
-      </TouchableOpacity>
+        {"+"}
+      </FloatingButton>
 
       {/* Modal */}
       <ThemedModal
         visible={modalVisible}
         onClose={() => setModalVisible(false)}
         onDelete={
-          selectedExercise
-            ? () => handleDeleteExercise(selectedExercise.id)
-            : undefined
+          selectedExercise ? () => setDeleteConfirmVisible(true) : undefined
         }
       >
         <AddExerciseForm
@@ -132,6 +103,14 @@ export default function Exercises() {
           onSave={handleSaveExercise}
         />
       </ThemedModal>
+
+      <ConfirmDeleteModal
+        visible={deleteConfirmVisible}
+        onConfirm={handleDeleteExercise}
+        onCancel={() => setDeleteConfirmVisible(false)}
+        title="Delete Exercise?"
+        message="Are you sure you want to delete this exercise? This action cannot be undone."
+      />
     </View>
   );
 }
@@ -153,21 +132,6 @@ const styles = StyleSheet.create({
   muscle: {
     fontSize: FONT_SIZE.md,
     marginTop: SPACING.xs,
-  },
-  addButton: {
-    position: "absolute",
-    right: SPACING.xl,
-    width: 56,
-    height: 56,
-    borderRadius: BORDER_RADIUS.xl,
-    justifyContent: "center",
-    alignItems: "center",
-    ...SHADOW.default,
-  },
-  addButtonText: {
-    color: "#fff",
-    fontSize: FONT_SIZE.xl,
-    fontWeight: "600",
   },
   description: {
     fontSize: FONT_SIZE.sm,

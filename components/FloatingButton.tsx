@@ -1,5 +1,6 @@
 import {
   BORDER_RADIUS,
+  FONT_SIZE,
   SHADOW,
   SPACING,
   ThemeContext,
@@ -7,16 +8,19 @@ import {
 import { useContext } from "react";
 import {
   StyleSheet,
+  Text,
   TouchableOpacity,
   TouchableOpacityProps,
 } from "react-native";
 
 interface FloatingButtonProps extends TouchableOpacityProps {
   style?: object;
+  children?: React.ReactNode;
 }
 
 export default function FloatingButton({
   style,
+  children,
   ...props
 }: FloatingButtonProps) {
   const { colors } = useContext(ThemeContext);
@@ -25,7 +29,15 @@ export default function FloatingButton({
     <TouchableOpacity
       style={[styles.button, { backgroundColor: colors.primary }, style]}
       {...props}
-    />
+    >
+      {typeof children === "string" || typeof children === "number" ? (
+        <Text style={[styles.buttonText, { color: colors.text }]}>
+          {children}
+        </Text>
+      ) : (
+        children
+      )}
+    </TouchableOpacity>
   );
 }
 
@@ -37,8 +49,12 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     position: "absolute",
-    right: SPACING.xl,
+    right: SPACING.md,
     bottom: SPACING.xl,
     ...SHADOW.default,
+  },
+  buttonText: {
+    fontSize: FONT_SIZE.xxl,
+    fontWeight: "600",
   },
 });

@@ -1,15 +1,12 @@
 // app/(tabs)/templates.tsx
 import Card from "@/components/Card";
-import {
-  BORDER_RADIUS,
-  FONT_SIZE,
-  SHADOW,
-  SPACING,
-  ThemeContext,
-} from "@/constants/Theme";
+import FloatingButton from "@/components/FloatingButton";
+import { FONT_SIZE, SHADOW, SPACING, ThemeContext } from "@/constants/Theme";
 import { getExercisesForTemplate, searchTemplatesAsync } from "@/db/templates";
 import { Template, TemplateExercise } from "@/types";
-import { useContext, useEffect, useState } from "react";
+import { useFocusEffect } from "@react-navigation/native";
+import { useRouter } from "expo-router";
+import React, { useContext, useState } from "react";
 import {
   FlatList,
   StyleSheet,
@@ -19,19 +16,10 @@ import {
 } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
-import { RootStackParamList } from "@/types/navigation";
-import { useNavigation } from "@react-navigation/native";
-import { NativeStackNavigationProp } from "@react-navigation/native-stack";
-
-type TemplatesScreenNavigationProp = NativeStackNavigationProp<
-  RootStackParamList,
-  "Templates"
->;
-
 export default function Templates() {
   const { colors } = useContext(ThemeContext);
   const insets = useSafeAreaInsets();
-  const navigation = useNavigation<TemplatesScreenNavigationProp>();
+  const router = useRouter();
 
   const [templates, setTemplates] = useState<Template[]>([]);
   const [templateExercises, setTemplateExercises] = useState<
@@ -49,9 +37,11 @@ export default function Templates() {
     setTemplateExercises(exercisesMap);
   };
 
-  useEffect(() => {
-    loadTemplates();
-  }, []);
+  useFocusEffect(
+    React.useCallback(() => {
+      loadTemplates();
+    }, [])
+  );
 
   const renderItem = ({ item }: { item: Template }) => {
     const exercises = templateExercises[item.id] || [];
@@ -60,9 +50,7 @@ export default function Templates() {
     return (
       <TouchableOpacity
         activeOpacity={0.7}
-        onPress={() =>
-          navigation.navigate("EditTemplate", { templateId: item.id })
-        }
+        onPress={() => router.push(`/EditTemplate?templateId=${item.id}`)}
       >
         <Card
           style={{ backgroundColor: colors.card, marginBottom: SPACING.sm }}
@@ -90,19 +78,17 @@ export default function Templates() {
       />
 
       {/* Floating Add Button */}
-      <TouchableOpacity
+      <FloatingButton
         style={[
-          styles.addButton,
           {
-            backgroundColor: colors.primary,
             bottom: SPACING.xl + insets.bottom,
           },
           SHADOW.default,
         ]}
-        onPress={() => navigation.navigate("EditTemplate", {})}
+        onPress={() => router.push("/EditTemplate")}
       >
-        <Text style={styles.addButtonText}>+</Text>
-      </TouchableOpacity>
+        {"+"}
+      </FloatingButton>
     </View>
   );
 }
@@ -116,18 +102,4 @@ const styles = StyleSheet.create({
   },
   name: { fontSize: FONT_SIZE.lg, fontWeight: "600" },
   preview: { fontSize: FONT_SIZE.md, marginTop: SPACING.xs },
-  addButton: {
-    position: "absolute",
-    right: SPACING.xl,
-    width: 56,
-    height: 56,
-    borderRadius: BORDER_RADIUS.xl,
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  addButtonText: {
-    color: "#fff",
-    fontSize: FONT_SIZE.xl,
-    fontWeight: "600",
-  },
 });

@@ -77,10 +77,11 @@ const styles = StyleSheet.create({
   modalContainer: {
     width: "90%",
     borderRadius: BORDER_RADIUS.lg,
-    paddingTop: SPACING.xl,
-    paddingHorizontal: SPACING.md,
-    paddingBottom: SPACING.md,
+    paddingTop: SPACING.md,
+    paddingHorizontal: SPACING.sm,
+    paddingBottom: SPACING.sm,
     maxHeight: "80%",
+    alignItems: "stretch",
     ...SHADOW.default,
   },
   closeButton: {
