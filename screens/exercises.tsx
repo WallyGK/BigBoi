@@ -1,9 +1,10 @@
 import AddExerciseForm from "@/components/AddExerciseForm";
 import ConfirmDeleteModal from "@/components/ConfirmDeleteModal";
 import FloatingButton from "@/components/FloatingButton";
-import ExerciseListItem from "@/components/ListItem";
+import ListItem from "@/components/ListItem";
+import ScreenTitle from "@/components/ScreenTitle";
 import ThemedModal from "@/components/ThemedModal";
-import { FONT_SIZE, SPACING, ThemeContext } from "@/constants/Theme";
+import { SPACING, ThemeContext } from "@/constants/Theme";
 import {
   addExercise,
   deleteExerciseAsync,
@@ -12,7 +13,7 @@ import {
 } from "@/db/exercises";
 import { Exercise, NewExercise } from "@/types";
 import { useContext, useEffect, useState } from "react";
-import { FlatList, StyleSheet, Text, View } from "react-native";
+import { FlatList, StyleSheet, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 export default function Exercises() {
@@ -54,16 +55,16 @@ export default function Exercises() {
 
   return (
     <View style={[styles.container, { backgroundColor: colors.background }]}>
-      <Text style={[styles.title, { color: colors.text }]}>
-        Saved Exercises:
-      </Text>
+      <ScreenTitle>Saved Exercises:</ScreenTitle>
 
       <FlatList
         data={exercises}
         keyExtractor={(item) => item.id}
         renderItem={({ item }) => (
-          <ExerciseListItem
-            exercise={item}
+          <ListItem
+            title={item.name}
+            subtitle={item.muscleGroup}
+            description={item.description || ""}
             onPress={() => {
               setSelectedExercise(item);
               setModalVisible(true);
@@ -119,22 +120,5 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingHorizontal: SPACING.md,
-  },
-  title: {
-    fontSize: FONT_SIZE.xl,
-    fontWeight: "700",
-    marginVertical: SPACING.sm,
-  },
-  name: {
-    fontSize: FONT_SIZE.lg,
-    fontWeight: "600",
-  },
-  muscle: {
-    fontSize: FONT_SIZE.md,
-    marginTop: SPACING.xs,
-  },
-  description: {
-    fontSize: FONT_SIZE.sm,
-    marginTop: SPACING.xs,
   },
 });

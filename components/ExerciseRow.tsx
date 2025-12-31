@@ -86,10 +86,10 @@ const ExerciseRow: React.FC<ExerciseRowProps> = ({
           fontSize: FONT_SIZE.lg,
           textAlign: "right",
         }}
-        value={weight}
+        value={weight === "0" ? "" : weight}
         onChangeText={onChangeWeight}
         keyboardType="numeric"
-        placeholder="Weight"
+        placeholder="##"
         placeholderTextColor={colors.textSecondary}
       />
       <Text

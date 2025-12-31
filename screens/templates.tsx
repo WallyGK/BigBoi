@@ -1,19 +1,14 @@
 // app/(tabs)/templates.tsx
-import Card from "@/components/Card";
 import FloatingButton from "@/components/FloatingButton";
-import { FONT_SIZE, SHADOW, SPACING, ThemeContext } from "@/constants/Theme";
+import ListItem from "@/components/ListItem";
+import ScreenTitle from "@/components/ScreenTitle";
+import { SHADOW, SPACING, ThemeContext } from "@/constants/Theme";
 import { getExercisesForTemplate, searchTemplatesAsync } from "@/db/templates";
 import { Template, TemplateExercise } from "@/types";
 import { useFocusEffect } from "@react-navigation/native";
 import { useRouter } from "expo-router";
 import React, { useContext, useState } from "react";
-import {
-  FlatList,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-} from "react-native";
+import { FlatList, StyleSheet, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 export default function Templates() {
@@ -48,27 +43,17 @@ export default function Templates() {
     const preview = exercises.map((e) => e.name).join(", ");
 
     return (
-      <TouchableOpacity
-        activeOpacity={0.7}
+      <ListItem
+        title={item.name}
+        subtitle={preview || "No exercises added yet"}
         onPress={() => router.push(`/EditTemplate?templateId=${item.id}`)}
-      >
-        <Card
-          style={{ backgroundColor: colors.card, marginBottom: SPACING.sm }}
-        >
-          <Text style={[styles.name, { color: colors.text }]}>{item.name}</Text>
-          <Text style={[styles.preview, { color: colors.textSecondary }]}>
-            {preview || "No exercises added yet"}
-          </Text>
-        </Card>
-      </TouchableOpacity>
+      />
     );
   };
 
   return (
     <View style={[styles.container, { backgroundColor: colors.background }]}>
-      <Text style={[styles.title, { color: colors.text }]}>
-        Saved Templates:
-      </Text>
+      <ScreenTitle>Saved Templates:</ScreenTitle>
 
       <FlatList
         data={templates}
@@ -95,11 +80,4 @@ export default function Templates() {
 
 const styles = StyleSheet.create({
   container: { flex: 1, paddingHorizontal: SPACING.md },
-  title: {
-    fontSize: FONT_SIZE.xl,
-    fontWeight: "700",
-    marginVertical: SPACING.sm,
-  },
-  name: { fontSize: FONT_SIZE.lg, fontWeight: "600" },
-  preview: { fontSize: FONT_SIZE.md, marginTop: SPACING.xs },
 });
