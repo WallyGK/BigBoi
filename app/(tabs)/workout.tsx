@@ -1,38 +1,35 @@
 // app/(tabs)/workout.tsx
 import Button from "@/components/Button";
 import Card from "@/components/Card";
-import { ThemeContext } from "@/constants/ThemeContext";
+import { SPACING, ThemeContext } from "@/constants/Theme";
 import { useRouter } from "expo-router";
 import { useContext } from "react";
 import { ScrollView, StyleSheet } from "react-native";
 
 export default function Workout() {
   const router = useRouter();
-  const theme = useContext(ThemeContext);
+  const { colors } = useContext(ThemeContext);
 
   return (
     <ScrollView
-      style={{ backgroundColor: theme.background }}
-      contentContainerStyle={[
-        styles.container,
-        { backgroundColor: theme.background },
-      ]}
+      style={[styles.container, { backgroundColor: colors.background }]}
+      contentContainerStyle={styles.contentContainer}
     >
-      <Card>
+      <Card style={styles.card}>
         <Button
           title="Start Workout"
           onPress={() => router.push("/start-workout")}
         />
       </Card>
 
-      <Card>
+      <Card style={styles.card}>
         <Button
           title="Add/Edit Exercises"
           onPress={() => router.push("/exercises")}
         />
       </Card>
 
-      <Card>
+      <Card style={styles.card}>
         <Button
           title="Add/Edit Templates"
           onPress={() => router.push("/templates")}
@@ -43,7 +40,11 @@ export default function Workout() {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    padding: 16,
+  container: { flex: 1 },
+  contentContainer: {
+    padding: SPACING.md,
+  },
+  card: {
+    marginBottom: SPACING.sm,
   },
 });

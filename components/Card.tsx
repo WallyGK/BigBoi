@@ -1,18 +1,22 @@
-import { ThemeContext } from "@/constants/ThemeContext";
+import {
+  BORDER_RADIUS,
+  SHADOW,
+  SPACING,
+  ThemeContext,
+} from "@/constants/Theme";
 import { useContext } from "react";
 import { StyleSheet, View } from "react-native";
 
-export default function Card({
-  children,
-  style,
-}: {
+interface CardProps {
   children: React.ReactNode;
   style?: object;
-}) {
-  const theme = useContext(ThemeContext);
+}
+
+export default function Card({ children, style }: CardProps) {
+  const { colors } = useContext(ThemeContext);
 
   return (
-    <View style={[styles.card, { backgroundColor: theme.card }, style]}>
+    <View style={[styles.card, { backgroundColor: colors.card }, style]}>
       {children}
     </View>
   );
@@ -20,12 +24,9 @@ export default function Card({
 
 const styles = StyleSheet.create({
   card: {
-    padding: 16,
-    borderRadius: 12,
-    marginVertical: 8,
-    shadowColor: "#000",
-    shadowOpacity: 0.05,
-    shadowRadius: 4,
-    shadowOffset: { width: 0, height: 2 },
+    padding: SPACING.md,
+    borderRadius: BORDER_RADIUS.md,
+    marginVertical: SPACING.xs,
+    ...SHADOW.default,
   },
 });

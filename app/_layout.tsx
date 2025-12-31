@@ -1,30 +1,31 @@
 // app/_layout.tsx
-import { Colors } from "@/constants/Colors";
-import { ThemeContext } from "@/constants/ThemeContext";
+import { ThemeContext, ThemeProvider } from "@/constants/Theme";
 import { Slot } from "expo-router";
 import { StatusBar } from "expo-status-bar";
-import { Appearance, StyleSheet } from "react-native";
+import { useContext } from "react";
 import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
 
 export default function RootLayout() {
-  const colorScheme = Appearance.getColorScheme(); // 'light' | 'dark'
-  const theme = colorScheme === "dark" ? Colors.dark : Colors.light;
-
   return (
-    <ThemeContext.Provider value={theme}>
+    <ThemeProvider>
       <SafeAreaProvider>
-        <SafeAreaView
-          style={[styles.container, { backgroundColor: theme.background }]}
-          edges={["top"]}
-        >
-          <StatusBar style={colorScheme === "dark" ? "light" : "dark"} />
-          <Slot />
-        </SafeAreaView>
+        <AppContent />
       </SafeAreaProvider>
-    </ThemeContext.Provider>
+    </ThemeProvider>
   );
 }
 
-const styles = StyleSheet.create({
-  container: { flex: 1 },
-});
+// Extracted content to use ThemeContext
+function AppContent() {
+  const { colors, darkMode } = useContext(ThemeContext);
+
+  return (
+    <SafeAreaView
+      style={{ flex: 1, backgroundColor: colors.background }}
+      edges={["top"]}
+    >
+      <StatusBar style={darkMode ? "light" : "dark"} />
+      <Slot />
+    </SafeAreaView>
+  );
+}

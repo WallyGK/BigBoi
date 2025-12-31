@@ -1,20 +1,21 @@
 // app/(tabs)/_layout.tsx
-import { ThemeContext } from "@/constants/ThemeContext";
+import { ThemeContext } from "@/constants/Theme";
 import { Ionicons } from "@expo/vector-icons";
 import { Tabs } from "expo-router";
 import { useContext } from "react";
 
 export default function TabLayout() {
-  const theme = useContext(ThemeContext);
+  const { colors } = useContext(ThemeContext);
+
   return (
     <Tabs
       screenOptions={{
-        tabBarActiveTintColor: theme.primary,
-        tabBarInactiveTintColor: theme.tabIconDefault,
+        tabBarActiveTintColor: colors.primary,
+        tabBarInactiveTintColor: colors.tabIconDefault,
         headerShown: false,
         tabBarStyle: {
-          backgroundColor: theme.background,
-          borderTopColor: theme.border,
+          backgroundColor: colors.background,
+          borderTopColor: colors.border,
         },
       }}
     >
