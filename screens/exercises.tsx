@@ -2,9 +2,10 @@ import AddExerciseForm from "@/components/AddExerciseForm";
 import ConfirmDeleteModal from "@/components/ConfirmDeleteModal";
 import FloatingButton from "@/components/FloatingButton";
 import ListItem from "@/components/ListItem";
+import ScreenContainer from "@/components/ScreenContainer";
 import ScreenTitle from "@/components/ScreenTitle";
 import ThemedModal from "@/components/ThemedModal";
-import { SPACING, ThemeContext } from "@/constants/Theme";
+import { SPACING } from "@/constants/Theme";
 import {
   addExercise,
   deleteExerciseAsync,
@@ -12,12 +13,11 @@ import {
   updateExerciseAsync,
 } from "@/db/exercises";
 import { Exercise, NewExercise } from "@/types";
-import { useContext, useEffect, useState } from "react";
-import { FlatList, StyleSheet, View } from "react-native";
+import { useEffect, useState } from "react";
+import { FlatList, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 export default function Exercises() {
-  const { colors } = useContext(ThemeContext);
   const [exercises, setExercises] = useState<Exercise[]>([]);
   const [modalVisible, setModalVisible] = useState(false);
   const [selectedExercise, setSelectedExercise] = useState<Exercise | null>(
@@ -54,7 +54,7 @@ export default function Exercises() {
   };
 
   return (
-    <View style={[styles.container, { backgroundColor: colors.background }]}>
+    <ScreenContainer>
       <ScreenTitle>Saved Exercises:</ScreenTitle>
 
       <FlatList
@@ -112,13 +112,6 @@ export default function Exercises() {
         title="Delete Exercise?"
         message="Are you sure you want to delete this exercise? This action cannot be undone."
       />
-    </View>
+    </ScreenContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    paddingHorizontal: SPACING.md,
-  },
-});

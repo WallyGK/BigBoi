@@ -10,7 +10,6 @@ function AppLayout({ children }: { children: React.ReactNode }) {
   const { darkMode } = useContext(ThemeContext);
   return (
     <>
-      {/* Global background color overlay */}
       <StatusBar style={darkMode ? "light" : "dark"} />
       {children}
     </>
@@ -37,7 +36,7 @@ export default function RootLayout() {
               >
                 <Ionicons
                   name="arrow-back"
-                  size={24}
+                  size={32}
                   color={colors.tabIconDefault}
                 />
               </TouchableOpacity>

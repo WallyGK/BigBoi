@@ -4,6 +4,7 @@ import Button from "@/components/Button";
 import ConfirmDeleteModal from "@/components/ConfirmDeleteModal";
 import FloatingButton from "@/components/FloatingButton";
 import ListItem from "@/components/ListItem";
+import ScreenContainer from "@/components/ScreenContainer";
 import ScreenTitle from "@/components/ScreenTitle";
 import SectionTitle from "@/components/SectionTitle";
 import ThemedModal from "@/components/ThemedModal";
@@ -197,7 +198,7 @@ export default function EditTemplate() {
   };
 
   return (
-    <View style={[styles.container, { backgroundColor: colors.background }]}>
+    <ScreenContainer>
       <ScreenTitle>Edit Template</ScreenTitle>
       <TextInput
         placeholder="Template Name"
@@ -317,15 +318,11 @@ export default function EditTemplate() {
           style={styles.saveButton}
         />
       </View>
-    </View>
+    </ScreenContainer>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    padding: SPACING.md,
-  },
   input: {
     borderWidth: 1,
     borderRadius: BORDER_RADIUS.md,

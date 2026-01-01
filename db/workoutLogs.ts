@@ -3,10 +3,9 @@ import { getDb } from "./index";
 
 // Add a new workout log and its exercises
 export async function addWorkoutLog(
-  date: string,
+  datetime: string,
   exercises: {
     exercise_id: string;
-    sets: number;
     reps: number;
     weight: number;
     notes?: string;
@@ -15,26 +14,34 @@ export async function addWorkoutLog(
   const db = await getDb();
   const workoutId = uuid.v4().toString();
   await db.runAsync(
-    `INSERT INTO workout_logs (id, date, is_deleted) VALUES (?, ?, 0)`,
-    [workoutId, date]
+    `INSERT INTO workout_logs (id, datetime, is_deleted) VALUES (?, ?, 0)`,
+    [workoutId, datetime]
   );
   for (const ex of exercises) {
+    const exerciseRowId = uuid.v4().toString();
     await db.runAsync(
-      `INSERT INTO workout_exercises (workout_id, exercise_id, sets, reps, weight, notes) VALUES (?, ?, ?, ?, ?, ?)`,
-      [workoutId, ex.exercise_id, ex.sets, ex.reps, ex.weight, ex.notes || ""]
+      `INSERT INTO workout_exercises (id, workout_id, exercise_id, reps, weight, notes) VALUES (?, ?, ?, ?, ?, ?)`,
+      [
+        exerciseRowId,
+        workoutId,
+        ex.exercise_id,
+        ex.reps,
+        ex.weight,
+        ex.notes || "",
+      ]
     );
   }
   return workoutId;
 }
 
-// Get all workout logs (optionally filter by date)
-export async function getWorkoutLogs(date?: string) {
+// Get all workout logs (optionally filter by datetime)
+export async function getWorkoutLogs(datetime?: string) {
   const db = await getDb();
   let query = `SELECT * FROM workout_logs WHERE is_deleted = 0`;
   const params: any[] = [];
-  if (date) {
-    query += ` AND date = ?`;
-    params.push(date);
+  if (datetime) {
+    query += ` AND datetime = ?`;
+    params.push(datetime);
   }
   return db.getAllAsync(query, params);
 }

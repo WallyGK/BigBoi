@@ -1,15 +1,12 @@
-import { Text, View } from "react-native";
+import ScreenContainer from "@/components/ScreenContainer";
+import { Text } from "react-native";
 
 export default function Settings() {
   return (
-    <View
-      style={{
-        flex: 1,
-        justifyContent: "center",
-        alignItems: "center",
-      }}
-    >
-      <Text>Edit app/(tabs)/settings.tsx to edit this screen.</Text>
-    </View>
+    <ScreenContainer>
+      <Text style={{ textAlign: "center", marginTop: 40 }}>
+        Edit app/(tabs)/settings.tsx to edit this screen.
+      </Text>
+    </ScreenContainer>
   );
 }

@@ -1,8 +1,9 @@
-import Button from "@/components/Button";
+import SaveWorkoutButton from "@/components/SaveWorkoutButton";
+import ScreenContainer from "@/components/ScreenContainer";
 import TemplateSelectForm from "@/components/TemplateSelectForm";
 import ThemedModal from "@/components/ThemedModal";
 import { getExercisesForTemplate, searchTemplatesAsync } from "@/db/templates";
-import { Alert, ScrollView, Text, View } from "react-native";
+import { ScrollView, Text, View } from "react-native";
 
 import { useRouter } from "expo-router";
 import { useContext, useEffect, useState } from "react";
@@ -18,28 +19,7 @@ export default function WorkoutFromTemplate() {
   const [workoutSets, setWorkoutSets] = useState<any[]>([]);
   const router = useRouter();
   const { colors } = useContext(ThemeContext);
-  const [saving, setSaving] = useState(false);
   const insets = useSafeAreaInsets();
-  // Placeholder for saving workout logs
-  const saveWorkoutLogs = async () => {
-    setSaving(true);
-    setTimeout(() => {
-      setSaving(false);
-      Alert.alert("Workout Saved", "Your workout has been logged.", [
-        { text: "OK", onPress: () => router.back() },
-      ]);
-    }, 800);
-  };
-  const handleCompleteAndSave = () => {
-    Alert.alert(
-      "Save workout?",
-      "Are you sure you want to save this workout?",
-      [
-        { text: "Cancel", style: "cancel" },
-        { text: "Save", onPress: saveWorkoutLogs },
-      ]
-    );
-  };
 
   useEffect(() => {
     (async () => {
@@ -86,7 +66,7 @@ export default function WorkoutFromTemplate() {
   };
 
   return (
-    <View style={{ flex: 1, backgroundColor: colors.background }}>
+    <ScreenContainer>
       <ThemedModal
         visible={modalVisible}
         onClose={() => router.back()}
@@ -142,19 +122,21 @@ export default function WorkoutFromTemplate() {
               ));
             })()}
           </ScrollView>
-          <View
+          <SaveWorkoutButton
             style={{
-              paddingBottom: insets.bottom || SPACING.md,
+              marginBottom: insets.bottom + SPACING.md,
+              marginHorizontal: SPACING.md,
             }}
-          >
-            <Button
-              title={saving ? "Saving..." : "Complete & Save"}
-              onPress={handleCompleteAndSave}
-              disabled={saving}
-            />
-          </View>
+            exercises={workoutSets.map((set) => ({
+              exerciseId:
+                set.exerciseId || set.exercise_id || set.exerciseName || "",
+              reps: set.reps ? parseInt(set.reps, 10) : 0,
+              weight: set.weight ? parseFloat(set.weight) : 0,
+              notes: set.notes,
+            }))}
+          />
         </View>
       )}
-    </View>
+    </ScreenContainer>
   );
 }

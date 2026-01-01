@@ -14,7 +14,7 @@ export default function ScreenContainer({
       style={{
         flex: 1,
         backgroundColor: colors.background,
-        padding: SPACING.md,
+        padding: SPACING.sm,
       }}
     >
       {children}

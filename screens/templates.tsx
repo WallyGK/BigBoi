@@ -1,18 +1,18 @@
 // app/(tabs)/templates.tsx
 import FloatingButton from "@/components/FloatingButton";
 import ListItem from "@/components/ListItem";
+import ScreenContainer from "@/components/ScreenContainer";
 import ScreenTitle from "@/components/ScreenTitle";
-import { SHADOW, SPACING, ThemeContext } from "@/constants/Theme";
+import { SHADOW, SPACING } from "@/constants/Theme";
 import { getExercisesForTemplate, searchTemplatesAsync } from "@/db/templates";
 import { Template, TemplateExercise } from "@/types";
 import { useFocusEffect } from "@react-navigation/native";
 import { useRouter } from "expo-router";
-import React, { useContext, useState } from "react";
-import { FlatList, StyleSheet, View } from "react-native";
+import React, { useState } from "react";
+import { FlatList } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 export default function Templates() {
-  const { colors } = useContext(ThemeContext);
   const insets = useSafeAreaInsets();
   const router = useRouter();
 
@@ -52,7 +52,7 @@ export default function Templates() {
   };
 
   return (
-    <View style={[styles.container, { backgroundColor: colors.background }]}>
+    <ScreenContainer>
       <ScreenTitle>Saved Templates:</ScreenTitle>
 
       <FlatList
@@ -74,10 +74,6 @@ export default function Templates() {
       >
         {"+"}
       </FloatingButton>
-    </View>
+    </ScreenContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  container: { flex: 1, paddingHorizontal: SPACING.md },
-});
