@@ -1,10 +1,10 @@
-// components/ScreenContainer.tsx
+// components/TabScreenContainer.tsx
 import { ThemeContext } from "@/constants/Theme";
 import { useContext } from "react";
 import { View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
-export default function ScreenContainer({
+export default function TabScreenContainer({
   children,
 }: {
   children: React.ReactNode;
@@ -13,7 +13,7 @@ export default function ScreenContainer({
   return (
     <SafeAreaView
       style={{ flex: 1, backgroundColor: colors.background }}
-      edges={["left", "right", "bottom"]}
+      edges={["left", "right", "top"]}
     >
       <View
         style={{

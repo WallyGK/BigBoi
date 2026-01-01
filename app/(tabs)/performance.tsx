@@ -1,4 +1,5 @@
-import ScreenContainer from "@/components/ScreenContainer";
+import ScreenTitle from "@/components/ScreenTitle";
+import TabScreenContainer from "@/components/TabScreenContainer";
 import { SPACING, ThemeContext } from "@/constants/Theme";
 import { getWorkoutLogs } from "@/db/workoutLogs";
 import { useContext, useEffect, useState } from "react";
@@ -17,17 +18,8 @@ export default function Performance() {
   }, []);
 
   return (
-    <ScreenContainer>
-      <Text
-        style={{
-          fontSize: 22,
-          fontWeight: "bold",
-          marginBottom: SPACING.md,
-          color: colors.text,
-        }}
-      >
-        Workout Log Entries
-      </Text>
+    <TabScreenContainer>
+      <ScreenTitle>Workout Logs</ScreenTitle>
       {loading ? (
         <Text style={{ color: colors.text }}>Loading...</Text>
       ) : logs.length === 0 ? (
@@ -75,6 +67,6 @@ export default function Performance() {
           </View>
         </ScrollView>
       )}
-    </ScreenContainer>
+    </TabScreenContainer>
   );
 }

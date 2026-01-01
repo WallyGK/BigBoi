@@ -50,9 +50,7 @@ export default function Button({
 const styles = StyleSheet.create({
   button: {
     paddingVertical: SPACING.sm,
-    paddingHorizontal: SPACING.md,
     borderRadius: BORDER_RADIUS.md,
-    marginVertical: SPACING.xs,
   },
   text: {
     fontSize: FONT_SIZE.lg,

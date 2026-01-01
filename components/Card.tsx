@@ -24,9 +24,8 @@ export default function Card({ children, style }: CardProps) {
 
 const styles = StyleSheet.create({
   card: {
-    padding: SPACING.md,
     borderRadius: BORDER_RADIUS.md,
-    marginVertical: SPACING.xs,
+    padding: SPACING.sm,
     ...SHADOW.default,
   },
 });

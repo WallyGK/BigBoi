@@ -8,12 +8,8 @@ import ScreenContainer from "@/components/ScreenContainer";
 import ScreenTitle from "@/components/ScreenTitle";
 import SectionTitle from "@/components/SectionTitle";
 import ThemedModal from "@/components/ThemedModal";
-import {
-  BORDER_RADIUS,
-  FONT_SIZE,
-  SPACING,
-  ThemeContext,
-} from "@/constants/Theme";
+import ThemedTextInput from "@/components/ThemedTextInput";
+import { SPACING, ThemeContext } from "@/constants/Theme";
 import { searchExercisesAsync } from "@/db/exercises";
 import {
   addExerciseToTemplate,
@@ -24,8 +20,7 @@ import { Exercise } from "@/types";
 import { Ionicons } from "@expo/vector-icons";
 import { useLocalSearchParams, useRouter } from "expo-router";
 import React, { useContext, useState } from "react";
-import { FlatList, StyleSheet, Text, TextInput, View } from "react-native";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { FlatList, Text, View } from "react-native";
 
 export default function EditTemplate() {
   const router = useRouter();
@@ -121,7 +116,6 @@ export default function EditTemplate() {
     }
   };
   const { colors } = useContext(ThemeContext);
-  const insets = useSafeAreaInsets();
   const [modalVisible, setModalVisible] = useState(false);
   const [allExercises, setAllExercises] = useState<Exercise[]>([]);
   const [selectedExercise, setSelectedExercise] = useState<Exercise | null>(
@@ -200,33 +194,15 @@ export default function EditTemplate() {
   return (
     <ScreenContainer>
       <ScreenTitle>Edit Template</ScreenTitle>
-      <TextInput
+      <ThemedTextInput
         placeholder="Template Name"
-        placeholderTextColor={colors.textSecondary}
         value={templateName}
         onChangeText={setTemplateName}
-        style={[
-          styles.input,
-          {
-            color: colors.text,
-            borderColor: colors.border,
-            backgroundColor: colors.card,
-          },
-        ]}
       />
-      <TextInput
+      <ThemedTextInput
         placeholder="Template Description"
-        placeholderTextColor={colors.textSecondary}
         value={templateDesc}
         onChangeText={setTemplateDesc}
-        style={[
-          styles.input,
-          {
-            color: colors.text,
-            borderColor: colors.border,
-            backgroundColor: colors.card,
-          },
-        ]}
         multiline
       />
 
@@ -261,7 +237,7 @@ export default function EditTemplate() {
       <FloatingButton
         onPress={openAddExerciseModal}
         style={{
-          bottom: (insets.bottom || 16) + 72,
+          bottom: SPACING.md + 60,
           right: SPACING.md,
         }}
       >
@@ -272,7 +248,7 @@ export default function EditTemplate() {
       <FloatingButton
         onPress={() => setDeleteConfirmVisible(true)}
         style={{
-          bottom: (insets.bottom || 16) + 72,
+          bottom: SPACING.md + 60,
           left: SPACING.md,
           backgroundColor: colors.error,
         }}
@@ -311,26 +287,13 @@ export default function EditTemplate() {
       </ThemedModal>
 
       {/* Save Button */}
-      <View style={{ paddingBottom: insets.bottom || SPACING.md }}>
+      <View style={{ paddingBottom: SPACING.md }}>
         <Button
           title="Save Template"
           onPress={handleSaveTemplate}
-          style={styles.saveButton}
+          style={{ marginTop: SPACING.lg }}
         />
       </View>
     </ScreenContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  input: {
-    borderWidth: 1,
-    borderRadius: BORDER_RADIUS.md,
-    padding: SPACING.md,
-    marginBottom: SPACING.md,
-    fontSize: FONT_SIZE.md,
-  },
-  saveButton: {
-    marginTop: SPACING.lg,
-  },
-});

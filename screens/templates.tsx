@@ -10,12 +10,9 @@ import { useFocusEffect } from "@react-navigation/native";
 import { useRouter } from "expo-router";
 import React, { useState } from "react";
 import { FlatList } from "react-native";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 export default function Templates() {
-  const insets = useSafeAreaInsets();
   const router = useRouter();
-
   const [templates, setTemplates] = useState<Template[]>([]);
   const [templateExercises, setTemplateExercises] = useState<
     Record<string, TemplateExercise[]>
@@ -66,7 +63,7 @@ export default function Templates() {
       <FloatingButton
         style={[
           {
-            bottom: SPACING.xl + insets.bottom,
+            bottom: SPACING.md,
           },
           SHADOW.default,
         ]}

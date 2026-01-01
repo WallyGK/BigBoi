@@ -1,16 +1,17 @@
 import SaveWorkoutButton from "@/components/SaveWorkoutButton";
 import ScreenContainer from "@/components/ScreenContainer";
+import ScreenTitle from "@/components/ScreenTitle";
 import TemplateSelectForm from "@/components/TemplateSelectForm";
 import ThemedModal from "@/components/ThemedModal";
 import { getExercisesForTemplate, searchTemplatesAsync } from "@/db/templates";
-import { ScrollView, Text, View } from "react-native";
+import { ScrollView, View } from "react-native";
 
 import { useRouter } from "expo-router";
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 import ExerciseRow from "@/components/ExerciseRow";
-import { FONT_SIZE, SPACING, ThemeContext } from "@/constants/Theme";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
+import SectionTitle from "@/components/SectionTitle";
+import { SPACING } from "@/constants/Theme";
 
 export default function WorkoutFromTemplate() {
   const [modalVisible, setModalVisible] = useState(true);
@@ -18,8 +19,6 @@ export default function WorkoutFromTemplate() {
   const [selectedTemplate, setSelectedTemplate] = useState<any>(null);
   const [workoutSets, setWorkoutSets] = useState<any[]>([]);
   const router = useRouter();
-  const { colors } = useContext(ThemeContext);
-  const insets = useSafeAreaInsets();
 
   useEffect(() => {
     (async () => {
@@ -82,8 +81,11 @@ export default function WorkoutFromTemplate() {
       </ThemedModal>
       {!modalVisible && (
         <View style={{ flex: 1 }}>
+          <ScreenTitle>Workout from Template</ScreenTitle>
           <ScrollView
-            contentContainerStyle={{ padding: SPACING.md, paddingBottom: 96 }}
+            contentContainerStyle={{
+              paddingBottom: 96,
+            }}
           >
             {/* Group workoutSets by exerciseName */}
             {(() => {
@@ -96,16 +98,7 @@ export default function WorkoutFromTemplate() {
               });
               return Object.entries(groups).map(([exerciseName, sets]) => (
                 <View key={exerciseName} style={{ marginBottom: SPACING.lg }}>
-                  <Text
-                    style={{
-                      fontWeight: "bold",
-                      fontSize: FONT_SIZE.xl,
-                      color: colors.text,
-                      marginBottom: SPACING.sm,
-                    }}
-                  >
-                    {exerciseName}
-                  </Text>
+                  <SectionTitle>{exerciseName}</SectionTitle>
                   {sets.map(({ idx, set }) => (
                     <ExerciseRow
                       key={idx}
@@ -124,7 +117,7 @@ export default function WorkoutFromTemplate() {
           </ScrollView>
           <SaveWorkoutButton
             style={{
-              marginBottom: insets.bottom + SPACING.md,
+              marginBottom: SPACING.md,
               marginHorizontal: SPACING.md,
             }}
             exercises={workoutSets.map((set) => ({

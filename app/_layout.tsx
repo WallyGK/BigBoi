@@ -4,15 +4,15 @@ import { Ionicons } from "@expo/vector-icons";
 import { Stack, useRouter } from "expo-router";
 import { StatusBar } from "expo-status-bar";
 import { useContext } from "react";
-import { TouchableOpacity } from "react-native";
+import { TouchableOpacity, View } from "react-native";
 
 function AppLayout({ children }: { children: React.ReactNode }) {
-  const { darkMode } = useContext(ThemeContext);
+  const { darkMode, colors } = useContext(ThemeContext);
   return (
-    <>
+    <View style={{ flex: 1, backgroundColor: colors.background }}>
       <StatusBar style={darkMode ? "light" : "dark"} />
       {children}
-    </>
+    </View>
   );
 }
 
@@ -22,8 +22,8 @@ export default function RootLayout() {
   return (
     <ThemeProvider>
       <Stack
-        screenOptions={{
-          headerShown: true,
+        screenOptions={({ route }) => ({
+          headerShown: route.name !== "(tabs)",
           headerTitle: "",
           headerStyle: {
             backgroundColor: colors.background,
@@ -41,8 +41,7 @@ export default function RootLayout() {
                 />
               </TouchableOpacity>
             ) : null,
-        }}
-        // Use a custom layout for all screens
+        })}
         layout={AppLayout}
       />
     </ThemeProvider>

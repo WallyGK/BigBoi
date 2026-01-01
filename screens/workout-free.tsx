@@ -3,6 +3,7 @@ import FloatingButton from "@/components/FloatingButton";
 import ListItem from "@/components/ListItem";
 import SaveWorkoutButton from "@/components/SaveWorkoutButton";
 import ScreenContainer from "@/components/ScreenContainer";
+import ScreenTitle from "@/components/ScreenTitle";
 import SectionTitle from "@/components/SectionTitle";
 import ThemedModal from "@/components/ThemedModal";
 import { FONT_SIZE, SPACING, ThemeContext } from "@/constants/Theme";
@@ -10,11 +11,9 @@ import { searchExercisesAsync } from "@/db/exercises";
 import { Exercise } from "@/types";
 import React, { useContext, useEffect, useState } from "react";
 import { ScrollView, Text, View } from "react-native";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 export default function WorkoutFree() {
   const { colors } = useContext(ThemeContext);
-  const insets = useSafeAreaInsets();
   const [sections, setSections] = useState<
     {
       exercise: Exercise;
@@ -84,7 +83,8 @@ export default function WorkoutFree() {
 
   return (
     <ScreenContainer>
-      <ScrollView contentContainerStyle={{ padding: SPACING.md }}>
+      <ScreenTitle>Free Workout</ScreenTitle>
+      <ScrollView contentContainerStyle={{ paddingVertical: SPACING.sm }}>
         {sections.map((section, sectionIdx) => (
           <View key={section.exercise.id}>
             <View
@@ -127,7 +127,7 @@ export default function WorkoutFree() {
       <FloatingButton
         onPress={() => setModalVisible(true)}
         style={{
-          bottom: insets.bottom + SPACING.md + 60,
+          bottom: SPACING.md + 60,
         }}
       >
         {"+"}
@@ -139,7 +139,9 @@ export default function WorkoutFree() {
         <SectionTitle>Select Exercise to Add</SectionTitle>
         <ScrollView style={{ maxHeight: 400 }}>
           {loadingExercises ? (
-            <Text style={{ textAlign: "center", padding: 20 }}>Loading...</Text>
+            <Text style={{ textAlign: "center", paddingVertical: SPACING.sm }}>
+              Loading...
+            </Text>
           ) : (
             exercises.map((exercise) => (
               <ListItem
@@ -157,8 +159,7 @@ export default function WorkoutFree() {
       </ThemedModal>
       <SaveWorkoutButton
         style={{
-          marginBottom: insets.bottom + SPACING.md,
-          marginHorizontal: SPACING.md,
+          marginBottom: SPACING.md,
         }}
         exercises={sections.flatMap((section) =>
           section.sets.map((set) => ({

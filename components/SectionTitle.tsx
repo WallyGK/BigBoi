@@ -12,12 +12,10 @@ export default function SectionTitle({
   return (
     <Text
       style={{
-        fontSize: FONT_SIZE.lg,
+        fontSize: FONT_SIZE.xl,
         fontWeight: "600",
-        marginTop: SPACING.lg,
-        marginBottom: SPACING.sm,
+        paddingVertical: SPACING.sm,
         color: colors.text,
-        left: SPACING.sm,
       }}
       accessibilityRole="header"
     >

@@ -1,9 +1,10 @@
 import Button from "@/components/Button";
 import ScreenTitle from "@/components/ScreenTitle";
+import ThemedTextInput from "@/components/ThemedTextInput";
 import { BORDER_RADIUS, SPACING, ThemeContext } from "@/constants/Theme";
 import { Exercise, NewExercise } from "@/types";
 import { useContext, useState } from "react";
-import { Alert, StyleSheet, TextInput, View } from "react-native";
+import { Alert, StyleSheet, View } from "react-native";
 
 interface AddExerciseFormProps {
   onClose: () => void;
@@ -51,47 +52,23 @@ export default function AddExerciseForm({
     <View style={[styles.container, { backgroundColor: colors.card }]}>
       <ScreenTitle>{isEdit ? "Edit Exercise" : "Add New Exercise"}</ScreenTitle>
 
-      <TextInput
+      <ThemedTextInput
         placeholder="Name"
-        placeholderTextColor={colors.textSecondary}
         value={name}
         onChangeText={setName}
-        style={[
-          styles.input,
-          {
-            color: colors.text,
-            borderColor: colors.border,
-            backgroundColor: colors.background,
-          },
-        ]}
+        style={{ marginBottom: SPACING.md }}
       />
-      <TextInput
+      <ThemedTextInput
         placeholder="Muscle Group"
-        placeholderTextColor={colors.textSecondary}
         value={muscleGroup}
         onChangeText={setMuscleGroup}
-        style={[
-          styles.input,
-          {
-            color: colors.text,
-            borderColor: colors.border,
-            backgroundColor: colors.background,
-          },
-        ]}
+        style={{ marginBottom: SPACING.md }}
       />
-      <TextInput
+      <ThemedTextInput
         placeholder="Description"
-        placeholderTextColor={colors.textSecondary}
         value={description}
         onChangeText={setDescription}
-        style={[
-          styles.input,
-          {
-            color: colors.text,
-            borderColor: colors.border,
-            backgroundColor: colors.background,
-          },
-        ]}
+        style={{ marginBottom: SPACING.md }}
       />
 
       <Button
@@ -112,11 +89,5 @@ const styles = StyleSheet.create({
     borderRadius: BORDER_RADIUS.lg,
     position: "relative",
     justifyContent: "flex-start",
-  },
-  input: {
-    borderWidth: 1,
-    borderRadius: BORDER_RADIUS.md,
-    padding: SPACING.md,
-    marginBottom: SPACING.md,
   },
 });

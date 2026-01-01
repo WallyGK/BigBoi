@@ -1,15 +1,11 @@
 import Button from "@/components/Button";
 import ListItem from "@/components/ListItem";
 import SectionTitle from "@/components/SectionTitle";
-import {
-  BORDER_RADIUS,
-  FONT_SIZE,
-  SPACING,
-  ThemeContext,
-} from "@/constants/Theme";
+import ThemedTextInput from "@/components/ThemedTextInput";
+import { SPACING, ThemeContext } from "@/constants/Theme";
 import { Exercise } from "@/types";
 import { useContext } from "react";
-import { ScrollView, StyleSheet, TextInput, View } from "react-native";
+import { ScrollView, View } from "react-native";
 
 interface AddExerciseToTemplateFormProps {
   allExercises: Exercise[];
@@ -68,65 +64,33 @@ export default function AddExerciseToTemplateForm({
         </ScrollView>
       </View>
       <View>
-        <TextInput
+        <ThemedTextInput
           placeholder="Sets"
-          placeholderTextColor={colors.textSecondary}
           value={sets}
           onChangeText={setSets}
           keyboardType="numeric"
-          style={[
-            styles.input,
-            {
-              color: colors.text,
-              borderColor: colors.border,
-              backgroundColor: colors.background,
-            },
-          ]}
+          style={{ marginBottom: SPACING.md }}
         />
-        <TextInput
+        <ThemedTextInput
           placeholder="Reps"
-          placeholderTextColor={colors.textSecondary}
           value={reps}
           onChangeText={setReps}
           keyboardType="numeric"
-          style={[
-            styles.input,
-            {
-              color: colors.text,
-              borderColor: colors.border,
-              backgroundColor: colors.background,
-            },
-          ]}
+          style={{ marginBottom: SPACING.md }}
         />
-        <TextInput
+        <ThemedTextInput
           placeholder="Weight (lb)"
-          placeholderTextColor={colors.textSecondary}
           value={weight}
           onChangeText={setWeight}
           keyboardType="numeric"
-          style={[
-            styles.input,
-            {
-              color: colors.text,
-              borderColor: colors.border,
-              backgroundColor: colors.background,
-            },
-          ]}
+          style={{ marginBottom: SPACING.md }}
         />
-        <TextInput
+        <ThemedTextInput
           placeholder="Notes (optional)"
-          placeholderTextColor={colors.textSecondary}
           value={notes}
           onChangeText={setNotes}
           keyboardType="default"
-          style={[
-            styles.input,
-            {
-              color: colors.text,
-              borderColor: colors.border,
-              backgroundColor: colors.background,
-            },
-          ]}
+          style={{ marginBottom: SPACING.md }}
         />
         <Button
           title="Add to Template"
@@ -143,13 +107,3 @@ export default function AddExerciseToTemplateForm({
     </ScrollView>
   );
 }
-
-const styles = StyleSheet.create({
-  input: {
-    borderWidth: 1,
-    borderRadius: BORDER_RADIUS.md,
-    padding: SPACING.md,
-    marginBottom: SPACING.md,
-    fontSize: FONT_SIZE.md,
-  },
-});

@@ -15,7 +15,6 @@ import {
 import { Exercise, NewExercise } from "@/types";
 import { useEffect, useState } from "react";
 import { FlatList, View } from "react-native";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 export default function Exercises() {
   const [exercises, setExercises] = useState<Exercise[]>([]);
@@ -24,7 +23,6 @@ export default function Exercises() {
     null
   );
   const [deleteConfirmVisible, setDeleteConfirmVisible] = useState(false);
-  const insets = useSafeAreaInsets();
 
   const loadExercises = async () => {
     const allExercises = await searchExercisesAsync("");
@@ -79,7 +77,7 @@ export default function Exercises() {
       <FloatingButton
         style={[
           {
-            bottom: SPACING.xl + insets.bottom,
+            bottom: SPACING.md,
           },
         ]}
         onPress={() => {
