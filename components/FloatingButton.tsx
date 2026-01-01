@@ -16,11 +16,13 @@ import {
 interface FloatingButtonProps extends TouchableOpacityProps {
   style?: object;
   children?: React.ReactNode;
+  textStyle?: object;
 }
 
 export default function FloatingButton({
   style,
   children,
+  textStyle,
   ...props
 }: FloatingButtonProps) {
   const { colors } = useContext(ThemeContext);
@@ -31,7 +33,7 @@ export default function FloatingButton({
       {...props}
     >
       {typeof children === "string" || typeof children === "number" ? (
-        <Text style={[styles.buttonText, { color: colors.text }]}>
+        <Text style={[styles.buttonText, { color: colors.text }, textStyle]}>
           {children}
         </Text>
       ) : (
