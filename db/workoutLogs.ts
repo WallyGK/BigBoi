@@ -62,3 +62,22 @@ export async function deleteWorkoutLog(workoutId: string) {
     workoutId,
   ]);
 }
+
+// Get all workout exercises with workout log and exercise details, optionally filter by exercise name
+export async function getWorkoutExerciseEntries(exerciseName?: string) {
+  const db = await getDb();
+  let query = `
+    SELECT wl.datetime, we.*, ex.name as exercise_name
+    FROM workout_exercises we
+    JOIN workout_logs wl ON we.workout_id = wl.id
+    JOIN exercises ex ON we.exercise_id = ex.id
+    WHERE wl.is_deleted = 0
+  `;
+  const params: any[] = [];
+  if (exerciseName) {
+    query += ` AND ex.name LIKE ?`;
+    params.push(`%${exerciseName}%`);
+  }
+  query += ` ORDER BY wl.datetime DESC`;
+  return db.getAllAsync(query, params);
+}
