@@ -30,9 +30,25 @@ export default function SaveWorkoutButton({
   const handleSave = async () => {
     setSaving(true);
     try {
+      // Filter out sets with reps or weight as zero or null
+      const validExercises = exercises.filter(
+        (set) =>
+          set.reps != null &&
+          set.reps > 0 &&
+          set.weight != null &&
+          set.weight > 0
+      );
+      if (validExercises.length === 0) {
+        Alert.alert(
+          "No valid sets",
+          "Please enter reps and weight greater than zero for at least one exercise."
+        );
+        setSaving(false);
+        return;
+      }
       await addWorkoutLog(
         workoutDate || new Date().toISOString().slice(0, 10),
-        exercises.map(({ exerciseId, ...rest }) => ({
+        validExercises.map(({ exerciseId, ...rest }) => ({
           exercise_id: exerciseId,
           ...rest,
         }))

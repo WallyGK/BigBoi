@@ -17,14 +17,14 @@ export default function Workout() {
       <Card style={{ marginVertical: SPACING.sm }}>
         <Button
           title="Start Workout from Template"
-          onPress={() => router.push("/workout-from-template")}
+          onPress={() => router.push("/WorkoutScreen?mode=template")}
         />
       </Card>
 
       <Card style={{ marginVertical: SPACING.sm }}>
         <Button
           title="Start Free Workout"
-          onPress={() => router.push("/workout-free")}
+          onPress={() => router.push("/WorkoutScreen?mode=free")}
         />
       </Card>
 

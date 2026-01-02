@@ -37,7 +37,7 @@ const ExerciseRow: React.FC<ExerciseRowProps> = ({
         style={{
           minWidth: 32,
           marginRight: 8,
-          color: colors.textSecondary,
+          color: colors.text,
           fontSize: FONT_SIZE.lg,
         }}
       >{`Set ${setNumber}`}</Text>
