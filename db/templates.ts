@@ -5,7 +5,7 @@ import { getDb } from "./index";
 
 // CREATE: Add a new template
 export async function addTemplate(
-  template: NewTemplate
+  template: NewTemplate,
 ): Promise<Template | null> {
   const db = await getDb();
   try {
@@ -17,12 +17,12 @@ export async function addTemplate(
                 name,
                 description
             ) VALUES (?, ?, ?);`,
-      [templateId, template.name, template.description || ""]
+      [templateId, template.name, template.description || ""],
     );
 
     const newTemplate = await db.getFirstAsync<Template>(
       `SELECT * FROM templates WHERE id = ?`,
-      [templateId]
+      [templateId],
     );
 
     return newTemplate;
@@ -34,7 +34,7 @@ export async function addTemplate(
 
 // READ: Get all templates matching a search query
 export async function searchTemplatesAsync(
-  searchQuery: string
+  searchQuery: string,
 ): Promise<Template[]> {
   const db = await getDb();
   try {
@@ -45,10 +45,7 @@ export async function searchTemplatesAsync(
       ORDER BY name ASC
     `;
     const searchPattern = `%${searchQuery}%`;
-    return await db.getAllAsync<Template>(query, [
-      searchPattern,
-      searchPattern,
-    ]);
+    return await db.getAllAsync<Template>(query, [searchPattern]);
   } catch (error) {
     console.error("Error searching templates:", error);
     return [];
@@ -61,7 +58,7 @@ export async function getTemplateById(id: string): Promise<Template | null> {
   try {
     return await db.getFirstAsync<Template>(
       `SELECT * FROM templates WHERE id = ? AND is_deleted = 0`,
-      [id]
+      [id],
     );
   } catch (error) {
     console.error("Error getting template:", error);
@@ -81,7 +78,7 @@ export async function updateTemplateAsync(template: Template): Promise<void> {
       description = ?
     WHERE id = ?;
     `,
-    [template.name, template.description || "", template.id]
+    [template.name, template.description || "", template.id],
   );
 }
 
@@ -105,14 +102,14 @@ export async function addExerciseToTemplate(
   sets: number = 0,
   reps: number = 0,
   weight: number = 0,
-  notes: string = ""
+  notes: string = "",
 ) {
   const db = await getDb();
   try {
     await db.runAsync(
       `INSERT OR REPLACE INTO template_exercises (template_id, exercise_id, sets, reps, weight, notes)
        VALUES (?, ?, ?, ?, ?, ?)`,
-      [templateId, exerciseId, sets, reps, weight, notes]
+      [templateId, exerciseId, sets, reps, weight, notes],
     );
   } catch (error) {
     console.error("Error adding exercise to template:", error);
@@ -122,13 +119,13 @@ export async function addExerciseToTemplate(
 
 export async function removeExerciseFromTemplate(
   templateId: string,
-  exerciseId: string
+  exerciseId: string,
 ) {
   const db = await getDb();
   try {
     await db.runAsync(
       `DELETE FROM template_exercises WHERE template_id = ? AND exercise_id = ?`,
-      [templateId, exerciseId]
+      [templateId, exerciseId],
     );
   } catch (error) {
     console.error("Error removing exercise from template:", error);
@@ -137,7 +134,7 @@ export async function removeExerciseFromTemplate(
 }
 
 export async function getExercisesForTemplate(
-  templateId: string
+  templateId: string,
 ): Promise<TemplateExercise[]> {
   const db = await getDb();
   return await db.getAllAsync<TemplateExercise>(
@@ -145,7 +142,7 @@ export async function getExercisesForTemplate(
      FROM exercises e
      INNER JOIN template_exercises te ON e.id = te.exercise_id
      WHERE te.template_id = ? AND e.is_deleted = 0`,
-    [templateId]
+    [templateId],
   );
 }
 
@@ -154,13 +151,13 @@ export async function updateTemplateExercise(
   exerciseId: string,
   sets: number,
   reps: number,
-  notes: string
+  notes: string,
 ) {
   const db = await getDb();
   await db.runAsync(
     `UPDATE template_exercises
      SET sets = ?, reps = ?, notes = ?
      WHERE template_id = ? AND exercise_id = ?`,
-    [sets, reps, notes, templateId, exerciseId]
+    [sets, reps, notes, templateId, exerciseId],
   );
 }

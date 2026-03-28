@@ -1,5 +1,6 @@
 // constants/Theme.ts
 import React, { createContext, ReactNode, useMemo, useState } from "react";
+import { Platform } from "react-native";
 
 // Light & dark color palettes
 const colorPalettes = {
@@ -56,13 +57,18 @@ export const BORDER_RADIUS = {
 };
 
 export const SHADOW = {
-  default: {
-    shadowColor: "#000",
-    shadowOpacity: 0.2,
-    shadowOffset: { width: 0, height: 3 },
-    shadowRadius: 4,
-    elevation: 5,
-  },
+  default: Platform.select({
+    web: {
+      boxShadow: "0px 3px 4px rgba(0,0,0,0.2)",
+    },
+    default: {
+      shadowColor: "#000",
+      shadowOpacity: 0.2,
+      shadowOffset: { width: 0, height: 3 },
+      shadowRadius: 4,
+      elevation: 5,
+    },
+  }),
 };
 
 // Theme context type
@@ -91,7 +97,7 @@ export const ThemeProvider = ({ children }: { children: ReactNode }) => {
       darkMode,
       toggleTheme,
     }),
-    [darkMode]
+    [darkMode],
   );
 
   return (

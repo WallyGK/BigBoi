@@ -1,3 +1,4 @@
+import { toLocalDateKey } from "@/constants/date";
 import { addWorkoutLog } from "@/db/workoutLogs";
 import { useRouter } from "expo-router";
 import React, { useState } from "react";
@@ -36,22 +37,27 @@ export default function SaveWorkoutButton({
           set.reps != null &&
           set.reps > 0 &&
           set.weight != null &&
-          set.weight > 0
+          set.weight > 0,
       );
       if (validExercises.length === 0) {
         Alert.alert(
           "No valid sets",
-          "Please enter reps and weight greater than zero for at least one exercise."
+          "Please enter reps and weight greater than zero for at least one exercise.",
         );
         setSaving(false);
         return;
       }
+
+      const workoutDateKey = workoutDate
+        ? toLocalDateKey(workoutDate)
+        : toLocalDateKey(new Date());
+
       await addWorkoutLog(
-        workoutDate || new Date().toISOString().slice(0, 10),
+        workoutDateKey,
         validExercises.map(({ exerciseId, ...rest }) => ({
           exercise_id: exerciseId,
           ...rest,
-        }))
+        })),
       );
       Alert.alert("Workout Saved", "Your workout has been logged.", [
         {
@@ -63,7 +69,11 @@ export default function SaveWorkoutButton({
         },
       ]);
     } catch (e) {
-      Alert.alert("Error", `Failed to save workout. Please try again. ${e}`);
+      const message = e instanceof Error ? e.message : "Unknown error";
+      Alert.alert(
+        "Error",
+        `Failed to save workout. Please try again. ${message}`,
+      );
     } finally {
       setSaving(false);
     }

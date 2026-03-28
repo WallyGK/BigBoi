@@ -22,17 +22,20 @@ export default function Templates() {
     const allTemplates = await searchTemplatesAsync("");
     setTemplates(allTemplates);
 
-    const exercisesMap: Record<string, TemplateExercise[]> = {};
-    for (const t of allTemplates) {
-      exercisesMap[t.id] = await getExercisesForTemplate(t.id);
-    }
-    setTemplateExercises(exercisesMap);
+    const exerciseEntries = await Promise.all(
+      allTemplates.map(
+        async (template) =>
+          [template.id, await getExercisesForTemplate(template.id)] as const,
+      ),
+    );
+
+    setTemplateExercises(Object.fromEntries(exerciseEntries));
   };
 
   useFocusEffect(
     React.useCallback(() => {
       loadTemplates();
-    }, [])
+    }, []),
   );
 
   const renderItem = ({ item }: { item: Template }) => {

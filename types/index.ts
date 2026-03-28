@@ -38,3 +38,32 @@ export interface WorkoutLog {
   }[];
   is_deleted?: boolean;
 }
+
+export interface WorkoutExerciseEntry {
+  id: string;
+  workout_id: string;
+  exercise_id: string;
+  reps: number;
+  weight: number;
+  notes?: string;
+  datetime: string;
+  exercise_name: string;
+}
+
+export interface WorkoutLogSummary {
+  id: string;
+  datetime: string;
+  exercise_count: number;
+  total_weight: number;
+}
+
+export interface WorkoutExerciseDetail {
+  id: string;
+  workout_id: string;
+  datetime: string;
+  exercise_id: string;
+  exercise_name: string;
+  reps: number;
+  weight: number;
+  notes?: string;
+}

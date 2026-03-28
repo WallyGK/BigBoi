@@ -46,7 +46,7 @@ const ExerciseRow: React.FC<ExerciseRowProps> = ({
         onChangeText={onChangeReps}
         keyboardType="numeric"
         placeholder="Reps"
-        style={{ minWidth: 32, textAlign: "right" }}
+        style={{ minWidth: 32, textAlign: "center" }}
       />
       <Text
         style={{
@@ -62,7 +62,7 @@ const ExerciseRow: React.FC<ExerciseRowProps> = ({
         onChangeText={onChangeWeight}
         keyboardType="numeric"
         placeholder="##"
-        style={{ minWidth: 48, textAlign: "right" }}
+        style={{ minWidth: 48, textAlign: "center" }}
       />
       <ThemedTextInput
         value={notes}
