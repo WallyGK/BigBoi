@@ -1,15 +1,13 @@
+import AddExercisePickerModal from "@/components/AddExercisePickerModal";
 import Button from "@/components/Button";
 import ConfirmDeleteModal from "@/components/ConfirmDeleteModal";
 import ExerciseRow from "@/components/ExerciseRow";
-import FloatingButton from "@/components/FloatingButton";
-import ListItem from "@/components/ListItem";
 import ScreenContainer from "@/components/ScreenContainer";
 import ScreenTitle from "@/components/ScreenTitle";
 import SectionTitle from "@/components/SectionTitle";
 import ThemedModal from "@/components/ThemedModal";
 import ThemedTextInput from "@/components/ThemedTextInput";
 import { FONT_SIZE, SPACING, ThemeContext } from "@/constants/Theme";
-import { searchExercisesAsync } from "@/db/exercises";
 import {
   addExerciseToTemplate,
   addTemplate,
@@ -118,8 +116,6 @@ export default function EditTemplate() {
   const [originalExerciseIds, setOriginalExerciseIds] = useState<string[]>([]);
 
   const [exerciseModalVisible, setExerciseModalVisible] = useState(false);
-  const [allExercises, setAllExercises] = useState<Exercise[]>([]);
-  const [loadingExercises, setLoadingExercises] = useState(false);
 
   const [deleteTemplateConfirmVisible, setDeleteTemplateConfirmVisible] =
     useState(false);
@@ -193,18 +189,6 @@ export default function EditTemplate() {
       isMounted = false;
     };
   }, [templateId]);
-
-  useEffect(() => {
-    if (!exerciseModalVisible) {
-      return;
-    }
-
-    setLoadingExercises(true);
-    searchExercisesAsync("").then((result) => {
-      setAllExercises(result);
-      setLoadingExercises(false);
-    });
-  }, [exerciseModalVisible]);
 
   const handleAddExerciseSection = (exercise: Exercise) => {
     setSections((prev) => {
@@ -404,7 +388,25 @@ export default function EditTemplate() {
 
   return (
     <ScreenContainer>
-      <ScreenTitle>Edit Template</ScreenTitle>
+      <View
+        style={{
+          flexDirection: "row",
+          alignItems: "center",
+          justifyContent: "space-between",
+        }}
+      >
+        <ScreenTitle>Edit Template</ScreenTitle>
+        {templateId ? (
+          <Pressable
+            onPress={() => setDeleteTemplateConfirmVisible(true)}
+            hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
+          >
+            <Ionicons name="trash-outline" size={28} color={colors.error} />
+          </Pressable>
+        ) : (
+          <View style={{ width: 28 }} />
+        )}
+      </View>
 
       <ThemedTextInput
         placeholder="Template Name"
@@ -512,54 +514,22 @@ export default function EditTemplate() {
         )}
       </ScrollView>
 
-      <FloatingButton
-        onPress={() => setExerciseModalVisible(true)}
-        style={{
-          bottom: SPACING.md + 60,
-          right: SPACING.md,
-        }}
-      >
-        {"+"}
-      </FloatingButton>
-
-      {templateId && (
-        <FloatingButton
-          onPress={() => setDeleteTemplateConfirmVisible(true)}
-          style={{
-            bottom: SPACING.md + 60,
-            left: SPACING.md,
-            backgroundColor: colors.error,
-          }}
-        >
-          <Ionicons name="trash-outline" size={32} color={colors.text} />
-        </FloatingButton>
-      )}
-
-      <ThemedModal
+      <AddExercisePickerModal
         visible={exerciseModalVisible}
         onClose={() => setExerciseModalVisible(false)}
-      >
-        <SectionTitle>Select Exercise to Add</SectionTitle>
-        <ScrollView style={{ maxHeight: 400 }}>
-          {loadingExercises ? (
-            <Text style={{ textAlign: "center", paddingVertical: SPACING.sm }}>
-              Loading...
-            </Text>
-          ) : (
-            allExercises.map((exercise) => (
-              <ListItem
-                key={exercise.id}
-                title={exercise.name}
-                subtitle={exercise.muscleGroup}
-                description={exercise.description}
-                onPress={() => handleAddExerciseSection(exercise)}
-                showRemove={false}
-                style={{ backgroundColor: colors.cardList }}
-              />
-            ))
-          )}
-        </ScrollView>
-      </ThemedModal>
+        onSelectExercise={handleAddExerciseSection}
+      />
+
+      <Button
+        title="Add Exercise"
+        onPress={() => setExerciseModalVisible(true)}
+        style={{
+          backgroundColor: colors.cardList,
+          borderWidth: 1,
+          borderColor: colors.border,
+          marginBottom: SPACING.sm,
+        }}
+      />
 
       <ConfirmDeleteModal
         visible={deleteTemplateConfirmVisible}

@@ -8,7 +8,9 @@ import {
 import { Ionicons } from "@expo/vector-icons";
 import { useContext } from "react";
 import {
+  KeyboardAvoidingView,
   Modal,
+  Platform,
   StyleSheet,
   TouchableOpacity,
   View,
@@ -39,7 +41,10 @@ export default function ThemedModal({
       animationType="fade"
       onRequestClose={onClose}
     >
-      <View style={styles.overlay}>
+      <KeyboardAvoidingView
+        style={styles.overlay}
+        behavior={Platform.OS === "ios" ? "padding" : "height"}
+      >
         <View
           style={[
             styles.modalContainer,
@@ -62,7 +67,7 @@ export default function ThemedModal({
           {/* Modal content */}
           <View style={styles.content}>{children}</View>
         </View>
-      </View>
+      </KeyboardAvoidingView>
     </Modal>
   );
 }

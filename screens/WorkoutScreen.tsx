@@ -1,7 +1,7 @@
+import AddExercisePickerModal from "@/components/AddExercisePickerModal";
 import Button from "@/components/Button";
 import ConfirmDeleteModal from "@/components/ConfirmDeleteModal";
 import ExerciseRow from "@/components/ExerciseRow";
-import ListItem from "@/components/ListItem";
 import SaveWorkoutButton from "@/components/SaveWorkoutButton";
 import ScreenContainer from "@/components/ScreenContainer";
 import ScreenTitle from "@/components/ScreenTitle";
@@ -10,7 +10,6 @@ import TemplateSelectForm from "@/components/TemplateSelectForm";
 import ThemedModal from "@/components/ThemedModal";
 import ThemedTextInput from "@/components/ThemedTextInput";
 import { FONT_SIZE, SPACING, ThemeContext } from "@/constants/Theme";
-import { searchExercisesAsync } from "@/db/exercises";
 import { getExercisesForTemplate, searchTemplatesAsync } from "@/db/templates";
 import { Exercise } from "@/types";
 import { useLocalSearchParams, useRouter } from "expo-router";
@@ -99,8 +98,6 @@ export default function WorkoutScreen() {
     }[]
   >([]);
   const [modalVisible, setModalVisible] = useState(false);
-  const [exercises, setExercises] = useState<Exercise[]>([]);
-  const [loadingExercises, setLoadingExercises] = useState(false);
 
   // Template mode state
   const [templateModalVisible, setTemplateModalVisible] = useState(
@@ -119,17 +116,6 @@ export default function WorkoutScreen() {
     setIdx: number;
   } | null>(null);
   const [noteDraft, setNoteDraft] = useState("");
-
-  // Load exercises for modal
-  useEffect(() => {
-    if (modalVisible) {
-      setLoadingExercises(true);
-      searchExercisesAsync("").then((data) => {
-        setExercises(data);
-        setLoadingExercises(false);
-      });
-    }
-  }, [modalVisible]);
 
   // Load templates for template mode
   useEffect(() => {
@@ -381,31 +367,11 @@ export default function WorkoutScreen() {
           </View>
         ))}
       </ScrollView>
-      <ThemedModal
+      <AddExercisePickerModal
         visible={modalVisible}
         onClose={() => setModalVisible(false)}
-      >
-        <SectionTitle>Select Exercise to Add</SectionTitle>
-        <ScrollView style={{ maxHeight: 400 }}>
-          {loadingExercises ? (
-            <Text style={{ textAlign: "center", paddingVertical: SPACING.sm }}>
-              Loading...
-            </Text>
-          ) : (
-            exercises.map((exercise) => (
-              <ListItem
-                key={exercise.id}
-                title={exercise.name}
-                subtitle={exercise.muscleGroup}
-                description={exercise.description}
-                onPress={() => handleAddSection(exercise)}
-                showRemove={false}
-                style={{ backgroundColor: colors.cardList }}
-              />
-            ))
-          )}
-        </ScrollView>
-      </ThemedModal>
+        onSelectExercise={handleAddSection}
+      />
       <Button
         title="Add Exercise"
         onPress={() => setModalVisible(true)}
