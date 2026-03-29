@@ -5,7 +5,7 @@ import { getDb } from "./index";
 
 // CREATE: Add a new exercise
 export async function addExercise(
-  exercise: NewExercise
+  exercise: NewExercise,
 ): Promise<Exercise | null> {
   const db = await getDb();
   try {
@@ -23,12 +23,12 @@ export async function addExercise(
         exercise.name,
         exercise.muscleGroup || "",
         exercise.description || "",
-      ]
+      ],
     );
 
     const newExercise = await db.getFirstAsync<Exercise>(
-      `SELECT * FROM exercises WHERE id = ?`,
-      [exerciseId]
+      `SELECT id, name, muscleGroup, description, is_deleted FROM exercises WHERE id = ?`,
+      [exerciseId],
     );
 
     return newExercise;
@@ -40,7 +40,7 @@ export async function addExercise(
 
 // READ: Get all exercises matching a search query
 export async function searchExercisesAsync(
-  searchQuery: string
+  searchQuery: string,
 ): Promise<Exercise[]> {
   const db = await getDb();
   try {
@@ -67,7 +67,7 @@ export async function getExerciseById(id: string): Promise<Exercise | null> {
   try {
     return await db.getFirstAsync<Exercise>(
       `SELECT id, name, muscleGroup, description FROM exercises WHERE id = ? AND is_deleted = 0`,
-      [id]
+      [id],
     );
   } catch (error) {
     console.error("Error getting exercise:", error);
@@ -93,7 +93,7 @@ export async function updateExerciseAsync(exercise: Exercise): Promise<void> {
       exercise.muscleGroup ?? "",
       exercise.description ?? "",
       exercise.id,
-    ]
+    ],
   );
 }
 

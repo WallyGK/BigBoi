@@ -1,2 +1,2 @@
 // app/EditTemplate.tsx
-export { default } from "@/screens/EditTemplate";
+export { default } from "../screens/EditTemplate";

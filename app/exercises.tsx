@@ -1,2 +1,2 @@
 // app/exercises.tsx
-export { default } from "@/screens/exercises";
+export { default } from "../screens/exercises";

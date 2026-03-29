@@ -12,7 +12,7 @@ export type NewExercise = Omit<Exercise, "id">;
 export interface Template {
   id: string;
   name: string;
-  exercises: string[];
+  exercises?: string[];
   description?: string;
   is_deleted?: boolean;
 }
@@ -21,6 +21,12 @@ export type NewTemplate = Omit<Template, "id">;
 
 export interface TemplateSetDetail {
   setOrder: number;
+  reps: number;
+  weight: number;
+  notes?: string;
+}
+
+export interface TemplateSetEntryInput {
   reps: number;
   weight: number;
   notes?: string;
@@ -75,4 +81,19 @@ export interface WorkoutExerciseDetail {
   weight: number;
   notes?: string;
   execution_order: number;
+}
+
+export interface WorkoutLogRow {
+  id: string;
+  datetime: string;
+  is_deleted?: boolean;
+}
+
+export interface WorkoutExerciseRow {
+  id: string;
+  workout_id: string;
+  exercise_id: string;
+  reps: number;
+  weight: number;
+  notes?: string;
 }

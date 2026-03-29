@@ -2,13 +2,14 @@ import Button from "@/components/Button";
 import ListItem from "@/components/ListItem";
 import SectionTitle from "@/components/SectionTitle";
 import { SPACING, ThemeContext } from "@/constants/Theme";
+import { Template } from "@/types";
 import { useContext } from "react";
 import { ScrollView, Text } from "react-native";
 
 interface TemplateSelectFormProps {
-  templates: any[];
-  selectedTemplate: any;
-  setSelectedTemplate: (template: any) => void;
+  templates: Template[];
+  selectedTemplate: Template | null;
+  setSelectedTemplate: (template: Template) => void;
   onGo: () => void;
   goDisabled?: boolean;
 }

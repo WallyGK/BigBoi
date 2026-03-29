@@ -1,2 +1,2 @@
 // app/templates.tsx
-export { default } from "@/screens/templates";
+export { default } from "../screens/templates";

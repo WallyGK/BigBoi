@@ -1,6 +1,8 @@
 import {
   type WorkoutExerciseDetail,
   type WorkoutExerciseEntry,
+  type WorkoutExerciseRow,
+  type WorkoutLogRow,
   type WorkoutLogSummary,
 } from "@/types";
 import uuid from "react-native-uuid";
@@ -15,7 +17,7 @@ export async function addWorkoutLog(
     weight: number;
     notes?: string;
   }[],
-) {
+): Promise<string> {
   const db = await getDb();
   const workoutId = uuid.v4().toString();
 
@@ -45,15 +47,17 @@ export async function addWorkoutLog(
 }
 
 // Get all workout logs (optionally filter by datetime)
-export async function getWorkoutLogs(datetime?: string) {
+export async function getWorkoutLogs(
+  datetime?: string,
+): Promise<WorkoutLogRow[]> {
   const db = await getDb();
-  let query = `SELECT * FROM workout_logs WHERE is_deleted = 0`;
-  const params: any[] = [];
+  let query = `SELECT id, datetime, is_deleted FROM workout_logs WHERE is_deleted = 0`;
+  const params: string[] = [];
   if (datetime) {
     query += ` AND datetime = ?`;
     params.push(datetime);
   }
-  return db.getAllAsync(query, params);
+  return db.getAllAsync<WorkoutLogRow>(query, params);
 }
 
 export async function getWorkoutLogSummaries(): Promise<WorkoutLogSummary[]> {
@@ -75,10 +79,12 @@ export async function getWorkoutLogSummaries(): Promise<WorkoutLogSummary[]> {
 }
 
 // Get all exercises for a workout log
-export async function getWorkoutExercises(workoutId: string) {
+export async function getWorkoutExercises(
+  workoutId: string,
+): Promise<WorkoutExerciseRow[]> {
   const db = await getDb();
-  return db.getAllAsync(
-    `SELECT * FROM workout_exercises WHERE workout_id = ?`,
+  return db.getAllAsync<WorkoutExerciseRow>(
+    `SELECT id, workout_id, exercise_id, reps, weight, notes FROM workout_exercises WHERE workout_id = ?`,
     [workoutId],
   );
 }
@@ -110,7 +116,7 @@ export async function getWorkoutExercisesWithNames(
 }
 
 // Soft delete a workout log
-export async function deleteWorkoutLog(workoutId: string) {
+export async function deleteWorkoutLog(workoutId: string): Promise<void> {
   const db = await getDb();
   await db.runAsync(`UPDATE workout_logs SET is_deleted = 1 WHERE id = ?`, [
     workoutId,
@@ -129,7 +135,7 @@ export async function getWorkoutExerciseEntries(
     JOIN exercises ex ON we.exercise_id = ex.id
     WHERE wl.is_deleted = 0
   `;
-  const params: any[] = [];
+  const params: string[] = [];
   if (exerciseName) {
     query += ` AND ex.name LIKE ?`;
     params.push(`%${exerciseName}%`);

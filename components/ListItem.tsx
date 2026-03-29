@@ -6,7 +6,14 @@ import {
   ThemeContext,
 } from "@/constants/Theme";
 import { useContext } from "react";
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import {
+  StyleProp,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+  ViewStyle,
+} from "react-native";
 
 export default function ListItem({
   title,
@@ -29,7 +36,7 @@ export default function ListItem({
   showRemove?: boolean;
   onPress?: () => void;
   children?: React.ReactNode;
-  style?: any;
+  style?: StyleProp<ViewStyle>;
 }) {
   const { colors } = useContext(ThemeContext);
   const Wrapper = onPress ? TouchableOpacity : View;

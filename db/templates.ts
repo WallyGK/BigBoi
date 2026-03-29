@@ -3,7 +3,7 @@ import {
   NewTemplate,
   Template,
   TemplateExercise,
-  TemplateSetDetail,
+  TemplateSetEntryInput,
 } from "@/types";
 import uuid from "react-native-uuid";
 import { getDb } from "./index";
@@ -18,6 +18,24 @@ interface TemplateExerciseRow {
   reps: number;
   weight: number;
   notes?: string;
+}
+
+function normalizeTemplateSetEntries(
+  sets: number,
+  reps: number,
+  weight: number,
+  notes: string,
+  setEntries?: TemplateSetEntryInput[],
+): TemplateSetEntryInput[] {
+  if (setEntries && setEntries.length > 0) {
+    return setEntries;
+  }
+
+  return Array.from({ length: Math.max(1, Number(sets) || 1) }, () => ({
+    reps: Number(reps) || 0,
+    weight: Number(weight) || 0,
+    notes,
+  }));
 }
 
 // CREATE: Add a new template
@@ -38,7 +56,7 @@ export async function addTemplate(
     );
 
     const newTemplate = await db.getFirstAsync<Template>(
-      `SELECT * FROM templates WHERE id = ?`,
+      `SELECT id, name, description, is_deleted FROM templates WHERE id = ?`,
       [templateId],
     );
 
@@ -56,7 +74,7 @@ export async function searchTemplatesAsync(
   const db = await getDb();
   try {
     const query = `
-      SELECT * FROM templates 
+      SELECT id, name, description, is_deleted FROM templates 
       WHERE is_deleted = 0
       AND (name LIKE ?)
       ORDER BY name ASC
@@ -74,7 +92,7 @@ export async function getTemplateById(id: string): Promise<Template | null> {
   const db = await getDb();
   try {
     return await db.getFirstAsync<Template>(
-      `SELECT * FROM templates WHERE id = ? AND is_deleted = 0`,
+      `SELECT id, name, description, is_deleted FROM templates WHERE id = ? AND is_deleted = 0`,
       [id],
     );
   } catch (error) {
@@ -120,8 +138,8 @@ export async function addExerciseToTemplate(
   reps: number = 0,
   weight: number = 0,
   notes: string = "",
-  setEntries?: Omit<TemplateSetDetail, "setOrder">[],
-) {
+  setEntries?: TemplateSetEntryInput[],
+): Promise<void> {
   const db = await getDb();
   try {
     await db.withTransactionAsync(async () => {
@@ -130,14 +148,13 @@ export async function addExerciseToTemplate(
         [templateId, exerciseId],
       );
 
-      const normalizedEntries =
-        setEntries && setEntries.length > 0
-          ? setEntries
-          : Array.from({ length: Math.max(1, Number(sets) || 1) }, () => ({
-              reps: Number(reps) || 0,
-              weight: Number(weight) || 0,
-              notes,
-            }));
+      const normalizedEntries = normalizeTemplateSetEntries(
+        sets,
+        reps,
+        weight,
+        notes,
+        setEntries,
+      );
 
       for (let i = 0; i < normalizedEntries.length; i += 1) {
         const entry = normalizedEntries[i];
@@ -164,7 +181,7 @@ export async function addExerciseToTemplate(
 export async function removeExerciseFromTemplate(
   templateId: string,
   exerciseId: string,
-) {
+): Promise<void> {
   const db = await getDb();
   try {
     await db.runAsync(
@@ -181,56 +198,61 @@ export async function getExercisesForTemplate(
   templateId: string,
 ): Promise<TemplateExercise[]> {
   const db = await getDb();
-  const rows = await db.getAllAsync<TemplateExerciseRow>(
-    `SELECT
-        e.*, te.set_order, te.reps, te.weight, te.notes
-     FROM exercises e
-     INNER JOIN template_exercises te ON e.id = te.exercise_id
-     WHERE te.template_id = ? AND e.is_deleted = 0
-     ORDER BY te.exercise_id ASC, te.set_order ASC`,
-    [templateId],
-  );
+  try {
+    const rows = await db.getAllAsync<TemplateExerciseRow>(
+      `SELECT
+          e.*, te.set_order, te.reps, te.weight, te.notes
+       FROM exercises e
+       INNER JOIN template_exercises te ON e.id = te.exercise_id
+       WHERE te.template_id = ? AND e.is_deleted = 0
+       ORDER BY te.exercise_id ASC, te.set_order ASC`,
+      [templateId],
+    );
 
-  const grouped = new Map<string, TemplateExercise>();
+    const grouped = new Map<string, TemplateExercise>();
 
-  for (const row of rows) {
-    const existing = grouped.get(row.id);
-    if (!existing) {
-      grouped.set(row.id, {
-        id: row.id,
-        name: row.name,
-        muscleGroup: row.muscleGroup,
-        description: row.description,
-        is_deleted: row.is_deleted,
-        sets: 1,
+    for (const row of rows) {
+      const existing = grouped.get(row.id);
+      if (!existing) {
+        grouped.set(row.id, {
+          id: row.id,
+          name: row.name,
+          muscleGroup: row.muscleGroup,
+          description: row.description,
+          is_deleted: row.is_deleted,
+          sets: 1,
+          reps: row.reps,
+          weight: row.weight,
+          notes: row.notes || "",
+          setDetails: [
+            {
+              setOrder: row.set_order,
+              reps: row.reps,
+              weight: row.weight,
+              notes: row.notes || "",
+            },
+          ],
+        });
+        continue;
+      }
+
+      existing.sets = (existing.sets || 0) + 1;
+      if (!existing.setDetails) {
+        existing.setDetails = [];
+      }
+      existing.setDetails.push({
+        setOrder: row.set_order,
         reps: row.reps,
         weight: row.weight,
         notes: row.notes || "",
-        setDetails: [
-          {
-            setOrder: row.set_order,
-            reps: row.reps,
-            weight: row.weight,
-            notes: row.notes || "",
-          },
-        ],
       });
-      continue;
     }
 
-    existing.sets = (existing.sets || 0) + 1;
-    if (!existing.setDetails) {
-      existing.setDetails = [];
-    }
-    existing.setDetails.push({
-      setOrder: row.set_order,
-      reps: row.reps,
-      weight: row.weight,
-      notes: row.notes || "",
-    });
+    return Array.from(grouped.values());
+  } catch (error) {
+    console.error("Error getting exercises for template:", error);
+    return [];
   }
-
-  return Array.from(grouped.values());
 }
 
 export async function updateTemplateExercise(
@@ -239,8 +261,7 @@ export async function updateTemplateExercise(
   sets: number,
   reps: number,
   notes: string,
-) {
-  const db = await getDb();
+): Promise<void> {
   await addExerciseToTemplate(
     templateId,
     exerciseId,

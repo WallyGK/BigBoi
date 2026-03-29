@@ -6,84 +6,17 @@ import SaveWorkoutButton from "@/components/SaveWorkoutButton";
 import ScreenContainer from "@/components/ScreenContainer";
 import ScreenTitle from "@/components/ScreenTitle";
 import SectionTitle from "@/components/SectionTitle";
+import SwipeDeleteRightAction from "@/components/SwipeDeleteRightAction";
 import TemplateSelectForm from "@/components/TemplateSelectForm";
 import ThemedModal from "@/components/ThemedModal";
 import ThemedTextInput from "@/components/ThemedTextInput";
 import { FONT_SIZE, SPACING, ThemeContext } from "@/constants/Theme";
 import { getExercisesForTemplate, searchTemplatesAsync } from "@/db/templates";
-import { Exercise } from "@/types";
+import { Exercise, Template } from "@/types";
 import { useLocalSearchParams, useRouter } from "expo-router";
 import React, { useContext, useEffect, useState } from "react";
-import { Pressable, ScrollView, Text, View } from "react-native";
+import { ScrollView, View } from "react-native";
 import ReanimatedSwipeable from "react-native-gesture-handler/ReanimatedSwipeable";
-import Animated, {
-  Extrapolation,
-  interpolate,
-  type SharedValue,
-  useAnimatedStyle,
-} from "react-native-reanimated";
-
-interface DeleteRightActionProps {
-  progress: SharedValue<number>;
-  onPress: () => void;
-  colors: {
-    error: string;
-    text: string;
-  };
-}
-
-function DeleteRightAction({
-  progress,
-  onPress,
-  colors,
-}: DeleteRightActionProps) {
-  const animatedStyle = useAnimatedStyle(() => {
-    const opacity = interpolate(
-      progress.value,
-      [0, 0.45, 1],
-      [0, 0, 1],
-      Extrapolation.CLAMP,
-    );
-    const translateX = interpolate(
-      progress.value,
-      [0, 1],
-      [20, 0],
-      Extrapolation.CLAMP,
-    );
-
-    return {
-      opacity,
-      transform: [{ translateX }],
-    };
-  });
-
-  return (
-    <View
-      style={{
-        flex: 1,
-        justifyContent: "center",
-        alignItems: "flex-end",
-        marginBottom: SPACING.sm,
-      }}
-    >
-      <Animated.View style={animatedStyle}>
-        <Pressable
-          onPress={onPress}
-          style={{
-            justifyContent: "center",
-            alignItems: "center",
-            backgroundColor: colors.error,
-            borderRadius: 10,
-            width: 88,
-            height: 44,
-          }}
-        >
-          <Text style={{ color: colors.text, fontWeight: "700" }}>Delete</Text>
-        </Pressable>
-      </Animated.View>
-    </View>
-  );
-}
 
 export default function WorkoutScreen() {
   const { colors } = useContext(ThemeContext);
@@ -103,8 +36,10 @@ export default function WorkoutScreen() {
   const [templateModalVisible, setTemplateModalVisible] = useState(
     mode === "template",
   );
-  const [templates, setTemplates] = useState<any[]>([]);
-  const [selectedTemplate, setSelectedTemplate] = useState<any>(null);
+  const [templates, setTemplates] = useState<Template[]>([]);
+  const [selectedTemplate, setSelectedTemplate] = useState<Template | null>(
+    null,
+  );
   const [deleteSetConfirmVisible, setDeleteSetConfirmVisible] = useState(false);
   const [pendingDeleteSet, setPendingDeleteSet] = useState<{
     sectionIdx: number;
@@ -127,21 +62,14 @@ export default function WorkoutScreen() {
   // Handle template selection
   const handleGoTemplate = async () => {
     if (!selectedTemplate) return;
-    let exercises = selectedTemplate.exercises;
-    if (!exercises || !Array.isArray(exercises) || exercises.length === 0) {
-      try {
-        exercises = await getExercisesForTemplate(selectedTemplate.id);
-      } catch {
-        exercises = [];
-      }
-    }
-    const newSections = (exercises || []).map((ex: any) => ({
-      exercise: ex.exercise || ex,
+    const exercises = await getExercisesForTemplate(selectedTemplate.id);
+    const newSections = exercises.map((ex) => ({
+      exercise: ex,
       sets:
         Array.isArray(ex.setDetails) && ex.setDetails.length > 0
           ? [...ex.setDetails]
-              .sort((a: any, b: any) => a.setOrder - b.setOrder)
-              .map((set: any) => ({
+              .sort((a, b) => a.setOrder - b.setOrder)
+              .map((set) => ({
                 reps: set.reps?.toString() || "",
                 weight: set.weight?.toString() || "",
                 notes: set.notes || "",
@@ -314,7 +242,7 @@ export default function WorkoutScreen() {
                 key={`${section.exercise.id}-set-${setIdx}`}
                 overshootRight={false}
                 renderRightActions={(progress) => (
-                  <DeleteRightAction
+                  <SwipeDeleteRightAction
                     progress={progress}
                     onPress={() => requestDeleteSet(sectionIdx, setIdx)}
                     colors={{ error: colors.error, text: colors.text }}

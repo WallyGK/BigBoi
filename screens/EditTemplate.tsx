@@ -5,6 +5,7 @@ import ExerciseRow from "@/components/ExerciseRow";
 import ScreenContainer from "@/components/ScreenContainer";
 import ScreenTitle from "@/components/ScreenTitle";
 import SectionTitle from "@/components/SectionTitle";
+import SwipeDeleteRightAction from "@/components/SwipeDeleteRightAction";
 import ThemedModal from "@/components/ThemedModal";
 import ThemedTextInput from "@/components/ThemedTextInput";
 import { FONT_SIZE, SPACING, ThemeContext } from "@/constants/Theme";
@@ -22,12 +23,6 @@ import { useLocalSearchParams, useRouter } from "expo-router";
 import React, { useContext, useEffect, useState } from "react";
 import { Pressable, ScrollView, Text, View } from "react-native";
 import ReanimatedSwipeable from "react-native-gesture-handler/ReanimatedSwipeable";
-import Animated, {
-  Extrapolation,
-  interpolate,
-  type SharedValue,
-  useAnimatedStyle,
-} from "react-native-reanimated";
 
 type TemplateSetInput = {
   reps: string;
@@ -39,68 +34,6 @@ type TemplateSection = {
   exercise: Exercise;
   sets: TemplateSetInput[];
 };
-
-interface DeleteRightActionProps {
-  progress: SharedValue<number>;
-  onPress: () => void;
-  colors: {
-    error: string;
-    text: string;
-  };
-}
-
-function DeleteRightAction({
-  progress,
-  onPress,
-  colors,
-}: DeleteRightActionProps) {
-  const animatedStyle = useAnimatedStyle(() => {
-    const opacity = interpolate(
-      progress.value,
-      [0, 0.45, 1],
-      [0, 0, 1],
-      Extrapolation.CLAMP,
-    );
-    const translateX = interpolate(
-      progress.value,
-      [0, 1],
-      [20, 0],
-      Extrapolation.CLAMP,
-    );
-
-    return {
-      opacity,
-      transform: [{ translateX }],
-    };
-  });
-
-  return (
-    <View
-      style={{
-        flex: 1,
-        justifyContent: "center",
-        alignItems: "flex-end",
-        marginBottom: SPACING.sm,
-      }}
-    >
-      <Animated.View style={animatedStyle}>
-        <Pressable
-          onPress={onPress}
-          style={{
-            justifyContent: "center",
-            alignItems: "center",
-            backgroundColor: colors.error,
-            borderRadius: 10,
-            width: 88,
-            height: 44,
-          }}
-        >
-          <Text style={{ color: colors.text, fontWeight: "700" }}>Delete</Text>
-        </Pressable>
-      </Animated.View>
-    </View>
-  );
-}
 
 export default function EditTemplate() {
   const router = useRouter();
@@ -458,7 +391,7 @@ export default function EditTemplate() {
                   key={`${section.exercise.id}-set-${setIdx}`}
                   overshootRight={false}
                   renderRightActions={(progress) => (
-                    <DeleteRightAction
+                    <SwipeDeleteRightAction
                       progress={progress}
                       onPress={() => requestDeleteSet(sectionIdx, setIdx)}
                       colors={{ error: colors.error, text: colors.text }}
