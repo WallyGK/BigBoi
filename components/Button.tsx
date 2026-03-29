@@ -51,6 +51,8 @@ const styles = StyleSheet.create({
   button: {
     paddingVertical: SPACING.sm,
     borderRadius: BORDER_RADIUS.md,
+    justifyContent: "center",
+    alignItems: "center",
   },
   text: {
     fontSize: FONT_SIZE.lg,

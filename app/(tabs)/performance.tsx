@@ -10,7 +10,7 @@ import { SPACING, ThemeContext } from "@/constants/Theme";
 import { searchExercisesAsync } from "@/db/exercises";
 import { getWorkoutExerciseEntries } from "@/db/workoutLogs";
 import { type Exercise, type WorkoutExerciseEntry } from "@/types";
-import { useFont } from "@shopify/react-native-skia";
+import { Circle, useFont } from "@shopify/react-native-skia";
 import { useContext, useEffect, useMemo, useState } from "react";
 import { ScrollView, Text, View } from "react-native";
 import { CartesianChart, Line } from "victory-native";
@@ -19,6 +19,14 @@ type ChartPoint = {
   date: string;
   value: number;
 };
+
+function formatGraphDateLabel(dateKey: string): string {
+  const parts = dateKey.split("-");
+  if (parts.length === 3) {
+    return `${parts[1]}/${parts[2]}`;
+  }
+  return dateKey;
+}
 
 export default function Performance() {
   const font = useFont(inter, 12);
@@ -146,7 +154,7 @@ export default function Performance() {
           <View style={{ flex: 1, width: "100%" }}>
             <CartesianChart
               data={graphData.map((point) => ({
-                x: point.date,
+                x: formatGraphDateLabel(point.date),
                 y: point.value,
               }))}
               xKey="x"
@@ -168,7 +176,18 @@ export default function Performance() {
               frame={{ lineColor: colors.border, lineWidth: 1 }}
             >
               {({ points }) => (
-                <Line points={points.y} color="red" strokeWidth={3} />
+                <>
+                  <Line points={points.y} color="red" strokeWidth={3} />
+                  {points.y.map((point, index) => (
+                    <Circle
+                      key={`point-${index}`}
+                      cx={Number(point.x ?? 0)}
+                      cy={Number(point.y ?? 0)}
+                      r={4}
+                      color="red"
+                    />
+                  ))}
+                </>
               )}
             </CartesianChart>
           </View>
@@ -187,72 +206,98 @@ export default function Performance() {
               : "No workout logs found."}
           </Text>
         ) : (
-          <ScrollView horizontal={true} style={{ marginBottom: SPACING.sm }}>
-            <View>
-              {/* Table Header */}
-              <View
-                style={{
-                  flexDirection: "row",
-                  borderBottomWidth: 1,
-                  borderColor: colors.border,
-                  paddingBottom: 4,
-                }}
-              >
-                <Text
-                  style={{ width: 120, fontWeight: "bold", color: colors.text }}
-                >
-                  Date
-                </Text>
-                <Text
-                  style={{ width: 160, fontWeight: "bold", color: colors.text }}
-                >
-                  Exercise
-                </Text>
-                <Text
-                  style={{ width: 80, fontWeight: "bold", color: colors.text }}
-                >
-                  Reps
-                </Text>
-                <Text
-                  style={{ width: 80, fontWeight: "bold", color: colors.text }}
-                >
-                  Weight
-                </Text>
-                <Text
-                  style={{ width: 180, fontWeight: "bold", color: colors.text }}
-                >
-                  Notes
-                </Text>
-              </View>
-              {/* Table Rows */}
-              {filteredEntries.map((entry, idx) => (
+          <ScrollView
+            style={{ marginBottom: SPACING.sm, maxHeight: 280 }}
+            contentContainerStyle={{ paddingBottom: SPACING.xs }}
+            nestedScrollEnabled
+          >
+            <ScrollView horizontal={true}>
+              <View>
+                {/* Table Header */}
                 <View
-                  key={entry.id || idx}
                   style={{
                     flexDirection: "row",
-                    borderBottomWidth: 0.5,
+                    borderBottomWidth: 1,
                     borderColor: colors.border,
-                    paddingVertical: 4,
+                    paddingBottom: 4,
                   }}
                 >
-                  <Text style={{ width: 120, color: colors.text }}>
-                    {toLocalDateKey(entry.datetime) || entry.datetime}
+                  <Text
+                    style={{
+                      width: 120,
+                      fontWeight: "bold",
+                      color: colors.text,
+                    }}
+                  >
+                    Date
                   </Text>
-                  <Text style={{ width: 160, color: colors.text }}>
-                    {entry.exercise_name}
+                  <Text
+                    style={{
+                      width: 160,
+                      fontWeight: "bold",
+                      color: colors.text,
+                    }}
+                  >
+                    Exercise
                   </Text>
-                  <Text style={{ width: 80, color: colors.text }}>
-                    {entry.reps}
+                  <Text
+                    style={{
+                      width: 80,
+                      fontWeight: "bold",
+                      color: colors.text,
+                    }}
+                  >
+                    Reps
                   </Text>
-                  <Text style={{ width: 80, color: colors.text }}>
-                    {entry.weight}
+                  <Text
+                    style={{
+                      width: 80,
+                      fontWeight: "bold",
+                      color: colors.text,
+                    }}
+                  >
+                    Weight
                   </Text>
-                  <Text style={{ width: 180, color: colors.text }}>
-                    {entry.notes}
+                  <Text
+                    style={{
+                      width: 180,
+                      fontWeight: "bold",
+                      color: colors.text,
+                    }}
+                  >
+                    Notes
                   </Text>
                 </View>
-              ))}
-            </View>
+                {/* Table Rows */}
+                {filteredEntries.map((entry, idx) => (
+                  <View
+                    key={entry.id || idx}
+                    style={{
+                      flexDirection: "row",
+                      borderBottomWidth: 0.5,
+                      borderColor: colors.border,
+                      paddingVertical: 4,
+                    }}
+                  >
+                    <Text style={{ width: 120, color: colors.text }}>
+                      {toLocalDateKey(entry.datetime) || entry.datetime}
+                    </Text>
+                    <Text style={{ width: 160, color: colors.text }}>
+                      {entry.exercise_name}
+                    </Text>
+                    <Text style={{ width: 80, color: colors.text }}>
+                      {entry.reps}
+                    </Text>
+                    <Text style={{ width: 80, color: colors.text }}>
+                      {entry.weight}
+                    </Text>
+                    <Text style={{ width: 180, color: colors.text }}>
+                      {entry.notes}
+                    </Text>
+                  </View>
+                ))}
+              </View>
+            </ScrollView>
           </ScrollView>
         )}
         <Button

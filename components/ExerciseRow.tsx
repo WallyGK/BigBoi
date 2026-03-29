@@ -7,20 +7,16 @@ interface ExerciseRowProps {
   setNumber: number;
   reps: string;
   weight: string;
-  notes: string;
   onChangeReps: (value: string) => void;
   onChangeWeight: (value: string) => void;
-  onChangeNotes: (value: string) => void;
 }
 
 const ExerciseRow: React.FC<ExerciseRowProps> = ({
   setNumber,
   reps,
   weight,
-  notes,
   onChangeReps,
   onChangeWeight,
-  onChangeNotes,
 }) => {
   const { colors } = React.useContext(ThemeContext);
   return (
@@ -28,9 +24,9 @@ const ExerciseRow: React.FC<ExerciseRowProps> = ({
       style={{
         flexDirection: "row",
         alignItems: "center",
-        marginBottom: SPACING.sm,
+        marginBottom: SPACING.xs,
         flexWrap: "wrap",
-        gap: 8,
+        gap: 6,
       }}
     >
       <Text
@@ -46,7 +42,12 @@ const ExerciseRow: React.FC<ExerciseRowProps> = ({
         onChangeText={onChangeReps}
         keyboardType="numeric"
         placeholder="Reps"
-        style={{ minWidth: 32, textAlign: "center" }}
+        style={{
+          width: 64,
+          height: 32,
+          textAlign: "center",
+          paddingVertical: 2,
+        }}
       />
       <Text
         style={{
@@ -61,15 +62,13 @@ const ExerciseRow: React.FC<ExerciseRowProps> = ({
         value={weight === "0" ? "" : weight}
         onChangeText={onChangeWeight}
         keyboardType="numeric"
-        placeholder="##"
-        style={{ minWidth: 48, textAlign: "center" }}
-      />
-      <ThemedTextInput
-        value={notes}
-        onChangeText={onChangeNotes}
-        keyboardType="default"
-        placeholder="Notes"
-        style={{ flex: 1, textAlign: "left" }}
+        placeholder="Weight"
+        style={{
+          width: 72,
+          height: 32,
+          textAlign: "center",
+          paddingVertical: 2,
+        }}
       />
     </View>
   );

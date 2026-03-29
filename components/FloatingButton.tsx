@@ -29,7 +29,7 @@ export default function FloatingButton({
 
   return (
     <TouchableOpacity
-      style={[styles.button, { backgroundColor: colors.primary }, style]}
+      style={[styles.button, { backgroundColor: colors.secondary }, style]}
       {...props}
     >
       {typeof children === "string" || typeof children === "number" ? (

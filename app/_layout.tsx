@@ -5,6 +5,7 @@ import { Stack, useRouter } from "expo-router";
 import { StatusBar } from "expo-status-bar";
 import { type ReactNode, useContext } from "react";
 import { TouchableOpacity, View } from "react-native";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
 
 function AppLayout({ children }: { children: ReactNode }) {
   const { darkMode, colors } = useContext(ThemeContext);
@@ -49,8 +50,10 @@ function RootNavigator() {
 
 export default function RootLayout() {
   return (
-    <ThemeProvider>
-      <RootNavigator />
-    </ThemeProvider>
+    <GestureHandlerRootView style={{ flex: 1 }}>
+      <ThemeProvider>
+        <RootNavigator />
+      </ThemeProvider>
+    </GestureHandlerRootView>
   );
 }

@@ -1,6 +1,6 @@
 import Button from "@/components/Button";
+import ConfirmDeleteModal from "@/components/ConfirmDeleteModal";
 import ExerciseRow from "@/components/ExerciseRow";
-import FloatingButton from "@/components/FloatingButton";
 import ListItem from "@/components/ListItem";
 import SaveWorkoutButton from "@/components/SaveWorkoutButton";
 import ScreenContainer from "@/components/ScreenContainer";
@@ -8,13 +8,83 @@ import ScreenTitle from "@/components/ScreenTitle";
 import SectionTitle from "@/components/SectionTitle";
 import TemplateSelectForm from "@/components/TemplateSelectForm";
 import ThemedModal from "@/components/ThemedModal";
-import { SPACING, ThemeContext } from "@/constants/Theme";
+import ThemedTextInput from "@/components/ThemedTextInput";
+import { FONT_SIZE, SPACING, ThemeContext } from "@/constants/Theme";
 import { searchExercisesAsync } from "@/db/exercises";
 import { getExercisesForTemplate, searchTemplatesAsync } from "@/db/templates";
 import { Exercise } from "@/types";
 import { useLocalSearchParams, useRouter } from "expo-router";
 import React, { useContext, useEffect, useState } from "react";
-import { ScrollView, Text, View } from "react-native";
+import { Pressable, ScrollView, Text, View } from "react-native";
+import ReanimatedSwipeable from "react-native-gesture-handler/ReanimatedSwipeable";
+import Animated, {
+  Extrapolation,
+  interpolate,
+  type SharedValue,
+  useAnimatedStyle,
+} from "react-native-reanimated";
+
+interface DeleteRightActionProps {
+  progress: SharedValue<number>;
+  onPress: () => void;
+  colors: {
+    error: string;
+    text: string;
+  };
+}
+
+function DeleteRightAction({
+  progress,
+  onPress,
+  colors,
+}: DeleteRightActionProps) {
+  const animatedStyle = useAnimatedStyle(() => {
+    const opacity = interpolate(
+      progress.value,
+      [0, 0.45, 1],
+      [0, 0, 1],
+      Extrapolation.CLAMP,
+    );
+    const translateX = interpolate(
+      progress.value,
+      [0, 1],
+      [20, 0],
+      Extrapolation.CLAMP,
+    );
+
+    return {
+      opacity,
+      transform: [{ translateX }],
+    };
+  });
+
+  return (
+    <View
+      style={{
+        flex: 1,
+        justifyContent: "center",
+        alignItems: "flex-end",
+        marginBottom: SPACING.sm,
+      }}
+    >
+      <Animated.View style={animatedStyle}>
+        <Pressable
+          onPress={onPress}
+          style={{
+            justifyContent: "center",
+            alignItems: "center",
+            backgroundColor: colors.error,
+            borderRadius: 10,
+            width: 88,
+            height: 44,
+          }}
+        >
+          <Text style={{ color: colors.text, fontWeight: "700" }}>Delete</Text>
+        </Pressable>
+      </Animated.View>
+    </View>
+  );
+}
 
 export default function WorkoutScreen() {
   const { colors } = useContext(ThemeContext);
@@ -34,10 +104,21 @@ export default function WorkoutScreen() {
 
   // Template mode state
   const [templateModalVisible, setTemplateModalVisible] = useState(
-    mode === "template"
+    mode === "template",
   );
   const [templates, setTemplates] = useState<any[]>([]);
   const [selectedTemplate, setSelectedTemplate] = useState<any>(null);
+  const [deleteSetConfirmVisible, setDeleteSetConfirmVisible] = useState(false);
+  const [pendingDeleteSet, setPendingDeleteSet] = useState<{
+    sectionIdx: number;
+    setIdx: number;
+  } | null>(null);
+  const [notesModalVisible, setNotesModalVisible] = useState(false);
+  const [pendingNotesTarget, setPendingNotesTarget] = useState<{
+    sectionIdx: number;
+    setIdx: number;
+  } | null>(null);
+  const [noteDraft, setNoteDraft] = useState("");
 
   // Load exercises for modal
   useEffect(() => {
@@ -70,11 +151,20 @@ export default function WorkoutScreen() {
     }
     const newSections = (exercises || []).map((ex: any) => ({
       exercise: ex.exercise || ex,
-      sets: Array.from({ length: Number(ex.sets || 1) }, (_, i) => ({
-        reps: ex.reps?.toString() || "",
-        weight: ex.weight?.toString() || "",
-        notes: "",
-      })),
+      sets:
+        Array.isArray(ex.setDetails) && ex.setDetails.length > 0
+          ? [...ex.setDetails]
+              .sort((a: any, b: any) => a.setOrder - b.setOrder)
+              .map((set: any) => ({
+                reps: set.reps?.toString() || "",
+                weight: set.weight?.toString() || "",
+                notes: set.notes || "",
+              }))
+          : Array.from({ length: Number(ex.sets || 1) }, () => ({
+              reps: ex.reps?.toString() || "",
+              weight: ex.weight?.toString() || "",
+              notes: ex.notes || "",
+            })),
     }));
     setSections(newSections);
     setTemplateModalVisible(false);
@@ -100,7 +190,7 @@ export default function WorkoutScreen() {
     sectionIdx: number,
     setIdx: number,
     field: "reps" | "weight" | "notes",
-    value: string
+    value: string,
   ) => {
     setSections((prev) => {
       const updated = [...prev];
@@ -128,19 +218,73 @@ export default function WorkoutScreen() {
     });
   };
 
-  // Remove last set
-  const handleRemoveSet = (sectionIdx: number) => {
+  const requestDeleteSet = (sectionIdx: number, setIdx: number) => {
+    setPendingDeleteSet({ sectionIdx, setIdx });
+    setDeleteSetConfirmVisible(true);
+  };
+
+  const handleConfirmDeleteSet = () => {
+    if (!pendingDeleteSet) {
+      setDeleteSetConfirmVisible(false);
+      return;
+    }
+
+    const { sectionIdx, setIdx } = pendingDeleteSet;
     setSections((prev) => {
       const updated = [...prev];
-      const sets = updated[sectionIdx].sets;
-      if (sets.length > 1) {
-        updated[sectionIdx] = {
-          ...updated[sectionIdx],
-          sets: sets.slice(0, -1),
-        };
+      const section = updated[sectionIdx];
+      if (!section) {
+        return prev;
       }
+
+      if (section.sets.length <= 1) {
+        return prev.filter((_, idx) => idx !== sectionIdx);
+      }
+
+      const nextSets = section.sets.filter((_, idx) => idx !== setIdx);
+      updated[sectionIdx] = {
+        ...section,
+        sets: nextSets,
+      };
+
       return updated;
     });
+
+    setDeleteSetConfirmVisible(false);
+    setPendingDeleteSet(null);
+  };
+
+  const handleCancelDeleteSet = () => {
+    setDeleteSetConfirmVisible(false);
+    setPendingDeleteSet(null);
+  };
+
+  const openNotesEditor = (sectionIdx: number, setIdx: number) => {
+    const current = sections[sectionIdx]?.sets[setIdx]?.notes || "";
+    setPendingNotesTarget({ sectionIdx, setIdx });
+    setNoteDraft(current);
+    setNotesModalVisible(true);
+  };
+
+  const handleSaveNotes = () => {
+    if (!pendingNotesTarget) {
+      setNotesModalVisible(false);
+      return;
+    }
+
+    handleSetChange(
+      pendingNotesTarget.sectionIdx,
+      pendingNotesTarget.setIdx,
+      "notes",
+      noteDraft,
+    );
+    setNotesModalVisible(false);
+    setPendingNotesTarget(null);
+  };
+
+  const handleCancelNotes = () => {
+    setNotesModalVisible(false);
+    setPendingNotesTarget(null);
   };
 
   return (
@@ -167,65 +311,76 @@ export default function WorkoutScreen() {
       </ScreenTitle>
       <ScrollView contentContainerStyle={{ paddingVertical: SPACING.sm }}>
         {sections.map((section, sectionIdx) => (
-          <View key={section.exercise.id} style={{ marginBottom: SPACING.lg }}>
+          <View key={section.exercise.id} style={{ marginBottom: SPACING.md }}>
             <View
               style={{
                 flexDirection: "row",
                 alignItems: "center",
                 marginBottom: SPACING.sm,
-                gap: 8,
               }}
             >
-              <SectionTitle>{section.exercise.name}</SectionTitle>
-              <View style={{ flex: 1 }} />
-              <Button
-                title="Set -"
-                onPress={() => handleRemoveSet(sectionIdx)}
-                style={{
-                  minWidth: 60,
-                  height: 28,
-                  backgroundColor: colors.error,
-                  paddingVertical: 0,
-                }}
-              />
-              <Button
-                title="Set +"
-                onPress={() => handleAddSet(sectionIdx)}
-                style={{
-                  minWidth: 60,
-                  height: 28,
-                  marginLeft: 8,
-                  paddingVertical: 0,
-                }}
-              />
+              <SectionTitle style={{ fontSize: FONT_SIZE.lg }}>
+                {section.exercise.name}
+              </SectionTitle>
             </View>
             {section.sets.map((set, setIdx) => (
-              <ExerciseRow
-                key={setIdx}
-                setNumber={setIdx + 1}
-                reps={set.reps}
-                weight={set.weight}
-                notes={set.notes}
-                onChangeReps={(v) =>
-                  handleSetChange(sectionIdx, setIdx, "reps", v)
-                }
-                onChangeWeight={(v) =>
-                  handleSetChange(sectionIdx, setIdx, "weight", v)
-                }
-                onChangeNotes={(v) =>
-                  handleSetChange(sectionIdx, setIdx, "notes", v)
-                }
-              />
+              <ReanimatedSwipeable
+                key={`${section.exercise.id}-set-${setIdx}`}
+                overshootRight={false}
+                renderRightActions={(progress) => (
+                  <DeleteRightAction
+                    progress={progress}
+                    onPress={() => requestDeleteSet(sectionIdx, setIdx)}
+                    colors={{ error: colors.error, text: colors.text }}
+                  />
+                )}
+              >
+                <View style={{ flexDirection: "row", alignItems: "center" }}>
+                  <View style={{ flex: 1 }}>
+                    <ExerciseRow
+                      setNumber={setIdx + 1}
+                      reps={set.reps}
+                      weight={set.weight}
+                      onChangeReps={(v) =>
+                        handleSetChange(sectionIdx, setIdx, "reps", v)
+                      }
+                      onChangeWeight={(v) =>
+                        handleSetChange(sectionIdx, setIdx, "weight", v)
+                      }
+                    />
+                  </View>
+                  <Button
+                    title="+"
+                    onPress={() => openNotesEditor(sectionIdx, setIdx)}
+                    style={{
+                      width: 32,
+                      height: 32,
+                      marginLeft: SPACING.xs,
+                      marginBottom: SPACING.xs,
+                      paddingVertical: 0,
+                      justifyContent: "center",
+                      alignItems: "center",
+                      backgroundColor: set.notes?.trim()
+                        ? colors.secondary
+                        : colors.primary,
+                    }}
+                  />
+                </View>
+              </ReanimatedSwipeable>
             ))}
+            <Button
+              title="Add Set"
+              onPress={() => handleAddSet(sectionIdx)}
+              style={{
+                width: "100%",
+                height: 30,
+                paddingVertical: 0,
+                marginTop: SPACING.xs,
+              }}
+            />
           </View>
         ))}
       </ScrollView>
-      <FloatingButton
-        onPress={() => setModalVisible(true)}
-        style={{ bottom: SPACING.md + 60 }}
-      >
-        {"+"}
-      </FloatingButton>
       <ThemedModal
         visible={modalVisible}
         onClose={() => setModalVisible(false)}
@@ -251,6 +406,16 @@ export default function WorkoutScreen() {
           )}
         </ScrollView>
       </ThemedModal>
+      <Button
+        title="Add Exercise"
+        onPress={() => setModalVisible(true)}
+        style={{
+          backgroundColor: colors.cardList,
+          borderWidth: 1,
+          borderColor: colors.border,
+          marginBottom: SPACING.sm,
+        }}
+      />
       <SaveWorkoutButton
         style={{ marginBottom: SPACING.md }}
         exercises={sections.flatMap((section) =>
@@ -259,9 +424,36 @@ export default function WorkoutScreen() {
             reps: set.reps ? parseInt(set.reps, 10) : 0,
             weight: set.weight ? parseFloat(set.weight) : 0,
             notes: set.notes,
-          }))
+          })),
         )}
       />
+      <ConfirmDeleteModal
+        visible={deleteSetConfirmVisible}
+        onConfirm={handleConfirmDeleteSet}
+        onCancel={handleCancelDeleteSet}
+        title="Delete this set?"
+        message="This set will be removed from the workout."
+      />
+      <ThemedModal visible={notesModalVisible} onClose={handleCancelNotes}>
+        <SectionTitle>Edit Set Notes</SectionTitle>
+        <ThemedTextInput
+          value={noteDraft}
+          onChangeText={setNoteDraft}
+          placeholder="Add notes for this set"
+          multiline
+          style={{
+            minHeight: 90,
+            marginBottom: SPACING.md,
+            paddingHorizontal: 10,
+          }}
+        />
+        <Button title="Save Notes" onPress={handleSaveNotes} />
+        <Button
+          title="Cancel"
+          onPress={handleCancelNotes}
+          style={{ marginTop: SPACING.sm, backgroundColor: colors.error }}
+        />
+      </ThemedModal>
     </ScreenContainer>
   );
 }

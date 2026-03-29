@@ -1,7 +1,24 @@
 // db/templates.ts
-import { NewTemplate, Template, TemplateExercise } from "@/types";
+import {
+  NewTemplate,
+  Template,
+  TemplateExercise,
+  TemplateSetDetail,
+} from "@/types";
 import uuid from "react-native-uuid";
 import { getDb } from "./index";
+
+interface TemplateExerciseRow {
+  id: string;
+  name: string;
+  muscleGroup?: string;
+  description?: string;
+  is_deleted?: boolean;
+  set_order: number;
+  reps: number;
+  weight: number;
+  notes?: string;
+}
 
 // CREATE: Add a new template
 export async function addTemplate(
@@ -103,14 +120,41 @@ export async function addExerciseToTemplate(
   reps: number = 0,
   weight: number = 0,
   notes: string = "",
+  setEntries?: Omit<TemplateSetDetail, "setOrder">[],
 ) {
   const db = await getDb();
   try {
-    await db.runAsync(
-      `INSERT OR REPLACE INTO template_exercises (template_id, exercise_id, sets, reps, weight, notes)
-       VALUES (?, ?, ?, ?, ?, ?)`,
-      [templateId, exerciseId, sets, reps, weight, notes],
-    );
+    await db.withTransactionAsync(async () => {
+      await db.runAsync(
+        `DELETE FROM template_exercises WHERE template_id = ? AND exercise_id = ?`,
+        [templateId, exerciseId],
+      );
+
+      const normalizedEntries =
+        setEntries && setEntries.length > 0
+          ? setEntries
+          : Array.from({ length: Math.max(1, Number(sets) || 1) }, () => ({
+              reps: Number(reps) || 0,
+              weight: Number(weight) || 0,
+              notes,
+            }));
+
+      for (let i = 0; i < normalizedEntries.length; i += 1) {
+        const entry = normalizedEntries[i];
+        await db.runAsync(
+          `INSERT INTO template_exercises (template_id, exercise_id, set_order, reps, weight, notes)
+           VALUES (?, ?, ?, ?, ?, ?)`,
+          [
+            templateId,
+            exerciseId,
+            i + 1,
+            Number(entry.reps) || 0,
+            Number(entry.weight) || 0,
+            entry.notes || "",
+          ],
+        );
+      }
+    });
   } catch (error) {
     console.error("Error adding exercise to template:", error);
     throw error;
@@ -137,13 +181,56 @@ export async function getExercisesForTemplate(
   templateId: string,
 ): Promise<TemplateExercise[]> {
   const db = await getDb();
-  return await db.getAllAsync<TemplateExercise>(
-    `SELECT e.*, te.sets, te.reps, te.weight, te.notes
+  const rows = await db.getAllAsync<TemplateExerciseRow>(
+    `SELECT
+        e.*, te.set_order, te.reps, te.weight, te.notes
      FROM exercises e
      INNER JOIN template_exercises te ON e.id = te.exercise_id
-     WHERE te.template_id = ? AND e.is_deleted = 0`,
+     WHERE te.template_id = ? AND e.is_deleted = 0
+     ORDER BY te.exercise_id ASC, te.set_order ASC`,
     [templateId],
   );
+
+  const grouped = new Map<string, TemplateExercise>();
+
+  for (const row of rows) {
+    const existing = grouped.get(row.id);
+    if (!existing) {
+      grouped.set(row.id, {
+        id: row.id,
+        name: row.name,
+        muscleGroup: row.muscleGroup,
+        description: row.description,
+        is_deleted: row.is_deleted,
+        sets: 1,
+        reps: row.reps,
+        weight: row.weight,
+        notes: row.notes || "",
+        setDetails: [
+          {
+            setOrder: row.set_order,
+            reps: row.reps,
+            weight: row.weight,
+            notes: row.notes || "",
+          },
+        ],
+      });
+      continue;
+    }
+
+    existing.sets = (existing.sets || 0) + 1;
+    if (!existing.setDetails) {
+      existing.setDetails = [];
+    }
+    existing.setDetails.push({
+      setOrder: row.set_order,
+      reps: row.reps,
+      weight: row.weight,
+      notes: row.notes || "",
+    });
+  }
+
+  return Array.from(grouped.values());
 }
 
 export async function updateTemplateExercise(
@@ -154,10 +241,17 @@ export async function updateTemplateExercise(
   notes: string,
 ) {
   const db = await getDb();
-  await db.runAsync(
-    `UPDATE template_exercises
-     SET sets = ?, reps = ?, notes = ?
-     WHERE template_id = ? AND exercise_id = ?`,
-    [sets, reps, notes, templateId, exerciseId],
+  await addExerciseToTemplate(
+    templateId,
+    exerciseId,
+    sets,
+    reps,
+    0,
+    notes,
+    Array.from({ length: Math.max(1, Number(sets) || 1) }, () => ({
+      reps,
+      weight: 0,
+      notes,
+    })),
   );
 }

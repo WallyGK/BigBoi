@@ -92,6 +92,7 @@ export async function getWorkoutExercisesWithNames(
       SELECT
         we.id,
         we.workout_id,
+        we.rowid AS execution_order,
         wl.datetime,
         we.exercise_id,
         ex.name AS exercise_name,
@@ -102,7 +103,7 @@ export async function getWorkoutExercisesWithNames(
       INNER JOIN workout_logs wl ON wl.id = we.workout_id
       INNER JOIN exercises ex ON ex.id = we.exercise_id
       WHERE we.workout_id = ?
-      ORDER BY we.id ASC
+      ORDER BY we.rowid ASC
     `,
     [workoutId],
   );

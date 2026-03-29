@@ -5,7 +5,7 @@ import { Platform } from "react-native";
 // Light & dark color palettes
 const colorPalettes = {
   light: {
-    primary: "#3b82f6",
+    primary: "#4E2A84",
     secondary: "#10b981",
     background: "#ffffff",
     card: "#f3f4f6",
@@ -15,10 +15,10 @@ const colorPalettes = {
     border: "#e5e7eb",
     error: "#ef4444",
     tabIconDefault: "#9ca3af",
-    tabIconSelected: "#3b82f6",
+    tabIconSelected: "#4E2A84",
   },
   dark: {
-    primary: "#3b82f6",
+    primary: "#4E2A84",
     secondary: "#10b981",
     background: "#111827",
     card: "#1f2937",
@@ -28,7 +28,7 @@ const colorPalettes = {
     border: "#374151",
     error: "#ef4444",
     tabIconDefault: "#6b7280",
-    tabIconSelected: "#3b82f6",
+    tabIconSelected: "#4E2A84",
   },
 };
 

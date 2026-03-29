@@ -1,7 +1,6 @@
-// screens/EditTemplate.tsx
-import AddExerciseToTemplateForm from "@/components/AddExerciseToTemplateForm";
 import Button from "@/components/Button";
 import ConfirmDeleteModal from "@/components/ConfirmDeleteModal";
+import ExerciseRow from "@/components/ExerciseRow";
 import FloatingButton from "@/components/FloatingButton";
 import ListItem from "@/components/ListItem";
 import ScreenContainer from "@/components/ScreenContainer";
@@ -9,191 +8,404 @@ import ScreenTitle from "@/components/ScreenTitle";
 import SectionTitle from "@/components/SectionTitle";
 import ThemedModal from "@/components/ThemedModal";
 import ThemedTextInput from "@/components/ThemedTextInput";
-import { SPACING, ThemeContext } from "@/constants/Theme";
+import { FONT_SIZE, SPACING, ThemeContext } from "@/constants/Theme";
 import { searchExercisesAsync } from "@/db/exercises";
 import {
   addExerciseToTemplate,
   addTemplate,
   deleteTemplateAsync,
+  getExercisesForTemplate,
+  getTemplateById,
+  removeExerciseFromTemplate,
 } from "@/db/templates";
 import { Exercise } from "@/types";
 import { Ionicons } from "@expo/vector-icons";
 import { useLocalSearchParams, useRouter } from "expo-router";
-import React, { useContext, useState } from "react";
-import { FlatList, Text, View } from "react-native";
+import React, { useContext, useEffect, useState } from "react";
+import { Pressable, ScrollView, Text, View } from "react-native";
+import ReanimatedSwipeable from "react-native-gesture-handler/ReanimatedSwipeable";
+import Animated, {
+  Extrapolation,
+  interpolate,
+  type SharedValue,
+  useAnimatedStyle,
+} from "react-native-reanimated";
+
+type TemplateSetInput = {
+  reps: string;
+  weight: string;
+  notes: string;
+};
+
+type TemplateSection = {
+  exercise: Exercise;
+  sets: TemplateSetInput[];
+};
+
+interface DeleteRightActionProps {
+  progress: SharedValue<number>;
+  onPress: () => void;
+  colors: {
+    error: string;
+    text: string;
+  };
+}
+
+function DeleteRightAction({
+  progress,
+  onPress,
+  colors,
+}: DeleteRightActionProps) {
+  const animatedStyle = useAnimatedStyle(() => {
+    const opacity = interpolate(
+      progress.value,
+      [0, 0.45, 1],
+      [0, 0, 1],
+      Extrapolation.CLAMP,
+    );
+    const translateX = interpolate(
+      progress.value,
+      [0, 1],
+      [20, 0],
+      Extrapolation.CLAMP,
+    );
+
+    return {
+      opacity,
+      transform: [{ translateX }],
+    };
+  });
+
+  return (
+    <View
+      style={{
+        flex: 1,
+        justifyContent: "center",
+        alignItems: "flex-end",
+        marginBottom: SPACING.sm,
+      }}
+    >
+      <Animated.View style={animatedStyle}>
+        <Pressable
+          onPress={onPress}
+          style={{
+            justifyContent: "center",
+            alignItems: "center",
+            backgroundColor: colors.error,
+            borderRadius: 10,
+            width: 88,
+            height: 44,
+          }}
+        >
+          <Text style={{ color: colors.text, fontWeight: "700" }}>Delete</Text>
+        </Pressable>
+      </Animated.View>
+    </View>
+  );
+}
 
 export default function EditTemplate() {
   const router = useRouter();
   const params = useLocalSearchParams();
+  const { colors } = useContext(ThemeContext);
+
   const templateId =
     typeof params.templateId === "string" ? params.templateId : null;
 
-  // State for form fields
   const [templateName, setTemplateName] = useState("");
   const [templateDesc, setTemplateDesc] = useState("");
-  const [exercises, setExercises] = useState<any[]>([]);
-  const [originalExercises, setOriginalExercises] = useState<any[]>([]);
+  const [sections, setSections] = useState<TemplateSection[]>([]);
+  const [originalExerciseIds, setOriginalExerciseIds] = useState<string[]>([]);
 
-  // Load template data if editing
-  React.useEffect(() => {
+  const [exerciseModalVisible, setExerciseModalVisible] = useState(false);
+  const [allExercises, setAllExercises] = useState<Exercise[]>([]);
+  const [loadingExercises, setLoadingExercises] = useState(false);
+
+  const [deleteTemplateConfirmVisible, setDeleteTemplateConfirmVisible] =
+    useState(false);
+  const [deleteSetConfirmVisible, setDeleteSetConfirmVisible] = useState(false);
+  const [pendingDeleteSet, setPendingDeleteSet] = useState<{
+    sectionIdx: number;
+    setIdx: number;
+  } | null>(null);
+
+  const [notesModalVisible, setNotesModalVisible] = useState(false);
+  const [pendingNotesTarget, setPendingNotesTarget] = useState<{
+    sectionIdx: number;
+    setIdx: number;
+  } | null>(null);
+  const [noteDraft, setNoteDraft] = useState("");
+
+  useEffect(() => {
+    let isMounted = true;
+
     async function loadTemplateForEdit() {
-      if (templateId) {
-        const { getTemplateById, getExercisesForTemplate } = await import(
-          "@/db/templates"
-        );
-        const template = await getTemplateById(templateId);
-        if (template) {
-          setTemplateName(template.name);
-          setTemplateDesc(template.description || "");
-          const templateExercises = await getExercisesForTemplate(templateId);
-          const mappedExercises = templateExercises.map((ex) => ({
-            exercise: ex,
-            reps: ex.reps?.toString() || "",
-            sets: ex.sets?.toString() || "",
-            weight: ex.weight?.toString() || "",
-            notes: ex.notes || "",
-          }));
-          setExercises(mappedExercises);
-          setOriginalExercises(mappedExercises);
-        }
+      if (!templateId) {
+        return;
       }
+
+      const template = await getTemplateById(templateId);
+      if (!template || !isMounted) {
+        return;
+      }
+
+      setTemplateName(template.name);
+      setTemplateDesc(template.description || "");
+
+      const templateExercises = await getExercisesForTemplate(templateId);
+      if (!isMounted) {
+        return;
+      }
+
+      const mappedSections: TemplateSection[] = templateExercises.map((ex) => {
+        const orderedSetDetails = (ex.setDetails || [])
+          .slice()
+          .sort((a, b) => a.setOrder - b.setOrder);
+
+        const sets =
+          orderedSetDetails.length > 0
+            ? orderedSetDetails.map((set) => ({
+                reps: String(set.reps ?? ""),
+                weight: String(set.weight ?? ""),
+                notes: set.notes || "",
+              }))
+            : Array.from({ length: Math.max(1, ex.sets || 1) }, () => ({
+                reps: String(ex.reps ?? ""),
+                weight: String(ex.weight ?? ""),
+                notes: ex.notes || "",
+              }));
+
+        return {
+          exercise: ex,
+          sets,
+        };
+      });
+
+      setSections(mappedSections);
+      setOriginalExerciseIds(
+        mappedSections.map((section) => section.exercise.id),
+      );
     }
+
     loadTemplateForEdit();
+
+    return () => {
+      isMounted = false;
+    };
   }, [templateId]);
 
-  const [deleteConfirmVisible, setDeleteConfirmVisible] = useState(false);
+  useEffect(() => {
+    if (!exerciseModalVisible) {
+      return;
+    }
+
+    setLoadingExercises(true);
+    searchExercisesAsync("").then((result) => {
+      setAllExercises(result);
+      setLoadingExercises(false);
+    });
+  }, [exerciseModalVisible]);
+
+  const handleAddExerciseSection = (exercise: Exercise) => {
+    setSections((prev) => {
+      if (prev.some((section) => section.exercise.id === exercise.id)) {
+        return prev;
+      }
+
+      return [
+        ...prev,
+        { exercise, sets: [{ reps: "", weight: "", notes: "" }] },
+      ];
+    });
+
+    setExerciseModalVisible(false);
+  };
+
+  const handleRemoveExerciseSection = (sectionIdx: number) => {
+    setSections((prev) => prev.filter((_, idx) => idx !== sectionIdx));
+  };
+
+  const handleSetChange = (
+    sectionIdx: number,
+    setIdx: number,
+    field: "reps" | "weight" | "notes",
+    value: string,
+  ) => {
+    setSections((prev) => {
+      const updated = [...prev];
+      const section = { ...updated[sectionIdx] };
+      const sets = [...section.sets];
+      sets[setIdx] = { ...sets[setIdx], [field]: value };
+      section.sets = sets;
+      updated[sectionIdx] = section;
+      return updated;
+    });
+  };
+
+  const handleAddSet = (sectionIdx: number) => {
+    setSections((prev) => {
+      const updated = [...prev];
+      const section = updated[sectionIdx];
+      if (!section) {
+        return prev;
+      }
+
+      updated[sectionIdx] = {
+        ...section,
+        sets: [...section.sets, { reps: "", weight: "", notes: "" }],
+      };
+
+      return updated;
+    });
+  };
+
+  const requestDeleteSet = (sectionIdx: number, setIdx: number) => {
+    setPendingDeleteSet({ sectionIdx, setIdx });
+    setDeleteSetConfirmVisible(true);
+  };
+
+  const handleConfirmDeleteSet = () => {
+    if (!pendingDeleteSet) {
+      setDeleteSetConfirmVisible(false);
+      return;
+    }
+
+    const { sectionIdx, setIdx } = pendingDeleteSet;
+    setSections((prev) => {
+      const updated = [...prev];
+      const section = updated[sectionIdx];
+      if (!section) {
+        return prev;
+      }
+
+      if (section.sets.length <= 1) {
+        return prev.filter((_, idx) => idx !== sectionIdx);
+      }
+
+      updated[sectionIdx] = {
+        ...section,
+        sets: section.sets.filter((_, idx) => idx !== setIdx),
+      };
+
+      return updated;
+    });
+
+    setDeleteSetConfirmVisible(false);
+    setPendingDeleteSet(null);
+  };
+
+  const handleCancelDeleteSet = () => {
+    setDeleteSetConfirmVisible(false);
+    setPendingDeleteSet(null);
+  };
+
+  const openNotesEditor = (sectionIdx: number, setIdx: number) => {
+    setPendingNotesTarget({ sectionIdx, setIdx });
+    setNoteDraft(sections[sectionIdx]?.sets[setIdx]?.notes || "");
+    setNotesModalVisible(true);
+  };
+
+  const handleSaveNotes = () => {
+    if (!pendingNotesTarget) {
+      setNotesModalVisible(false);
+      return;
+    }
+
+    handleSetChange(
+      pendingNotesTarget.sectionIdx,
+      pendingNotesTarget.setIdx,
+      "notes",
+      noteDraft,
+    );
+
+    setNotesModalVisible(false);
+    setPendingNotesTarget(null);
+  };
+
+  const handleCancelNotes = () => {
+    setNotesModalVisible(false);
+    setPendingNotesTarget(null);
+  };
 
   const handleDeleteTemplate = async () => {
-    if (!templateId) return;
+    if (!templateId) {
+      return;
+    }
+
     try {
       await deleteTemplateAsync(templateId);
-      setDeleteConfirmVisible(false);
+      setDeleteTemplateConfirmVisible(false);
       router.back();
-    } catch (err) {
-      console.error("Failed to delete template:", err);
+    } catch (error) {
+      console.error("Failed to delete template:", error);
     }
   };
 
   const handleSaveTemplate = async () => {
-    if (!templateName.trim()) return;
+    if (!templateName.trim()) {
+      return;
+    }
+
     try {
-      let newTemplateId = templateId;
-      if (!templateId) {
-        const newTemplate = await addTemplate({
+      let activeTemplateId = templateId;
+
+      if (!activeTemplateId) {
+        const created = await addTemplate({
           name: templateName.trim(),
           description: templateDesc.trim(),
           exercises: [],
         });
-        if (!newTemplate) throw new Error("Failed to create template");
-        newTemplateId = newTemplate.id;
+
+        if (!created) {
+          throw new Error("Failed to create template");
+        }
+
+        activeTemplateId = created.id;
       }
-      if (typeof newTemplateId === "string") {
-        // Find removed exercises
-        const removed = originalExercises.filter(
-          (orig) => !exercises.some((ex) => ex.exercise.id === orig.exercise.id)
+
+      if (!activeTemplateId) {
+        throw new Error("Missing template id");
+      }
+
+      const currentExerciseIds = sections.map((section) => section.exercise.id);
+      const removedExerciseIds = originalExerciseIds.filter(
+        (id) => !currentExerciseIds.includes(id),
+      );
+
+      for (const removedExerciseId of removedExerciseIds) {
+        await removeExerciseFromTemplate(activeTemplateId, removedExerciseId);
+      }
+
+      for (const section of sections) {
+        const setEntries = section.sets.map((set) => ({
+          reps: Number(set.reps) || 0,
+          weight: Number(set.weight) || 0,
+          notes: set.notes || "",
+        }));
+
+        const firstSet = setEntries[0] || { reps: 0, weight: 0, notes: "" };
+
+        await addExerciseToTemplate(
+          activeTemplateId,
+          section.exercise.id,
+          setEntries.length,
+          firstSet.reps,
+          firstSet.weight,
+          firstSet.notes,
+          setEntries,
         );
-        if (removed.length > 0) {
-          const { removeExerciseFromTemplate } = await import("@/db/templates");
-          for (const ex of removed) {
-            await removeExerciseFromTemplate(newTemplateId, ex.exercise.id);
-          }
-        }
-        // Add/update current exercises
-        for (const ex of exercises) {
-          await addExerciseToTemplate(
-            newTemplateId,
-            ex.exercise.id,
-            Number(ex.sets) || 0,
-            Number(ex.reps) || 0,
-            Number(ex.weight) || 0,
-            ex.notes || ""
-          );
-        }
       }
+
       router.back();
-    } catch (err) {
-      console.error("Failed to save template:", err);
+    } catch (error) {
+      console.error("Failed to save template:", error);
     }
-  };
-  const { colors } = useContext(ThemeContext);
-  const [modalVisible, setModalVisible] = useState(false);
-  const [allExercises, setAllExercises] = useState<Exercise[]>([]);
-  const [selectedExercise, setSelectedExercise] = useState<Exercise | null>(
-    null
-  );
-  const [reps, setReps] = useState("");
-  const [sets, setSets] = useState("");
-  const [weight, setWeight] = useState("");
-  const [notes, setNotes] = useState("");
-  // For editing an existing exercise in the template
-  const [editExerciseIndex, setEditExerciseIndex] = useState<number | null>(
-    null
-  );
-
-  // Open modal for adding a new exercise
-  const openAddExerciseModal = async () => {
-    const dbExercises = await searchExercisesAsync("");
-    setAllExercises(dbExercises);
-    setSelectedExercise(null);
-    setReps("");
-    setSets("");
-    setWeight("");
-    setNotes("");
-    setEditExerciseIndex(null);
-    setModalVisible(true);
-  };
-
-  // Open modal for editing an existing exercise in the template
-  const openEditExerciseModal = async (idx: number) => {
-    const dbExercises = await searchExercisesAsync("");
-    setAllExercises(dbExercises);
-    const exObj = exercises[idx];
-    setSelectedExercise(exObj.exercise);
-    setReps(exObj.reps);
-    setSets(exObj.sets);
-    setWeight(exObj.weight);
-    setNotes(exObj.notes || "");
-    setEditExerciseIndex(idx);
-    setModalVisible(true);
-  };
-
-  // Add or update exercise in template
-  const handleAddExercise = () => {
-    if (!selectedExercise) return;
-    if (editExerciseIndex !== null) {
-      // Update existing
-      const updated = [...exercises];
-      updated[editExerciseIndex] = {
-        exercise: selectedExercise,
-        reps,
-        sets,
-        weight,
-        notes,
-      };
-      setExercises(updated);
-    } else {
-      // Add new
-      setExercises([
-        ...exercises,
-        {
-          exercise: selectedExercise,
-          reps,
-          sets,
-          weight,
-          notes,
-        },
-      ]);
-    }
-    setModalVisible(false);
-  };
-
-  const handleRemoveExercise = (idx: number) => {
-    setExercises(exercises.filter((_, i) => i !== idx));
   };
 
   return (
     <ScreenContainer>
       <ScreenTitle>Edit Template</ScreenTitle>
+
       <ThemedTextInput
         placeholder="Template Name"
         value={templateName}
@@ -206,36 +418,102 @@ export default function EditTemplate() {
         multiline
       />
 
-      <SectionTitle>Exercises</SectionTitle>
-      <FlatList
-        data={exercises}
-        keyExtractor={(_, idx) => idx.toString()}
-        renderItem={({ item, index }) => (
-          <ListItem
-            title={item.exercise?.name || ""}
-            subtitle={
-              item.reps || item.sets || item.weight
-                ? `${item.reps || "-"} reps x ${item.sets || "-"} sets @ ${
-                    item.weight || "-"
-                  }lbs`
-                : undefined
-            }
-            description={item.notes}
-            onRemove={() => handleRemoveExercise(index)}
-            onPress={() => openEditExerciseModal(index)}
-          />
-        )}
-        ListEmptyComponent={
+      <ScrollView contentContainerStyle={{ paddingVertical: SPACING.sm }}>
+        {sections.length === 0 ? (
           <Text style={{ color: colors.textSecondary, textAlign: "center" }}>
             No exercises added yet.
           </Text>
-        }
-        contentContainerStyle={{ paddingBottom: 80 }}
-      />
+        ) : (
+          sections.map((section, sectionIdx) => (
+            <View
+              key={section.exercise.id}
+              style={{ marginBottom: SPACING.md }}
+            >
+              <View
+                style={{
+                  flexDirection: "row",
+                  alignItems: "center",
+                  marginBottom: SPACING.sm,
+                }}
+              >
+                <SectionTitle style={{ fontSize: FONT_SIZE.lg }}>
+                  {section.exercise.name}
+                </SectionTitle>
+                <View style={{ flex: 1 }} />
+                <Pressable
+                  onPress={() => handleRemoveExerciseSection(sectionIdx)}
+                >
+                  <Ionicons
+                    name="trash-outline"
+                    size={24}
+                    color={colors.error}
+                  />
+                </Pressable>
+              </View>
 
-      {/* Floating Add Button */}
+              {section.sets.map((set, setIdx) => (
+                <ReanimatedSwipeable
+                  key={`${section.exercise.id}-set-${setIdx}`}
+                  overshootRight={false}
+                  renderRightActions={(progress) => (
+                    <DeleteRightAction
+                      progress={progress}
+                      onPress={() => requestDeleteSet(sectionIdx, setIdx)}
+                      colors={{ error: colors.error, text: colors.text }}
+                    />
+                  )}
+                >
+                  <View style={{ flexDirection: "row", alignItems: "center" }}>
+                    <View style={{ flex: 1 }}>
+                      <ExerciseRow
+                        setNumber={setIdx + 1}
+                        reps={set.reps}
+                        weight={set.weight}
+                        onChangeReps={(value) =>
+                          handleSetChange(sectionIdx, setIdx, "reps", value)
+                        }
+                        onChangeWeight={(value) =>
+                          handleSetChange(sectionIdx, setIdx, "weight", value)
+                        }
+                      />
+                    </View>
+                    <Button
+                      title="+"
+                      onPress={() => openNotesEditor(sectionIdx, setIdx)}
+                      style={{
+                        width: 32,
+                        height: 32,
+                        marginLeft: SPACING.xs,
+                        marginBottom: SPACING.xs,
+                        paddingVertical: 0,
+                        justifyContent: "center",
+                        alignItems: "center",
+                        backgroundColor: set.notes?.trim()
+                          ? colors.secondary
+                          : colors.primary,
+                      }}
+                    />
+                  </View>
+                </ReanimatedSwipeable>
+              ))}
+
+              <Button
+                title="Add Set"
+                onPress={() => handleAddSet(sectionIdx)}
+                style={{
+                  width: "100%",
+                  height: 30,
+                  paddingVertical: 0,
+                  marginTop: SPACING.xs,
+                }}
+              />
+            </View>
+          ))
+        )}
+      </ScrollView>
+
       <FloatingButton
-        onPress={openAddExerciseModal}
+        onPress={() => setExerciseModalVisible(true)}
         style={{
           bottom: SPACING.md + 60,
           right: SPACING.md,
@@ -244,54 +522,87 @@ export default function EditTemplate() {
         {"+"}
       </FloatingButton>
 
-      {/* Floating Delete Button */}
-      <FloatingButton
-        onPress={() => setDeleteConfirmVisible(true)}
-        style={{
-          bottom: SPACING.md + 60,
-          left: SPACING.md,
-          backgroundColor: colors.error,
-        }}
+      {templateId && (
+        <FloatingButton
+          onPress={() => setDeleteTemplateConfirmVisible(true)}
+          style={{
+            bottom: SPACING.md + 60,
+            left: SPACING.md,
+            backgroundColor: colors.error,
+          }}
+        >
+          <Ionicons name="trash-outline" size={32} color={colors.text} />
+        </FloatingButton>
+      )}
+
+      <ThemedModal
+        visible={exerciseModalVisible}
+        onClose={() => setExerciseModalVisible(false)}
       >
-        <Ionicons name="trash-outline" size={32} color={colors.text} />
-      </FloatingButton>
+        <SectionTitle>Select Exercise to Add</SectionTitle>
+        <ScrollView style={{ maxHeight: 400 }}>
+          {loadingExercises ? (
+            <Text style={{ textAlign: "center", paddingVertical: SPACING.sm }}>
+              Loading...
+            </Text>
+          ) : (
+            allExercises.map((exercise) => (
+              <ListItem
+                key={exercise.id}
+                title={exercise.name}
+                subtitle={exercise.muscleGroup}
+                description={exercise.description}
+                onPress={() => handleAddExerciseSection(exercise)}
+                showRemove={false}
+                style={{ backgroundColor: colors.cardList }}
+              />
+            ))
+          )}
+        </ScrollView>
+      </ThemedModal>
 
       <ConfirmDeleteModal
-        visible={deleteConfirmVisible}
+        visible={deleteTemplateConfirmVisible}
         onConfirm={handleDeleteTemplate}
-        onCancel={() => setDeleteConfirmVisible(false)}
+        onCancel={() => setDeleteTemplateConfirmVisible(false)}
         title="Delete Template?"
         message="Are you sure you want to delete this template? This action cannot be undone."
       />
 
-      {/* Modal for adding exercise */}
-      <ThemedModal
-        visible={modalVisible}
-        onClose={() => setModalVisible(false)}
-      >
-        <AddExerciseToTemplateForm
-          allExercises={allExercises}
-          selectedExercise={selectedExercise}
-          setSelectedExercise={setSelectedExercise}
-          reps={reps}
-          setReps={setReps}
-          sets={sets}
-          setSets={setSets}
-          weight={weight}
-          setWeight={setWeight}
-          notes={notes}
-          setNotes={setNotes}
-          onAdd={handleAddExercise}
-          onCancel={() => setModalVisible(false)}
+      <ConfirmDeleteModal
+        visible={deleteSetConfirmVisible}
+        onConfirm={handleConfirmDeleteSet}
+        onCancel={handleCancelDeleteSet}
+        title="Delete this set?"
+        message="This set will be removed from the template."
+      />
+
+      <ThemedModal visible={notesModalVisible} onClose={handleCancelNotes}>
+        <SectionTitle>Edit Set Notes</SectionTitle>
+        <ThemedTextInput
+          value={noteDraft}
+          onChangeText={setNoteDraft}
+          placeholder="Add notes for this set"
+          multiline
+          style={{
+            minHeight: 90,
+            marginBottom: SPACING.md,
+            paddingHorizontal: 10,
+          }}
+        />
+        <Button title="Save Notes" onPress={handleSaveNotes} />
+        <Button
+          title="Cancel"
+          onPress={handleCancelNotes}
+          style={{ marginTop: SPACING.sm, backgroundColor: colors.error }}
         />
       </ThemedModal>
 
-      {/* Save Button */}
       <View style={{ paddingBottom: SPACING.md }}>
         <Button
           title="Save Template"
           onPress={handleSaveTemplate}
-          style={{ marginTop: SPACING.lg }}
+          style={{ marginTop: SPACING.sm }}
         />
       </View>
     </ScreenContainer>

@@ -19,11 +19,19 @@ export interface Template {
 
 export type NewTemplate = Omit<Template, "id">;
 
+export interface TemplateSetDetail {
+  setOrder: number;
+  reps: number;
+  weight: number;
+  notes?: string;
+}
+
 export interface TemplateExercise extends Exercise {
   sets?: number;
   reps?: number;
   weight?: number;
   notes?: string;
+  setDetails?: TemplateSetDetail[];
 }
 
 export interface WorkoutLog {
@@ -66,4 +74,5 @@ export interface WorkoutExerciseDetail {
   reps: number;
   weight: number;
   notes?: string;
+  execution_order: number;
 }

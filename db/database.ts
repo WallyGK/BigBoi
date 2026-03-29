@@ -1,10 +1,10 @@
 import { type SQLiteDatabase } from "expo-sqlite";
 
 export async function migrateDbIfNeeded(db: SQLiteDatabase) {
-  const DATABASE_VERSION = 1; // start with 1, increment as you add migrations
+  const DATABASE_VERSION = 2; // start with 1, increment as you add migrations
 
   const result = await db.getFirstAsync<{ user_version: number }>(
-    "PRAGMA user_version"
+    "PRAGMA user_version",
   );
 
   let currentDbVersion = result?.user_version ?? 0;
@@ -79,8 +79,62 @@ export async function migrateDbIfNeeded(db: SQLiteDatabase) {
     currentDbVersion = 1;
   }
 
-  // Future migrations go here, e.g., version 2, 3, etc.
-  // if (currentDbVersion === 1) { ... }
+  // Migrate template_exercises to one row per set.
+  if (currentDbVersion === 1) {
+    console.log("Migrating to version 2");
+
+    await db.execAsync(`
+      CREATE TABLE IF NOT EXISTS template_exercises_v2 (
+        template_id TEXT NOT NULL,
+        exercise_id TEXT NOT NULL,
+        set_order INTEGER NOT NULL,
+        reps INTEGER NOT NULL DEFAULT 0,
+        weight REAL NOT NULL DEFAULT 0,
+        notes TEXT DEFAULT '',
+        PRIMARY KEY (template_id, exercise_id, set_order),
+        FOREIGN KEY (template_id) REFERENCES templates(id),
+        FOREIGN KEY (exercise_id) REFERENCES exercises(id)
+      );
+    `);
+
+    const legacyRows = await db.getAllAsync<{
+      template_id: string;
+      exercise_id: string;
+      sets: number;
+      reps: number;
+      weight: number;
+      notes?: string;
+    }>(
+      `SELECT template_id, exercise_id, sets, reps, weight, notes FROM template_exercises`,
+    );
+
+    for (const row of legacyRows) {
+      const totalSets = Math.max(1, Number(row.sets) || 1);
+      for (let setOrder = 1; setOrder <= totalSets; setOrder += 1) {
+        await db.runAsync(
+          `INSERT INTO template_exercises_v2 (template_id, exercise_id, set_order, reps, weight, notes)
+           VALUES (?, ?, ?, ?, ?, ?);`,
+          [
+            row.template_id,
+            row.exercise_id,
+            setOrder,
+            Number(row.reps) || 0,
+            Number(row.weight) || 0,
+            row.notes || "",
+          ],
+        );
+      }
+    }
+
+    await db.execAsync(`
+      DROP TABLE template_exercises;
+      ALTER TABLE template_exercises_v2 RENAME TO template_exercises;
+      CREATE INDEX IF NOT EXISTS idx_template_exercises_template_id ON template_exercises(template_id);
+      CREATE INDEX IF NOT EXISTS idx_template_exercises_exercise_id ON template_exercises(exercise_id);
+    `);
+
+    currentDbVersion = 2;
+  }
 
   await db.execAsync(`PRAGMA user_version = ${DATABASE_VERSION}`);
   console.log(`Database migrated to version ${DATABASE_VERSION}`);

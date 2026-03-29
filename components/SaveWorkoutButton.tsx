@@ -1,7 +1,8 @@
 import { toLocalDateKey } from "@/constants/date";
+import { ThemeContext } from "@/constants/Theme";
 import { addWorkoutLog } from "@/db/workoutLogs";
 import { useRouter } from "expo-router";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Alert, ViewStyle } from "react-native";
 import Button from "./Button";
 
@@ -25,6 +26,7 @@ export default function SaveWorkoutButton({
   style,
   onSaved,
 }: SaveWorkoutButtonProps) {
+  const { colors } = useContext(ThemeContext);
   const [saving, setSaving] = useState(false);
   const router = useRouter();
 
@@ -84,7 +86,7 @@ export default function SaveWorkoutButton({
       title={saving ? "Saving..." : "Complete & Save"}
       onPress={handleSave}
       disabled={saving}
-      style={style}
+      style={{ backgroundColor: colors.secondary, ...(style || {}) }}
     />
   );
 }

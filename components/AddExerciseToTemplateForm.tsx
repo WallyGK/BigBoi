@@ -17,6 +17,8 @@ interface AddExerciseToTemplateFormProps {
   setSets: (v: string) => void;
   weight: string;
   setWeight: (v: string) => void;
+  setWeights: string;
+  setSetWeights: (v: string) => void;
   notes: string;
   setNotes: (v: string) => void;
   onAdd: () => void;
@@ -33,6 +35,8 @@ export default function AddExerciseToTemplateForm({
   setSets,
   weight,
   setWeight,
+  setWeights,
+  setSetWeights,
   notes,
   setNotes,
   onAdd,
@@ -83,6 +87,13 @@ export default function AddExerciseToTemplateForm({
           value={weight}
           onChangeText={setWeight}
           keyboardType="numeric"
+          style={{ marginBottom: SPACING.md }}
+        />
+        <ThemedTextInput
+          placeholder="Set Weights (comma separated, optional)"
+          value={setWeights}
+          onChangeText={setSetWeights}
+          keyboardType="default"
           style={{ marginBottom: SPACING.md }}
         />
         <ThemedTextInput
