@@ -60,12 +60,12 @@ export default function SwipeDeleteRightAction({
             justifyContent: "center",
             alignItems: "center",
             backgroundColor: colors.error,
-            borderRadius: 8,
-            width: 72,
-            height: 36,
+            borderRadius: 7,
+            width: 64,
+            height: 32,
           }}
         >
-          <Text style={{ color: colors.text, fontWeight: "700", fontSize: 12 }}>
+          <Text style={{ color: colors.text, fontWeight: "700", fontSize: 11 }}>
             {label}
           </Text>
         </Pressable>

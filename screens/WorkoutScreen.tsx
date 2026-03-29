@@ -27,7 +27,7 @@ export default function WorkoutScreen() {
   const [sections, setSections] = useState<
     {
       exercise: Exercise;
-      sets: { reps: string; weight: string; notes: string }[];
+      sets: { reps: string; weight: string; notes: string; done: boolean }[];
     }[]
   >([]);
   const [modalVisible, setModalVisible] = useState(false);
@@ -73,11 +73,13 @@ export default function WorkoutScreen() {
                 reps: set.reps?.toString() || "",
                 weight: set.weight?.toString() || "",
                 notes: set.notes || "",
+                done: false,
               }))
           : Array.from({ length: Number(ex.sets || 1) }, () => ({
               reps: ex.reps?.toString() || "",
               weight: ex.weight?.toString() || "",
               notes: ex.notes || "",
+              done: false,
             })),
     }));
     setSections(newSections);
@@ -93,7 +95,7 @@ export default function WorkoutScreen() {
       }
       return [
         ...prev,
-        { exercise, sets: [{ reps: "", weight: "", notes: "" }] },
+        { exercise, sets: [{ reps: "", weight: "", notes: "", done: false }] },
       ];
     });
     setModalVisible(false);
@@ -125,9 +127,21 @@ export default function WorkoutScreen() {
         ...updated[sectionIdx],
         sets: [
           ...updated[sectionIdx].sets,
-          { reps: "", weight: "", notes: "" },
+          { reps: "", weight: "", notes: "", done: false },
         ],
       };
+      return updated;
+    });
+  };
+
+  const handleToggleSetDone = (sectionIdx: number, setIdx: number) => {
+    setSections((prev) => {
+      const updated = [...prev];
+      const section = { ...updated[sectionIdx] };
+      const sets = [...section.sets];
+      sets[setIdx] = { ...sets[setIdx], done: !sets[setIdx].done };
+      section.sets = sets;
+      updated[sectionIdx] = section;
       return updated;
     });
   };
@@ -225,7 +239,17 @@ export default function WorkoutScreen() {
       </ScreenTitle>
       <ScrollView contentContainerStyle={{ paddingVertical: SPACING.sm }}>
         {sections.map((section, sectionIdx) => (
-          <View key={section.exercise.id} style={{ marginBottom: SPACING.md }}>
+          <View
+            key={section.exercise.id}
+            style={{
+              marginBottom: SPACING.md,
+              backgroundColor: colors.card,
+              borderWidth: 1,
+              borderColor: colors.border,
+              borderRadius: 10,
+              padding: SPACING.sm,
+            }}
+          >
             <View
               style={{
                 flexDirection: "row",
@@ -249,7 +273,16 @@ export default function WorkoutScreen() {
                   />
                 )}
               >
-                <View style={{ flexDirection: "row", alignItems: "center" }}>
+                <View
+                  style={{
+                    flexDirection: "row",
+                    alignItems: "center",
+                    opacity: set.done ? 0.45 : 1,
+                    backgroundColor: set.done ? colors.border : "transparent",
+                    borderRadius: 8,
+                    paddingHorizontal: SPACING.xs,
+                  }}
+                >
                   <View style={{ flex: 1 }}>
                     <ExerciseRow
                       setNumber={setIdx + 1}
@@ -279,6 +312,24 @@ export default function WorkoutScreen() {
                         : colors.primary,
                     }}
                   />
+                  <Button
+                    title="✓"
+                    onPress={() => handleToggleSetDone(sectionIdx, setIdx)}
+                    style={{
+                      width: 32,
+                      height: 32,
+                      marginLeft: SPACING.xs,
+                      marginBottom: SPACING.xs,
+                      paddingVertical: 0,
+                      justifyContent: "center",
+                      alignItems: "center",
+                      backgroundColor: set.done
+                        ? colors.secondary
+                        : colors.cardList,
+                      borderWidth: 1,
+                      borderColor: set.done ? colors.secondary : colors.border,
+                    }}
+                  />
                 </View>
               </ReanimatedSwipeable>
             ))}
@@ -300,27 +351,38 @@ export default function WorkoutScreen() {
         onClose={() => setModalVisible(false)}
         onSelectExercise={handleAddSection}
       />
-      <Button
-        title="Add Exercise"
-        onPress={() => setModalVisible(true)}
+      <View
         style={{
-          backgroundColor: colors.cardList,
+          backgroundColor: colors.card,
           borderWidth: 1,
           borderColor: colors.border,
-          marginBottom: SPACING.sm,
+          borderRadius: 10,
+          padding: SPACING.sm,
+          marginHorizontal: -SPACING.md,
+          marginBottom: SPACING.md,
         }}
-      />
-      <SaveWorkoutButton
-        style={{ marginBottom: SPACING.md }}
-        exercises={sections.flatMap((section) =>
-          section.sets.map((set) => ({
-            exerciseId: section.exercise.id,
-            reps: set.reps ? parseInt(set.reps, 10) : 0,
-            weight: set.weight ? parseFloat(set.weight) : 0,
-            notes: set.notes,
-          })),
-        )}
-      />
+      >
+        <Button
+          title="Add Exercise"
+          onPress={() => setModalVisible(true)}
+          style={{
+            backgroundColor: colors.cardList,
+            borderWidth: 1,
+            borderColor: colors.border,
+            marginBottom: SPACING.sm,
+          }}
+        />
+        <SaveWorkoutButton
+          exercises={sections.flatMap((section) =>
+            section.sets.map((set) => ({
+              exerciseId: section.exercise.id,
+              reps: set.reps ? parseInt(set.reps, 10) : 0,
+              weight: set.weight ? parseFloat(set.weight) : 0,
+              notes: set.notes,
+            })),
+          )}
+        />
+      </View>
       <ConfirmDeleteModal
         visible={deleteSetConfirmVisible}
         onConfirm={handleConfirmDeleteSet}

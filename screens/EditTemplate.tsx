@@ -28,6 +28,7 @@ type TemplateSetInput = {
   reps: string;
   weight: string;
   notes: string;
+  done: boolean;
 };
 
 type TemplateSection = {
@@ -97,11 +98,13 @@ export default function EditTemplate() {
                 reps: String(set.reps ?? ""),
                 weight: String(set.weight ?? ""),
                 notes: set.notes || "",
+                done: false,
               }))
             : Array.from({ length: Math.max(1, ex.sets || 1) }, () => ({
                 reps: String(ex.reps ?? ""),
                 weight: String(ex.weight ?? ""),
                 notes: ex.notes || "",
+                done: false,
               }));
 
         return {
@@ -131,7 +134,7 @@ export default function EditTemplate() {
 
       return [
         ...prev,
-        { exercise, sets: [{ reps: "", weight: "", notes: "" }] },
+        { exercise, sets: [{ reps: "", weight: "", notes: "", done: false }] },
       ];
     });
 
@@ -169,9 +172,24 @@ export default function EditTemplate() {
 
       updated[sectionIdx] = {
         ...section,
-        sets: [...section.sets, { reps: "", weight: "", notes: "" }],
+        sets: [
+          ...section.sets,
+          { reps: "", weight: "", notes: "", done: false },
+        ],
       };
 
+      return updated;
+    });
+  };
+
+  const handleToggleSetDone = (sectionIdx: number, setIdx: number) => {
+    setSections((prev) => {
+      const updated = [...prev];
+      const section = { ...updated[sectionIdx] };
+      const sets = [...section.sets];
+      sets[setIdx] = { ...sets[setIdx], done: !sets[setIdx].done };
+      section.sets = sets;
+      updated[sectionIdx] = section;
       return updated;
     });
   };
@@ -362,7 +380,14 @@ export default function EditTemplate() {
           sections.map((section, sectionIdx) => (
             <View
               key={section.exercise.id}
-              style={{ marginBottom: SPACING.md }}
+              style={{
+                marginBottom: SPACING.md,
+                backgroundColor: colors.card,
+                borderWidth: 1,
+                borderColor: colors.border,
+                borderRadius: 10,
+                padding: SPACING.sm,
+              }}
             >
               <View
                 style={{
@@ -398,7 +423,16 @@ export default function EditTemplate() {
                     />
                   )}
                 >
-                  <View style={{ flexDirection: "row", alignItems: "center" }}>
+                  <View
+                    style={{
+                      flexDirection: "row",
+                      alignItems: "center",
+                      opacity: set.done ? 0.45 : 1,
+                      backgroundColor: set.done ? colors.border : "transparent",
+                      borderRadius: 8,
+                      paddingHorizontal: SPACING.xs,
+                    }}
+                  >
                     <View style={{ flex: 1 }}>
                       <ExerciseRow
                         setNumber={setIdx + 1}
@@ -428,6 +462,26 @@ export default function EditTemplate() {
                           : colors.primary,
                       }}
                     />
+                    <Button
+                      title="✓"
+                      onPress={() => handleToggleSetDone(sectionIdx, setIdx)}
+                      style={{
+                        width: 32,
+                        height: 32,
+                        marginLeft: SPACING.xs,
+                        marginBottom: SPACING.xs,
+                        paddingVertical: 0,
+                        justifyContent: "center",
+                        alignItems: "center",
+                        backgroundColor: set.done
+                          ? colors.secondary
+                          : colors.cardList,
+                        borderWidth: 1,
+                        borderColor: set.done
+                          ? colors.secondary
+                          : colors.border,
+                      }}
+                    />
                   </View>
                 </ReanimatedSwipeable>
               ))}
@@ -453,59 +507,69 @@ export default function EditTemplate() {
         onSelectExercise={handleAddExerciseSection}
       />
 
-      <Button
-        title="Add Exercise"
-        onPress={() => setExerciseModalVisible(true)}
+      <View
         style={{
-          backgroundColor: colors.cardList,
+          backgroundColor: colors.card,
           borderWidth: 1,
           borderColor: colors.border,
-          marginBottom: SPACING.sm,
+          borderRadius: 10,
+          padding: SPACING.sm,
+          marginHorizontal: -SPACING.md,
+          marginBottom: SPACING.md,
         }}
-      />
-
-      <ConfirmDeleteModal
-        visible={deleteTemplateConfirmVisible}
-        onConfirm={handleDeleteTemplate}
-        onCancel={() => setDeleteTemplateConfirmVisible(false)}
-        title="Delete Template?"
-        message="Are you sure you want to delete this template? This action cannot be undone."
-      />
-
-      <ConfirmDeleteModal
-        visible={deleteSetConfirmVisible}
-        onConfirm={handleConfirmDeleteSet}
-        onCancel={handleCancelDeleteSet}
-        title="Delete this set?"
-        message="This set will be removed from the template."
-      />
-
-      <ThemedModal visible={notesModalVisible} onClose={handleCancelNotes}>
-        <SectionTitle>Edit Set Notes</SectionTitle>
-        <ThemedTextInput
-          value={noteDraft}
-          onChangeText={setNoteDraft}
-          placeholder="Add notes for this set"
-          multiline
+      >
+        <Button
+          title="Add Exercise"
+          onPress={() => setExerciseModalVisible(true)}
           style={{
-            minHeight: 90,
-            marginBottom: SPACING.md,
-            paddingHorizontal: 10,
+            backgroundColor: colors.cardList,
+            borderWidth: 1,
+            borderColor: colors.border,
+            marginBottom: SPACING.sm,
           }}
         />
-        <Button title="Save Notes" onPress={handleSaveNotes} />
-        <Button
-          title="Cancel"
-          onPress={handleCancelNotes}
-          style={{ marginTop: SPACING.sm, backgroundColor: colors.error }}
-        />
-      </ThemedModal>
 
-      <View style={{ paddingBottom: SPACING.md }}>
+        <ConfirmDeleteModal
+          visible={deleteTemplateConfirmVisible}
+          onConfirm={handleDeleteTemplate}
+          onCancel={() => setDeleteTemplateConfirmVisible(false)}
+          title="Delete Template?"
+          message="Are you sure you want to delete this template? This action cannot be undone."
+        />
+
+        <ConfirmDeleteModal
+          visible={deleteSetConfirmVisible}
+          onConfirm={handleConfirmDeleteSet}
+          onCancel={handleCancelDeleteSet}
+          title="Delete this set?"
+          message="This set will be removed from the template."
+        />
+
+        <ThemedModal visible={notesModalVisible} onClose={handleCancelNotes}>
+          <SectionTitle>Edit Set Notes</SectionTitle>
+          <ThemedTextInput
+            value={noteDraft}
+            onChangeText={setNoteDraft}
+            placeholder="Add notes for this set"
+            multiline
+            style={{
+              minHeight: 90,
+              marginBottom: SPACING.md,
+              paddingHorizontal: 10,
+            }}
+          />
+          <Button title="Save Notes" onPress={handleSaveNotes} />
+          <Button
+            title="Cancel"
+            onPress={handleCancelNotes}
+            style={{ marginTop: SPACING.sm, backgroundColor: colors.error }}
+          />
+        </ThemedModal>
+
         <Button
           title="Save Template"
           onPress={handleSaveTemplate}
-          style={{ marginTop: SPACING.sm }}
+          style={{ marginTop: SPACING.xs }}
         />
       </View>
     </ScreenContainer>
