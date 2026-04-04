@@ -1,4 +1,5 @@
 import { getDb } from "@/db/index";
+import { getStrongExerciseMuscleGroup } from "@/db/seed/strongExerciseMuscleGroups";
 import { strongSeedWorkouts } from "@/db/seed/strongSeed";
 import uuid from "react-native-uuid";
 
@@ -38,10 +39,11 @@ export async function resetAndSeedStrongData(): Promise<ResetSeedResult> {
         if (!exerciseId) {
           exerciseId = uuid.v4().toString();
           exerciseIdByName.set(set.exerciseName, exerciseId);
+          const muscleGroup = getStrongExerciseMuscleGroup(set.exerciseName);
 
           await db.runAsync(
-            `INSERT INTO exercises (id, name, muscleGroup, description, is_deleted) VALUES (?, ?, '', '', 0)`,
-            [exerciseId, set.exerciseName],
+            `INSERT INTO exercises (id, name, muscleGroup, description, is_deleted) VALUES (?, ?, ?, '', 0)`,
+            [exerciseId, set.exerciseName, muscleGroup],
           );
         }
 

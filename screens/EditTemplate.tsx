@@ -1,14 +1,13 @@
 import AddExercisePickerModal from "@/components/AddExercisePickerModal";
 import Button from "@/components/Button";
 import ConfirmDeleteModal from "@/components/ConfirmDeleteModal";
-import ExerciseRow from "@/components/ExerciseRow";
+import ExerciseSetSection from "@/components/ExerciseSetSection";
 import ScreenContainer from "@/components/ScreenContainer";
 import ScreenTitle from "@/components/ScreenTitle";
 import SectionTitle from "@/components/SectionTitle";
-import SwipeDeleteRightAction from "@/components/SwipeDeleteRightAction";
 import ThemedModal from "@/components/ThemedModal";
 import ThemedTextInput from "@/components/ThemedTextInput";
-import { FONT_SIZE, SPACING, ThemeContext } from "@/constants/Theme";
+import { SPACING, ThemeContext } from "@/constants/Theme";
 import {
   addExerciseToTemplate,
   addTemplate,
@@ -22,7 +21,6 @@ import { Ionicons } from "@expo/vector-icons";
 import { useLocalSearchParams, useRouter } from "expo-router";
 import React, { useContext, useEffect, useState } from "react";
 import { Pressable, ScrollView, Text, View } from "react-native";
-import ReanimatedSwipeable from "react-native-gesture-handler/ReanimatedSwipeable";
 
 type TemplateSetInput = {
   reps: string;
@@ -378,125 +376,24 @@ export default function EditTemplate() {
           </Text>
         ) : (
           sections.map((section, sectionIdx) => (
-            <View
+            <ExerciseSetSection
               key={section.exercise.id}
-              style={{
-                marginBottom: SPACING.md,
-                backgroundColor: colors.card,
-                borderWidth: 1,
-                borderColor: colors.border,
-                borderRadius: 10,
-                padding: SPACING.sm,
-              }}
-            >
-              <View
-                style={{
-                  flexDirection: "row",
-                  alignItems: "center",
-                  marginBottom: SPACING.sm,
-                }}
-              >
-                <SectionTitle style={{ fontSize: FONT_SIZE.lg }}>
-                  {section.exercise.name}
-                </SectionTitle>
-                <View style={{ flex: 1 }} />
-                <Pressable
-                  onPress={() => handleRemoveExerciseSection(sectionIdx)}
-                >
-                  <Ionicons
-                    name="trash-outline"
-                    size={24}
-                    color={colors.error}
-                  />
-                </Pressable>
-              </View>
-
-              {section.sets.map((set, setIdx) => (
-                <ReanimatedSwipeable
-                  key={`${section.exercise.id}-set-${setIdx}`}
-                  overshootRight={false}
-                  renderRightActions={(progress) => (
-                    <SwipeDeleteRightAction
-                      progress={progress}
-                      onPress={() => requestDeleteSet(sectionIdx, setIdx)}
-                      colors={{ error: colors.error, text: colors.text }}
-                    />
-                  )}
-                >
-                  <View
-                    style={{
-                      flexDirection: "row",
-                      alignItems: "center",
-                      opacity: set.done ? 0.45 : 1,
-                      backgroundColor: set.done ? colors.border : "transparent",
-                      borderRadius: 8,
-                      paddingHorizontal: SPACING.xs,
-                    }}
-                  >
-                    <View style={{ flex: 1 }}>
-                      <ExerciseRow
-                        setNumber={setIdx + 1}
-                        reps={set.reps}
-                        weight={set.weight}
-                        onChangeReps={(value) =>
-                          handleSetChange(sectionIdx, setIdx, "reps", value)
-                        }
-                        onChangeWeight={(value) =>
-                          handleSetChange(sectionIdx, setIdx, "weight", value)
-                        }
-                      />
-                    </View>
-                    <Button
-                      title="+"
-                      onPress={() => openNotesEditor(sectionIdx, setIdx)}
-                      style={{
-                        width: 32,
-                        height: 32,
-                        marginLeft: SPACING.xs,
-                        marginBottom: SPACING.xs,
-                        paddingVertical: 0,
-                        justifyContent: "center",
-                        alignItems: "center",
-                        backgroundColor: set.notes?.trim()
-                          ? colors.secondary
-                          : colors.primary,
-                      }}
-                    />
-                    <Button
-                      title="✓"
-                      onPress={() => handleToggleSetDone(sectionIdx, setIdx)}
-                      style={{
-                        width: 32,
-                        height: 32,
-                        marginLeft: SPACING.xs,
-                        marginBottom: SPACING.xs,
-                        paddingVertical: 0,
-                        justifyContent: "center",
-                        alignItems: "center",
-                        backgroundColor: set.done
-                          ? colors.secondary
-                          : colors.cardList,
-                        borderWidth: 1,
-                        borderColor: set.done
-                          ? colors.secondary
-                          : colors.border,
-                      }}
-                    />
-                  </View>
-                </ReanimatedSwipeable>
-              ))}
-
-              <Button
-                title="Add Set"
-                onPress={() => handleAddSet(sectionIdx)}
-                style={{
-                  width: "100%",
-                  height: 30,
-                  paddingVertical: 0,
-                  marginTop: SPACING.xs,
-                }}
-              />
-            </View>
+              exerciseId={section.exercise.id}
+              exerciseName={section.exercise.name}
+              sets={section.sets}
+              onChangeSet={(setIdx, field, value) =>
+                handleSetChange(sectionIdx, setIdx, field, value)
+              }
+              onToggleSetDone={(setIdx) =>
+                handleToggleSetDone(sectionIdx, setIdx)
+              }
+              onOpenNotes={(setIdx) => openNotesEditor(sectionIdx, setIdx)}
+              onRequestDeleteSet={(setIdx) =>
+                requestDeleteSet(sectionIdx, setIdx)
+              }
+              onAddSet={() => handleAddSet(sectionIdx)}
+              onRemoveExercise={() => handleRemoveExerciseSection(sectionIdx)}
+            />
           ))
         )}
       </ScrollView>

@@ -62,6 +62,7 @@ export interface WorkoutExerciseEntry {
   notes?: string;
   datetime: string;
   exercise_name: string;
+  muscle_group?: string;
 }
 
 export interface WorkoutLogSummary {

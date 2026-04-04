@@ -129,7 +129,7 @@ export async function getWorkoutExerciseEntries(
 ): Promise<WorkoutExerciseEntry[]> {
   const db = await getDb();
   let query = `
-    SELECT wl.datetime, we.*, ex.name as exercise_name
+    SELECT wl.datetime, we.*, ex.name as exercise_name, ex.muscleGroup as muscle_group
     FROM workout_exercises we
     JOIN workout_logs wl ON we.workout_id = wl.id
     JOIN exercises ex ON we.exercise_id = ex.id

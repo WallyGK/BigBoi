@@ -20,19 +20,19 @@ export const strongSeedWorkouts: SeedWorkout[] = [
       {
         "exerciseName": "Bench Press (Dumbbell)",
         "reps": 8,
-        "weight": 40,
+        "weight": 40.0,
         "notes": ""
       },
       {
         "exerciseName": "Bench Press (Dumbbell)",
         "reps": 8,
-        "weight": 40,
+        "weight": 40.0,
         "notes": ""
       },
       {
         "exerciseName": "Bench Press (Dumbbell)",
         "reps": 8,
-        "weight": 40,
+        "weight": 40.0,
         "notes": ""
       },
       {
@@ -56,49 +56,49 @@ export const strongSeedWorkouts: SeedWorkout[] = [
       {
         "exerciseName": "Lat Pulldown (Cable)",
         "reps": 10,
-        "weight": 105,
+        "weight": 105.0,
         "notes": ""
       },
       {
         "exerciseName": "Lat Pulldown (Cable)",
         "reps": 10,
-        "weight": 105,
+        "weight": 105.0,
         "notes": ""
       },
       {
         "exerciseName": "Lat Pulldown (Cable)",
         "reps": 8,
-        "weight": 105,
+        "weight": 105.0,
         "notes": ""
       },
       {
         "exerciseName": "Lateral Raise (Dumbbell)",
         "reps": 8,
-        "weight": 10,
+        "weight": 10.0,
         "notes": ""
       },
       {
         "exerciseName": "Lateral Raise (Dumbbell)",
         "reps": 8,
-        "weight": 10,
+        "weight": 10.0,
         "notes": ""
       },
       {
         "exerciseName": "Bicep Curl (Dumbbell)",
         "reps": 8,
-        "weight": 25,
+        "weight": 25.0,
         "notes": ""
       },
       {
         "exerciseName": "Bicep Curl (Dumbbell)",
         "reps": 8,
-        "weight": 25,
+        "weight": 25.0,
         "notes": ""
       },
       {
         "exerciseName": "Bicep Curl (Dumbbell)",
         "reps": 8,
-        "weight": 25,
+        "weight": 25.0,
         "notes": ""
       }
     ]
@@ -110,127 +110,127 @@ export const strongSeedWorkouts: SeedWorkout[] = [
       {
         "exerciseName": "Goblet Squat (Kettlebell)",
         "reps": 8,
-        "weight": 50,
+        "weight": 50.0,
         "notes": ""
       },
       {
         "exerciseName": "Goblet Squat (Kettlebell)",
         "reps": 8,
-        "weight": 50,
+        "weight": 50.0,
         "notes": ""
       },
       {
         "exerciseName": "Goblet Squat (Kettlebell)",
         "reps": 8,
-        "weight": 50,
+        "weight": 50.0,
         "notes": ""
       },
       {
         "exerciseName": "Seated Leg Press (Machine)",
         "reps": 6,
-        "weight": 185,
+        "weight": 185.0,
         "notes": ""
       },
       {
         "exerciseName": "Seated Leg Press (Machine)",
         "reps": 6,
-        "weight": 185,
+        "weight": 185.0,
         "notes": ""
       },
       {
         "exerciseName": "Seated Leg Press (Machine)",
         "reps": 6,
-        "weight": 170,
+        "weight": 170.0,
         "notes": ""
       },
       {
         "exerciseName": "Lying Leg Curl (Machine)",
         "reps": 8,
-        "weight": 60,
+        "weight": 60.0,
         "notes": ""
       },
       {
         "exerciseName": "Lying Leg Curl (Machine)",
         "reps": 8,
-        "weight": 60,
+        "weight": 60.0,
         "notes": ""
       },
       {
         "exerciseName": "Lying Leg Curl (Machine)",
         "reps": 8,
-        "weight": 60,
+        "weight": 60.0,
         "notes": ""
       },
       {
         "exerciseName": "Leg Extension (Machine)",
         "reps": 8,
-        "weight": 75,
+        "weight": 75.0,
         "notes": ""
       },
       {
         "exerciseName": "Leg Extension (Machine)",
         "reps": 8,
-        "weight": 75,
+        "weight": 75.0,
         "notes": ""
       },
       {
         "exerciseName": "Leg Extension (Machine)",
         "reps": 8,
-        "weight": 75,
+        "weight": 75.0,
         "notes": ""
       },
       {
         "exerciseName": "Calf Press on Seated Leg Press",
         "reps": 20,
-        "weight": 80,
+        "weight": 80.0,
         "notes": ""
       },
       {
         "exerciseName": "Calf Press on Seated Leg Press",
         "reps": 15,
-        "weight": 95,
+        "weight": 95.0,
         "notes": ""
       },
       {
         "exerciseName": "Calf Press on Seated Leg Press",
         "reps": 20,
-        "weight": 110,
+        "weight": 110.0,
         "notes": ""
       },
       {
         "exerciseName": "Bulgarian Split Squat",
         "reps": 8,
-        "weight": 45,
+        "weight": 45.0,
         "notes": ""
       },
       {
         "exerciseName": "Bulgarian Split Squat",
         "reps": 8,
-        "weight": 45,
+        "weight": 45.0,
         "notes": ""
       },
       {
         "exerciseName": "Bulgarian Split Squat",
         "reps": 8,
-        "weight": 45,
+        "weight": 45.0,
         "notes": ""
       },
       {
         "exerciseName": "Deadlift (Smith Machine)",
         "reps": 8,
-        "weight": 135,
+        "weight": 135.0,
         "notes": ""
       },
       {
         "exerciseName": "Deadlift (Smith Machine)",
         "reps": 8,
-        "weight": 135,
+        "weight": 135.0,
         "notes": ""
       },
       {
         "exerciseName": "Deadlift (Smith Machine)",
         "reps": 8,
-        "weight": 135,
+        "weight": 135.0,
         "notes": ""
       }
     ]
@@ -242,109 +242,109 @@ export const strongSeedWorkouts: SeedWorkout[] = [
       {
         "exerciseName": "Seated Leg Press (Machine)",
         "reps": 8,
-        "weight": 185,
+        "weight": 185.0,
         "notes": ""
       },
       {
         "exerciseName": "Seated Leg Press (Machine)",
         "reps": 8,
-        "weight": 185,
+        "weight": 185.0,
         "notes": ""
       },
       {
         "exerciseName": "Seated Leg Press (Machine)",
         "reps": 8,
-        "weight": 200,
+        "weight": 200.0,
         "notes": ""
       },
       {
         "exerciseName": "Lying Leg Curl (Machine)",
         "reps": 8,
-        "weight": 75,
+        "weight": 75.0,
         "notes": ""
       },
       {
         "exerciseName": "Lying Leg Curl (Machine)",
         "reps": 8,
-        "weight": 90,
+        "weight": 90.0,
         "notes": ""
       },
       {
         "exerciseName": "Lying Leg Curl (Machine)",
         "reps": 8,
-        "weight": 90,
+        "weight": 90.0,
         "notes": ""
       },
       {
         "exerciseName": "Leg Extension (Machine)",
         "reps": 8,
-        "weight": 75,
+        "weight": 75.0,
         "notes": ""
       },
       {
         "exerciseName": "Leg Extension (Machine)",
         "reps": 8,
-        "weight": 90,
+        "weight": 90.0,
         "notes": ""
       },
       {
         "exerciseName": "Leg Extension (Machine)",
         "reps": 10,
-        "weight": 105,
+        "weight": 105.0,
         "notes": ""
       },
       {
         "exerciseName": "Calf Press on Seated Leg Press",
         "reps": 20,
-        "weight": 110,
+        "weight": 110.0,
         "notes": ""
       },
       {
         "exerciseName": "Calf Press on Seated Leg Press",
         "reps": 20,
-        "weight": 125,
+        "weight": 125.0,
         "notes": ""
       },
       {
         "exerciseName": "Calf Press on Seated Leg Press",
         "reps": 20,
-        "weight": 125,
+        "weight": 125.0,
         "notes": ""
       },
       {
         "exerciseName": "Bulgarian Split Squat",
         "reps": 8,
-        "weight": 45,
+        "weight": 45.0,
         "notes": ""
       },
       {
         "exerciseName": "Bulgarian Split Squat",
         "reps": 8,
-        "weight": 45,
+        "weight": 45.0,
         "notes": ""
       },
       {
         "exerciseName": "Bulgarian Split Squat",
         "reps": 8,
-        "weight": 45,
+        "weight": 45.0,
         "notes": ""
       },
       {
         "exerciseName": "Romanian Deadlift (Dumbbell)",
         "reps": 8,
-        "weight": 35,
+        "weight": 35.0,
         "notes": ""
       },
       {
         "exerciseName": "Romanian Deadlift (Dumbbell)",
         "reps": 8,
-        "weight": 40,
+        "weight": 40.0,
         "notes": ""
       },
       {
         "exerciseName": "Romanian Deadlift (Dumbbell)",
         "reps": 8,
-        "weight": 45,
+        "weight": 45.0,
         "notes": ""
       }
     ]
@@ -356,37 +356,37 @@ export const strongSeedWorkouts: SeedWorkout[] = [
       {
         "exerciseName": "Bench Press (Dumbbell)",
         "reps": 8,
-        "weight": 40,
+        "weight": 40.0,
         "notes": ""
       },
       {
         "exerciseName": "Bench Press (Dumbbell)",
         "reps": 8,
-        "weight": 45,
+        "weight": 45.0,
         "notes": ""
       },
       {
         "exerciseName": "Bench Press (Dumbbell)",
         "reps": 8,
-        "weight": 45,
+        "weight": 45.0,
         "notes": ""
       },
       {
         "exerciseName": "Seated Row (Cable)",
         "reps": 8,
-        "weight": 75,
+        "weight": 75.0,
         "notes": ""
       },
       {
         "exerciseName": "Seated Row (Cable)",
         "reps": 8,
-        "weight": 75,
+        "weight": 75.0,
         "notes": ""
       },
       {
         "exerciseName": "Seated Row (Cable)",
         "reps": 8,
-        "weight": 75,
+        "weight": 75.0,
         "notes": ""
       },
       {
@@ -410,55 +410,55 @@ export const strongSeedWorkouts: SeedWorkout[] = [
       {
         "exerciseName": "Lat Pulldown (Cable)",
         "reps": 8,
-        "weight": 105,
+        "weight": 105.0,
         "notes": ""
       },
       {
         "exerciseName": "Lat Pulldown (Cable)",
         "reps": 8,
-        "weight": 120,
+        "weight": 120.0,
         "notes": ""
       },
       {
         "exerciseName": "Lat Pulldown (Cable)",
         "reps": 8,
-        "weight": 120,
+        "weight": 120.0,
         "notes": ""
       },
       {
         "exerciseName": "Seated Overhead Press (Dumbbell)",
         "reps": 8,
-        "weight": 25,
+        "weight": 25.0,
         "notes": ""
       },
       {
         "exerciseName": "Seated Overhead Press (Dumbbell)",
         "reps": 8,
-        "weight": 25,
+        "weight": 25.0,
         "notes": ""
       },
       {
         "exerciseName": "Seated Overhead Press (Dumbbell)",
         "reps": 8,
-        "weight": 25,
+        "weight": 25.0,
         "notes": ""
       },
       {
         "exerciseName": "Bicep Curl (Dumbbell)",
         "reps": 8,
-        "weight": 30,
+        "weight": 30.0,
         "notes": ""
       },
       {
         "exerciseName": "Bicep Curl (Dumbbell)",
         "reps": 8,
-        "weight": 30,
+        "weight": 30.0,
         "notes": ""
       },
       {
         "exerciseName": "Bicep Curl (Dumbbell)",
         "reps": 8,
-        "weight": 30,
+        "weight": 30.0,
         "notes": ""
       }
     ]
@@ -470,19 +470,19 @@ export const strongSeedWorkouts: SeedWorkout[] = [
       {
         "exerciseName": "Bench Press (Dumbbell)",
         "reps": 8,
-        "weight": 50,
+        "weight": 50.0,
         "notes": ""
       },
       {
         "exerciseName": "Bench Press (Dumbbell)",
         "reps": 9,
-        "weight": 50,
+        "weight": 50.0,
         "notes": ""
       },
       {
         "exerciseName": "Bench Press (Dumbbell)",
         "reps": 8,
-        "weight": 50,
+        "weight": 50.0,
         "notes": ""
       },
       {
@@ -512,109 +512,109 @@ export const strongSeedWorkouts: SeedWorkout[] = [
       {
         "exerciseName": "Seated Leg Press (Machine)",
         "reps": 8,
-        "weight": 200,
+        "weight": 200.0,
         "notes": ""
       },
       {
         "exerciseName": "Seated Leg Press (Machine)",
         "reps": 8,
-        "weight": 200,
+        "weight": 200.0,
         "notes": ""
       },
       {
         "exerciseName": "Seated Leg Press (Machine)",
         "reps": 8,
-        "weight": 200,
+        "weight": 200.0,
         "notes": ""
       },
       {
         "exerciseName": "Lying Leg Curl (Machine)",
         "reps": 8,
-        "weight": 90,
+        "weight": 90.0,
         "notes": ""
       },
       {
         "exerciseName": "Lying Leg Curl (Machine)",
         "reps": 8,
-        "weight": 75,
+        "weight": 75.0,
         "notes": ""
       },
       {
         "exerciseName": "Lying Leg Curl (Machine)",
         "reps": 8,
-        "weight": 75,
+        "weight": 75.0,
         "notes": ""
       },
       {
         "exerciseName": "Leg Extension (Machine)",
         "reps": 8,
-        "weight": 105,
+        "weight": 105.0,
         "notes": ""
       },
       {
         "exerciseName": "Leg Extension (Machine)",
         "reps": 8,
-        "weight": 105,
+        "weight": 105.0,
         "notes": ""
       },
       {
         "exerciseName": "Leg Extension (Machine)",
         "reps": 8,
-        "weight": 120,
+        "weight": 120.0,
         "notes": ""
       },
       {
         "exerciseName": "Bulgarian Split Squat",
         "reps": 8,
-        "weight": 45,
+        "weight": 45.0,
         "notes": ""
       },
       {
         "exerciseName": "Bulgarian Split Squat",
         "reps": 8,
-        "weight": 45,
+        "weight": 45.0,
         "notes": ""
       },
       {
         "exerciseName": "Bulgarian Split Squat",
         "reps": 8,
-        "weight": 45,
+        "weight": 45.0,
         "notes": ""
       },
       {
         "exerciseName": "Romanian Deadlift (Dumbbell)",
         "reps": 8,
-        "weight": 45,
+        "weight": 45.0,
         "notes": ""
       },
       {
         "exerciseName": "Romanian Deadlift (Dumbbell)",
         "reps": 8,
-        "weight": 45,
+        "weight": 45.0,
         "notes": ""
       },
       {
         "exerciseName": "Romanian Deadlift (Dumbbell)",
         "reps": 8,
-        "weight": 45,
+        "weight": 45.0,
         "notes": ""
       },
       {
         "exerciseName": "Calf Press on Seated Leg Press",
         "reps": 20,
-        "weight": 125,
+        "weight": 125.0,
         "notes": ""
       },
       {
         "exerciseName": "Calf Press on Seated Leg Press",
         "reps": 20,
-        "weight": 125,
+        "weight": 125.0,
         "notes": ""
       },
       {
         "exerciseName": "Calf Press on Seated Leg Press",
         "reps": 20,
-        "weight": 125,
+        "weight": 125.0,
         "notes": ""
       }
     ]
@@ -626,109 +626,109 @@ export const strongSeedWorkouts: SeedWorkout[] = [
       {
         "exerciseName": "Bulgarian Split Squat",
         "reps": 8,
-        "weight": 45,
+        "weight": 45.0,
         "notes": ""
       },
       {
         "exerciseName": "Bulgarian Split Squat",
         "reps": 8,
-        "weight": 45,
+        "weight": 45.0,
         "notes": ""
       },
       {
         "exerciseName": "Bulgarian Split Squat",
         "reps": 8,
-        "weight": 50,
+        "weight": 50.0,
         "notes": ""
       },
       {
         "exerciseName": "Calf Press on Seated Leg Press",
         "reps": 20,
-        "weight": 125,
+        "weight": 125.0,
         "notes": ""
       },
       {
         "exerciseName": "Calf Press on Seated Leg Press",
         "reps": 20,
-        "weight": 125,
+        "weight": 125.0,
         "notes": ""
       },
       {
         "exerciseName": "Calf Press on Seated Leg Press",
         "reps": 20,
-        "weight": 140,
+        "weight": 140.0,
         "notes": ""
       },
       {
         "exerciseName": "Seated Leg Press (Machine)",
         "reps": 8,
-        "weight": 200,
+        "weight": 200.0,
         "notes": ""
       },
       {
         "exerciseName": "Seated Leg Press (Machine)",
         "reps": 8,
-        "weight": 200,
+        "weight": 200.0,
         "notes": ""
       },
       {
         "exerciseName": "Seated Leg Press (Machine)",
         "reps": 8,
-        "weight": 215,
+        "weight": 215.0,
         "notes": ""
       },
       {
         "exerciseName": "Romanian Deadlift (Dumbbell)",
         "reps": 8,
-        "weight": 50,
+        "weight": 50.0,
         "notes": ""
       },
       {
         "exerciseName": "Romanian Deadlift (Dumbbell)",
         "reps": 8,
-        "weight": 50,
+        "weight": 50.0,
         "notes": ""
       },
       {
         "exerciseName": "Romanian Deadlift (Dumbbell)",
         "reps": 8,
-        "weight": 50,
+        "weight": 50.0,
         "notes": ""
       },
       {
         "exerciseName": "Lying Leg Curl (Machine)",
         "reps": 8,
-        "weight": 90,
+        "weight": 90.0,
         "notes": ""
       },
       {
         "exerciseName": "Lying Leg Curl (Machine)",
         "reps": 8,
-        "weight": 90,
+        "weight": 90.0,
         "notes": ""
       },
       {
         "exerciseName": "Lying Leg Curl (Machine)",
         "reps": 8,
-        "weight": 75,
+        "weight": 75.0,
         "notes": ""
       },
       {
         "exerciseName": "Leg Extension (Machine)",
         "reps": 8,
-        "weight": 120,
+        "weight": 120.0,
         "notes": ""
       },
       {
         "exerciseName": "Leg Extension (Machine)",
         "reps": 8,
-        "weight": 120,
+        "weight": 120.0,
         "notes": ""
       },
       {
         "exerciseName": "Leg Extension (Machine)",
         "reps": 9,
-        "weight": 135,
+        "weight": 135.0,
         "notes": ""
       },
       {
@@ -752,19 +752,19 @@ export const strongSeedWorkouts: SeedWorkout[] = [
       {
         "exerciseName": "Lat Pulldown (Cable)",
         "reps": 8,
-        "weight": 120,
+        "weight": 120.0,
         "notes": ""
       },
       {
         "exerciseName": "Lat Pulldown (Cable)",
         "reps": 8,
-        "weight": 120,
+        "weight": 120.0,
         "notes": ""
       },
       {
         "exerciseName": "Lat Pulldown (Cable)",
         "reps": 8,
-        "weight": 120,
+        "weight": 120.0,
         "notes": ""
       }
     ]
@@ -776,37 +776,37 @@ export const strongSeedWorkouts: SeedWorkout[] = [
       {
         "exerciseName": "Bench Press (Dumbbell)",
         "reps": 8,
-        "weight": 50,
+        "weight": 50.0,
         "notes": ""
       },
       {
         "exerciseName": "Bench Press (Dumbbell)",
         "reps": 8,
-        "weight": 50,
+        "weight": 50.0,
         "notes": ""
       },
       {
         "exerciseName": "Bench Press (Dumbbell)",
         "reps": 10,
-        "weight": 50,
+        "weight": 50.0,
         "notes": ""
       },
       {
         "exerciseName": "Seated Row (Cable)",
         "reps": 8,
-        "weight": 90,
+        "weight": 90.0,
         "notes": ""
       },
       {
         "exerciseName": "Seated Row (Cable)",
         "reps": 8,
-        "weight": 105,
+        "weight": 105.0,
         "notes": ""
       },
       {
         "exerciseName": "Seated Row (Cable)",
         "reps": 8,
-        "weight": 120,
+        "weight": 120.0,
         "notes": ""
       },
       {
@@ -830,55 +830,55 @@ export const strongSeedWorkouts: SeedWorkout[] = [
       {
         "exerciseName": "Seated Overhead Press (Dumbbell)",
         "reps": 8,
-        "weight": 30,
+        "weight": 30.0,
         "notes": ""
       },
       {
         "exerciseName": "Seated Overhead Press (Dumbbell)",
         "reps": 8,
-        "weight": 30,
+        "weight": 30.0,
         "notes": ""
       },
       {
         "exerciseName": "Seated Overhead Press (Dumbbell)",
         "reps": 8,
-        "weight": 30,
+        "weight": 30.0,
         "notes": ""
       },
       {
         "exerciseName": "Bicep Curl (Dumbbell)",
         "reps": 8,
-        "weight": 35,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Bicep Curl (Dumbbell)",
-        "reps": 6,
-        "weight": 35,
+        "weight": 35.0,
         "notes": ""
       },
       {
         "exerciseName": "Bicep Curl (Dumbbell)",
         "reps": 6,
-        "weight": 35,
+        "weight": 35.0,
+        "notes": ""
+      },
+      {
+        "exerciseName": "Bicep Curl (Dumbbell)",
+        "reps": 6,
+        "weight": 35.0,
         "notes": ""
       },
       {
         "exerciseName": "Lat Pulldown - Wide Grip (Cable)",
         "reps": 8,
-        "weight": 90,
+        "weight": 90.0,
         "notes": ""
       },
       {
         "exerciseName": "Lat Pulldown - Wide Grip (Cable)",
         "reps": 8,
-        "weight": 105,
+        "weight": 105.0,
         "notes": ""
       },
       {
         "exerciseName": "Lat Pulldown - Wide Grip (Cable)",
         "reps": 10,
-        "weight": 105,
+        "weight": 105.0,
         "notes": ""
       }
     ]
@@ -890,37 +890,37 @@ export const strongSeedWorkouts: SeedWorkout[] = [
       {
         "exerciseName": "Bench Press (Dumbbell)",
         "reps": 8,
-        "weight": 50,
+        "weight": 50.0,
         "notes": ""
       },
       {
         "exerciseName": "Bench Press (Dumbbell)",
         "reps": 8,
-        "weight": 50,
+        "weight": 50.0,
         "notes": ""
       },
       {
         "exerciseName": "Bench Press (Dumbbell)",
         "reps": 8,
-        "weight": 50,
+        "weight": 50.0,
         "notes": ""
       },
       {
         "exerciseName": "Lat Pulldown (Cable)",
         "reps": 8,
-        "weight": 120,
+        "weight": 120.0,
         "notes": ""
       },
       {
         "exerciseName": "Lat Pulldown (Cable)",
         "reps": 8,
-        "weight": 120,
+        "weight": 120.0,
         "notes": ""
       },
       {
         "exerciseName": "Lat Pulldown (Cable)",
         "reps": 8,
-        "weight": 120,
+        "weight": 120.0,
         "notes": ""
       },
       {
@@ -944,91 +944,91 @@ export const strongSeedWorkouts: SeedWorkout[] = [
       {
         "exerciseName": "Bench Press (Dumbbell)",
         "reps": 8,
-        "weight": 50,
+        "weight": 50.0,
         "notes": ""
       },
       {
         "exerciseName": "Bench Press (Dumbbell)",
         "reps": 8,
-        "weight": 50,
+        "weight": 50.0,
         "notes": ""
       },
       {
         "exerciseName": "Bench Press (Dumbbell)",
         "reps": 8,
-        "weight": 50,
+        "weight": 50.0,
         "notes": ""
       },
       {
         "exerciseName": "Seated Overhead Press (Dumbbell)",
         "reps": 8,
-        "weight": 30,
+        "weight": 30.0,
         "notes": ""
       },
       {
         "exerciseName": "Seated Overhead Press (Dumbbell)",
         "reps": 8,
-        "weight": 30,
+        "weight": 30.0,
         "notes": ""
       },
       {
         "exerciseName": "Seated Overhead Press (Dumbbell)",
         "reps": 8,
-        "weight": 30,
+        "weight": 30.0,
         "notes": ""
       },
       {
         "exerciseName": "Lat Pulldown (Cable)",
         "reps": 8,
-        "weight": 135,
+        "weight": 135.0,
         "notes": ""
       },
       {
         "exerciseName": "Lat Pulldown (Cable)",
         "reps": 6,
-        "weight": 135,
+        "weight": 135.0,
         "notes": ""
       },
       {
         "exerciseName": "Lat Pulldown (Cable)",
         "reps": 8,
-        "weight": 120,
+        "weight": 120.0,
         "notes": ""
       },
       {
         "exerciseName": "Seated Row (Cable)",
         "reps": 8,
-        "weight": 120,
+        "weight": 120.0,
         "notes": ""
       },
       {
         "exerciseName": "Seated Row (Cable)",
         "reps": 8,
-        "weight": 105,
+        "weight": 105.0,
         "notes": ""
       },
       {
         "exerciseName": "Seated Row (Cable)",
         "reps": 8,
-        "weight": 105,
+        "weight": 105.0,
         "notes": ""
       },
       {
         "exerciseName": "Bicep Curl (Dumbbell)",
         "reps": 6,
-        "weight": 35,
+        "weight": 35.0,
         "notes": ""
       },
       {
         "exerciseName": "Bicep Curl (Dumbbell)",
         "reps": 6,
-        "weight": 30,
+        "weight": 30.0,
         "notes": ""
       },
       {
         "exerciseName": "Bicep Curl (Dumbbell)",
         "reps": 6,
-        "weight": 25,
+        "weight": 25.0,
         "notes": ""
       }
     ]
@@ -1040,91 +1040,91 @@ export const strongSeedWorkouts: SeedWorkout[] = [
       {
         "exerciseName": "Bench Press (Dumbbell)",
         "reps": 8,
-        "weight": 50,
+        "weight": 50.0,
         "notes": ""
       },
       {
         "exerciseName": "Bench Press (Dumbbell)",
         "reps": 8,
-        "weight": 50,
+        "weight": 50.0,
         "notes": ""
       },
       {
         "exerciseName": "Bench Press (Dumbbell)",
         "reps": 12,
-        "weight": 50,
+        "weight": 50.0,
         "notes": ""
       },
       {
         "exerciseName": "Lat Pulldown - Wide Grip (Cable)",
         "reps": 8,
-        "weight": 105,
+        "weight": 105.0,
         "notes": ""
       },
       {
         "exerciseName": "Lat Pulldown - Wide Grip (Cable)",
         "reps": 8,
-        "weight": 120,
+        "weight": 120.0,
         "notes": ""
       },
       {
         "exerciseName": "Lat Pulldown - Wide Grip (Cable)",
         "reps": 10,
-        "weight": 120,
+        "weight": 120.0,
         "notes": ""
       },
       {
         "exerciseName": "Incline Bench Press (Dumbbell)",
         "reps": 8,
-        "weight": 45,
+        "weight": 45.0,
         "notes": ""
       },
       {
         "exerciseName": "Incline Bench Press (Dumbbell)",
         "reps": 8,
-        "weight": 45,
+        "weight": 45.0,
         "notes": ""
       },
       {
         "exerciseName": "Incline Bench Press (Dumbbell)",
         "reps": 8,
-        "weight": 45,
+        "weight": 45.0,
         "notes": ""
       },
       {
         "exerciseName": "Seated Row (Cable)",
         "reps": 8,
-        "weight": 105,
+        "weight": 105.0,
         "notes": ""
       },
       {
         "exerciseName": "Seated Row (Cable)",
         "reps": 8,
-        "weight": 105,
+        "weight": 105.0,
         "notes": ""
       },
       {
         "exerciseName": "Seated Row (Cable)",
         "reps": 8,
-        "weight": 105,
+        "weight": 105.0,
         "notes": ""
       },
       {
         "exerciseName": "Lateral Raise (Dumbbell)",
         "reps": 8,
-        "weight": 10,
+        "weight": 10.0,
         "notes": ""
       },
       {
         "exerciseName": "Lateral Raise (Dumbbell)",
         "reps": 8,
-        "weight": 10,
+        "weight": 10.0,
         "notes": ""
       },
       {
         "exerciseName": "Lateral Raise (Dumbbell)",
         "reps": 8,
-        "weight": 10,
+        "weight": 10.0,
         "notes": ""
       },
       {
@@ -1166,19 +1166,19 @@ export const strongSeedWorkouts: SeedWorkout[] = [
       {
         "exerciseName": "Bicep Curl (Dumbbell)",
         "reps": 8,
-        "weight": 30,
+        "weight": 30.0,
         "notes": ""
       },
       {
         "exerciseName": "Bicep Curl (Dumbbell)",
         "reps": 8,
-        "weight": 30,
+        "weight": 30.0,
         "notes": ""
       },
       {
         "exerciseName": "Bicep Curl (Dumbbell)",
         "reps": 8,
-        "weight": 30,
+        "weight": 30.0,
         "notes": ""
       }
     ]
@@ -1190,73 +1190,73 @@ export const strongSeedWorkouts: SeedWorkout[] = [
       {
         "exerciseName": "Bench Press (Dumbbell)",
         "reps": 8,
-        "weight": 50,
+        "weight": 50.0,
         "notes": ""
       },
       {
         "exerciseName": "Bench Press (Dumbbell)",
         "reps": 8,
-        "weight": 50,
+        "weight": 50.0,
         "notes": ""
       },
       {
         "exerciseName": "Bench Press (Dumbbell)",
         "reps": 14,
-        "weight": 50,
+        "weight": 50.0,
         "notes": ""
       },
       {
         "exerciseName": "Lat Pulldown - Wide Grip (Cable)",
         "reps": 8,
-        "weight": 120,
+        "weight": 120.0,
         "notes": ""
       },
       {
         "exerciseName": "Lat Pulldown - Wide Grip (Cable)",
         "reps": 8,
-        "weight": 105,
+        "weight": 105.0,
         "notes": ""
       },
       {
         "exerciseName": "Lat Pulldown - Wide Grip (Cable)",
         "reps": 10,
-        "weight": 105,
+        "weight": 105.0,
         "notes": ""
       },
       {
         "exerciseName": "Chest Press (Machine)",
         "reps": 8,
-        "weight": 105,
+        "weight": 105.0,
         "notes": ""
       },
       {
         "exerciseName": "Chest Press (Machine)",
         "reps": 8,
-        "weight": 135,
+        "weight": 135.0,
         "notes": ""
       },
       {
         "exerciseName": "Chest Press (Machine)",
         "reps": 8,
-        "weight": 150,
+        "weight": 150.0,
         "notes": ""
       },
       {
         "exerciseName": "Seated Row (Cable)",
         "reps": 8,
-        "weight": 120,
+        "weight": 120.0,
         "notes": ""
       },
       {
         "exerciseName": "Seated Row (Cable)",
         "reps": 8,
-        "weight": 120,
+        "weight": 120.0,
         "notes": ""
       },
       {
         "exerciseName": "Seated Row (Cable)",
         "reps": 8,
-        "weight": 120,
+        "weight": 120.0,
         "notes": ""
       },
       {
@@ -1280,19 +1280,19 @@ export const strongSeedWorkouts: SeedWorkout[] = [
       {
         "exerciseName": "Bicep Curl (Dumbbell)",
         "reps": 8,
-        "weight": 30,
+        "weight": 30.0,
         "notes": ""
       },
       {
         "exerciseName": "Bicep Curl (Dumbbell)",
         "reps": 8,
-        "weight": 30,
+        "weight": 30.0,
         "notes": ""
       },
       {
         "exerciseName": "Bicep Curl (Dumbbell)",
         "reps": 8,
-        "weight": 30,
+        "weight": 30.0,
         "notes": ""
       }
     ]
@@ -1304,31 +1304,31 @@ export const strongSeedWorkouts: SeedWorkout[] = [
       {
         "exerciseName": "Seated Leg Press (Machine)",
         "reps": 8,
-        "weight": 200,
+        "weight": 200.0,
         "notes": ""
       },
       {
         "exerciseName": "Seated Leg Press (Machine)",
         "reps": 8,
-        "weight": 200,
+        "weight": 200.0,
         "notes": ""
       },
       {
         "exerciseName": "Seated Leg Press (Machine)",
         "reps": 8,
-        "weight": 200,
+        "weight": 200.0,
         "notes": ""
       },
       {
         "exerciseName": "Chest Press (Machine)",
         "reps": 8,
-        "weight": 150,
+        "weight": 150.0,
         "notes": ""
       },
       {
         "exerciseName": "Chest Press (Machine)",
         "reps": 8,
-        "weight": 165,
+        "weight": 165.0,
         "notes": ""
       },
       {
@@ -1340,133 +1340,133 @@ export const strongSeedWorkouts: SeedWorkout[] = [
       {
         "exerciseName": "Chest Press (Machine)",
         "reps": 10,
-        "weight": 120,
+        "weight": 120.0,
         "notes": ""
       },
       {
         "exerciseName": "Lat Pulldown - Wide Grip (Cable)",
         "reps": 8,
-        "weight": 120,
+        "weight": 120.0,
         "notes": ""
       },
       {
         "exerciseName": "Lat Pulldown - Wide Grip (Cable)",
         "reps": 8,
-        "weight": 120,
+        "weight": 120.0,
         "notes": ""
       },
       {
         "exerciseName": "Lat Pulldown - Wide Grip (Cable)",
         "reps": 8,
-        "weight": 105,
+        "weight": 105.0,
         "notes": ""
       },
       {
         "exerciseName": "Lat Pulldown - Wide Grip (Cable)",
         "reps": 8,
-        "weight": 105,
+        "weight": 105.0,
         "notes": ""
       },
       {
         "exerciseName": "Lying Leg Curl (Machine)",
         "reps": 8,
-        "weight": 90,
+        "weight": 90.0,
         "notes": ""
       },
       {
         "exerciseName": "Lying Leg Curl (Machine)",
         "reps": 8,
-        "weight": 90,
+        "weight": 90.0,
         "notes": ""
       },
       {
         "exerciseName": "Lying Leg Curl (Machine)",
         "reps": 8,
-        "weight": 90,
+        "weight": 90.0,
         "notes": ""
       },
       {
         "exerciseName": "Shoulder Press (Machine)",
         "reps": 8,
-        "weight": 60,
+        "weight": 60.0,
         "notes": ""
       },
       {
         "exerciseName": "Shoulder Press (Machine)",
         "reps": 8,
-        "weight": 75,
+        "weight": 75.0,
         "notes": ""
       },
       {
         "exerciseName": "Shoulder Press (Machine)",
         "reps": 8,
-        "weight": 60,
+        "weight": 60.0,
         "notes": ""
       },
       {
         "exerciseName": "Shoulder Press (Machine)",
         "reps": 4,
-        "weight": 45,
+        "weight": 45.0,
         "notes": ""
       },
       {
         "exerciseName": "Seated Row (Cable)",
         "reps": 8,
-        "weight": 120,
+        "weight": 120.0,
         "notes": ""
       },
       {
         "exerciseName": "Seated Row (Cable)",
         "reps": 8,
-        "weight": 120,
+        "weight": 120.0,
         "notes": ""
       },
       {
         "exerciseName": "Seated Row (Cable)",
         "reps": 8,
-        "weight": 135,
+        "weight": 135.0,
         "notes": ""
       },
       {
         "exerciseName": "Seated Row (Cable)",
         "reps": 8,
-        "weight": 105,
+        "weight": 105.0,
         "notes": ""
       },
       {
         "exerciseName": "Romanian Deadlift (Dumbbell)",
         "reps": 8,
-        "weight": 50,
+        "weight": 50.0,
         "notes": ""
       },
       {
         "exerciseName": "Romanian Deadlift (Dumbbell)",
         "reps": 8,
-        "weight": 50,
+        "weight": 50.0,
         "notes": ""
       },
       {
         "exerciseName": "Romanian Deadlift (Dumbbell)",
         "reps": 8,
-        "weight": 50,
+        "weight": 50.0,
         "notes": ""
       },
       {
         "exerciseName": "Bicep Curl (Dumbbell)",
         "reps": 8,
-        "weight": 25,
+        "weight": 25.0,
         "notes": ""
       },
       {
         "exerciseName": "Bicep Curl (Dumbbell)",
         "reps": 8,
-        "weight": 30,
+        "weight": 30.0,
         "notes": ""
       },
       {
         "exerciseName": "Bicep Curl (Dumbbell)",
         "reps": 6,
-        "weight": 35,
+        "weight": 35.0,
         "notes": ""
       },
       {
@@ -1496,121 +1496,121 @@ export const strongSeedWorkouts: SeedWorkout[] = [
       {
         "exerciseName": "Chest Press (Machine)",
         "reps": 8,
-        "weight": 150,
+        "weight": 150.0,
         "notes": ""
       },
       {
         "exerciseName": "Chest Press (Machine)",
         "reps": 8,
-        "weight": 165,
+        "weight": 165.0,
         "notes": ""
       },
       {
         "exerciseName": "Chest Press (Machine)",
         "reps": 8,
-        "weight": 165,
+        "weight": 165.0,
         "notes": ""
       },
       {
         "exerciseName": "Chest Press (Machine)",
         "reps": 4,
-        "weight": 165,
+        "weight": 165.0,
         "notes": ""
       },
       {
         "exerciseName": "Lat Pulldown - Wide Grip (Cable)",
         "reps": 8,
-        "weight": 120,
+        "weight": 120.0,
         "notes": ""
       },
       {
         "exerciseName": "Lat Pulldown - Wide Grip (Cable)",
         "reps": 8,
-        "weight": 120,
+        "weight": 120.0,
         "notes": ""
       },
       {
         "exerciseName": "Lat Pulldown - Wide Grip (Cable)",
         "reps": 8,
-        "weight": 120,
+        "weight": 120.0,
         "notes": ""
       },
       {
         "exerciseName": "Lat Pulldown - Wide Grip (Cable)",
         "reps": 8,
-        "weight": 105,
+        "weight": 105.0,
         "notes": ""
       },
       {
         "exerciseName": "Shoulder Press (Machine)",
         "reps": 8,
-        "weight": 60,
+        "weight": 60.0,
         "notes": ""
       },
       {
         "exerciseName": "Shoulder Press (Machine)",
         "reps": 8,
-        "weight": 60,
+        "weight": 60.0,
         "notes": ""
       },
       {
         "exerciseName": "Shoulder Press (Machine)",
         "reps": 8,
-        "weight": 60,
+        "weight": 60.0,
         "notes": ""
       },
       {
         "exerciseName": "Shoulder Press (Machine)",
         "reps": 5,
-        "weight": 45,
+        "weight": 45.0,
         "notes": ""
       },
       {
         "exerciseName": "Seated Row (Cable)",
         "reps": 8,
-        "weight": 135,
+        "weight": 135.0,
         "notes": ""
       },
       {
         "exerciseName": "Seated Row (Cable)",
         "reps": 8,
-        "weight": 135,
+        "weight": 135.0,
         "notes": ""
       },
       {
         "exerciseName": "Seated Row (Cable)",
         "reps": 8,
-        "weight": 135,
+        "weight": 135.0,
         "notes": ""
       },
       {
         "exerciseName": "Seated Row (Cable)",
         "reps": 8,
-        "weight": 120,
+        "weight": 120.0,
         "notes": ""
       },
       {
         "exerciseName": "Bicep Curl (Dumbbell)",
         "reps": 8,
-        "weight": 35,
+        "weight": 35.0,
         "notes": ""
       },
       {
         "exerciseName": "Bicep Curl (Dumbbell)",
         "reps": 6,
-        "weight": 35,
+        "weight": 35.0,
         "notes": ""
       },
       {
         "exerciseName": "Bicep Curl (Dumbbell)",
         "reps": 5,
-        "weight": 35,
+        "weight": 35.0,
         "notes": ""
       },
       {
         "exerciseName": "Bicep Curl (Dumbbell)",
         "reps": 10,
-        "weight": 25,
+        "weight": 25.0,
         "notes": ""
       },
       {
@@ -1670,115 +1670,115 @@ export const strongSeedWorkouts: SeedWorkout[] = [
       {
         "exerciseName": "Chest Press (Machine)",
         "reps": 8,
-        "weight": 165,
+        "weight": 165.0,
         "notes": ""
       },
       {
         "exerciseName": "Chest Press (Machine)",
         "reps": 8,
-        "weight": 165,
+        "weight": 165.0,
         "notes": ""
       },
       {
         "exerciseName": "Chest Press (Machine)",
         "reps": 8,
-        "weight": 165,
+        "weight": 165.0,
         "notes": ""
       },
       {
         "exerciseName": "Chest Press (Machine)",
         "reps": 4,
-        "weight": 135,
+        "weight": 135.0,
         "notes": ""
       },
       {
         "exerciseName": "Lat Pulldown - Wide Grip (Cable)",
         "reps": 8,
-        "weight": 120,
+        "weight": 120.0,
         "notes": ""
       },
       {
         "exerciseName": "Lat Pulldown - Wide Grip (Cable)",
         "reps": 8,
-        "weight": 120,
+        "weight": 120.0,
         "notes": ""
       },
       {
         "exerciseName": "Lat Pulldown - Wide Grip (Cable)",
         "reps": 8,
-        "weight": 120,
+        "weight": 120.0,
         "notes": ""
       },
       {
         "exerciseName": "Lat Pulldown - Wide Grip (Cable)",
         "reps": 8,
-        "weight": 105,
+        "weight": 105.0,
         "notes": ""
       },
       {
         "exerciseName": "Shoulder Press (Machine)",
         "reps": 8,
-        "weight": 60,
+        "weight": 60.0,
         "notes": ""
       },
       {
         "exerciseName": "Shoulder Press (Machine)",
         "reps": 8,
-        "weight": 60,
+        "weight": 60.0,
         "notes": ""
       },
       {
         "exerciseName": "Shoulder Press (Machine)",
         "reps": 8,
-        "weight": 60,
+        "weight": 60.0,
         "notes": ""
       },
       {
         "exerciseName": "Shoulder Press (Machine)",
         "reps": 6,
-        "weight": 45,
+        "weight": 45.0,
         "notes": ""
       },
       {
         "exerciseName": "Seated Row (Cable)",
         "reps": 8,
-        "weight": 135,
+        "weight": 135.0,
         "notes": ""
       },
       {
         "exerciseName": "Seated Row (Cable)",
         "reps": 8,
-        "weight": 135,
+        "weight": 135.0,
         "notes": ""
       },
       {
         "exerciseName": "Seated Row (Cable)",
         "reps": 8,
-        "weight": 135,
+        "weight": 135.0,
         "notes": ""
       },
       {
         "exerciseName": "Seated Row (Cable)",
         "reps": 8,
-        "weight": 120,
+        "weight": 120.0,
         "notes": ""
       },
       {
         "exerciseName": "Bicep Curl (Dumbbell)",
         "reps": 8,
-        "weight": 25,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Bicep Curl (Dumbbell)",
-        "reps": 6,
-        "weight": 30,
+        "weight": 25.0,
         "notes": ""
       },
       {
         "exerciseName": "Bicep Curl (Dumbbell)",
         "reps": 6,
-        "weight": 30,
+        "weight": 30.0,
+        "notes": ""
+      },
+      {
+        "exerciseName": "Bicep Curl (Dumbbell)",
+        "reps": 6,
+        "weight": 30.0,
         "notes": ""
       },
       {
@@ -1856,127 +1856,127 @@ export const strongSeedWorkouts: SeedWorkout[] = [
       {
         "exerciseName": "Bulgarian Split Squat",
         "reps": 8,
-        "weight": 45,
+        "weight": 45.0,
         "notes": ""
       },
       {
         "exerciseName": "Bulgarian Split Squat",
         "reps": 8,
-        "weight": 45,
+        "weight": 45.0,
         "notes": ""
       },
       {
         "exerciseName": "Bulgarian Split Squat",
         "reps": 8,
-        "weight": 50,
+        "weight": 50.0,
         "notes": ""
       },
       {
         "exerciseName": "Calf Press on Seated Leg Press",
         "reps": 20,
-        "weight": 125,
+        "weight": 125.0,
         "notes": ""
       },
       {
         "exerciseName": "Calf Press on Seated Leg Press",
         "reps": 20,
-        "weight": 125,
+        "weight": 125.0,
         "notes": ""
       },
       {
         "exerciseName": "Calf Press on Seated Leg Press",
         "reps": 20,
-        "weight": 125,
+        "weight": 125.0,
         "notes": ""
       },
       {
         "exerciseName": "Seated Leg Press (Machine)",
         "reps": 8,
-        "weight": 200,
+        "weight": 200.0,
         "notes": ""
       },
       {
         "exerciseName": "Seated Leg Press (Machine)",
         "reps": 8,
-        "weight": 200,
+        "weight": 200.0,
         "notes": ""
       },
       {
         "exerciseName": "Seated Leg Press (Machine)",
         "reps": 8,
-        "weight": 200,
+        "weight": 200.0,
         "notes": ""
       },
       {
         "exerciseName": "Romanian Deadlift (Dumbbell)",
         "reps": 8,
-        "weight": 50,
+        "weight": 50.0,
         "notes": ""
       },
       {
         "exerciseName": "Romanian Deadlift (Dumbbell)",
         "reps": 8,
-        "weight": 50,
+        "weight": 50.0,
         "notes": ""
       },
       {
         "exerciseName": "Romanian Deadlift (Dumbbell)",
         "reps": 8,
-        "weight": 50,
+        "weight": 50.0,
         "notes": ""
       },
       {
         "exerciseName": "Lying Leg Curl (Machine)",
         "reps": 8,
-        "weight": 90,
+        "weight": 90.0,
         "notes": ""
       },
       {
         "exerciseName": "Lying Leg Curl (Machine)",
         "reps": 8,
-        "weight": 90,
+        "weight": 90.0,
         "notes": ""
       },
       {
         "exerciseName": "Lying Leg Curl (Machine)",
         "reps": 8,
-        "weight": 90,
+        "weight": 90.0,
         "notes": ""
       },
       {
         "exerciseName": "Leg Extension (Machine)",
         "reps": 8,
-        "weight": 120,
+        "weight": 120.0,
         "notes": ""
       },
       {
         "exerciseName": "Leg Extension (Machine)",
         "reps": 8,
-        "weight": 135,
+        "weight": 135.0,
         "notes": ""
       },
       {
         "exerciseName": "Leg Extension (Machine)",
         "reps": 8,
-        "weight": 135,
+        "weight": 135.0,
         "notes": ""
       },
       {
         "exerciseName": "Lat Pulldown - Wide Grip (Cable)",
         "reps": 8,
-        "weight": 105,
+        "weight": 105.0,
         "notes": ""
       },
       {
         "exerciseName": "Lat Pulldown - Wide Grip (Cable)",
         "reps": 8,
-        "weight": 105,
+        "weight": 105.0,
         "notes": ""
       },
       {
         "exerciseName": "Lat Pulldown - Wide Grip (Cable)",
         "reps": 8,
-        "weight": 105,
+        "weight": 105.0,
         "notes": ""
       }
     ]
@@ -1988,121 +1988,121 @@ export const strongSeedWorkouts: SeedWorkout[] = [
       {
         "exerciseName": "Chest Press (Machine)",
         "reps": 8,
-        "weight": 135,
+        "weight": 135.0,
         "notes": ""
       },
       {
         "exerciseName": "Chest Press (Machine)",
         "reps": 8,
-        "weight": 165,
+        "weight": 165.0,
         "notes": ""
       },
       {
         "exerciseName": "Chest Press (Machine)",
         "reps": 8,
-        "weight": 170,
+        "weight": 170.0,
         "notes": ""
       },
       {
         "exerciseName": "Chest Press (Machine)",
         "reps": 6,
-        "weight": 180,
+        "weight": 180.0,
         "notes": ""
       },
       {
         "exerciseName": "Chest Press (Machine)",
         "reps": 10,
-        "weight": 150,
+        "weight": 150.0,
         "notes": ""
       },
       {
         "exerciseName": "Lat Pulldown (Cable)",
         "reps": 8,
-        "weight": 105,
+        "weight": 105.0,
         "notes": ""
       },
       {
         "exerciseName": "Lat Pulldown (Cable)",
         "reps": 8,
-        "weight": 135,
+        "weight": 135.0,
         "notes": ""
       },
       {
         "exerciseName": "Lat Pulldown (Cable)",
         "reps": 6,
-        "weight": 150,
+        "weight": 150.0,
         "notes": ""
       },
       {
         "exerciseName": "Lat Pulldown (Cable)",
         "reps": 8,
-        "weight": 150,
+        "weight": 150.0,
         "notes": ""
       },
       {
         "exerciseName": "Lat Pulldown (Cable)",
         "reps": 10,
-        "weight": 105,
+        "weight": 105.0,
         "notes": ""
       },
       {
         "exerciseName": "Seated Row (Cable)",
         "reps": 8,
-        "weight": 105,
+        "weight": 105.0,
         "notes": ""
       },
       {
         "exerciseName": "Seated Row (Cable)",
         "reps": 8,
-        "weight": 135,
+        "weight": 135.0,
         "notes": ""
       },
       {
         "exerciseName": "Seated Row (Cable)",
         "reps": 8,
-        "weight": 150,
+        "weight": 150.0,
         "notes": ""
       },
       {
         "exerciseName": "Seated Row (Cable)",
         "reps": 9,
-        "weight": 150,
+        "weight": 150.0,
         "notes": ""
       },
       {
         "exerciseName": "Seated Row (Cable)",
         "reps": 12,
-        "weight": 105,
+        "weight": 105.0,
         "notes": ""
       },
       {
         "exerciseName": "Shoulder Press (Machine)",
         "reps": 8,
-        "weight": 30,
+        "weight": 30.0,
         "notes": ""
       },
       {
         "exerciseName": "Shoulder Press (Machine)",
         "reps": 8,
-        "weight": 60,
+        "weight": 60.0,
         "notes": ""
       },
       {
         "exerciseName": "Shoulder Press (Machine)",
         "reps": 8,
-        "weight": 75,
+        "weight": 75.0,
         "notes": ""
       },
       {
         "exerciseName": "Shoulder Press (Machine)",
         "reps": 8,
-        "weight": 75,
+        "weight": 75.0,
         "notes": ""
       },
       {
         "exerciseName": "Shoulder Press (Machine)",
         "reps": 10,
-        "weight": 45,
+        "weight": 45.0,
         "notes": ""
       },
       {
@@ -2132,13 +2132,13 @@ export const strongSeedWorkouts: SeedWorkout[] = [
       {
         "exerciseName": "Bicep Curl (Dumbbell)",
         "reps": 9,
-        "weight": 35,
+        "weight": 35.0,
         "notes": ""
       },
       {
         "exerciseName": "Bicep Curl (Dumbbell)",
         "reps": 7,
-        "weight": 35,
+        "weight": 35.0,
         "notes": ""
       },
       {
@@ -2162,139 +2162,139 @@ export const strongSeedWorkouts: SeedWorkout[] = [
       {
         "exerciseName": "Chest Press (Machine)",
         "reps": 8,
-        "weight": 135,
+        "weight": 135.0,
         "notes": ""
       },
       {
         "exerciseName": "Chest Press (Machine)",
         "reps": 8,
-        "weight": 165,
+        "weight": 165.0,
         "notes": ""
       },
       {
         "exerciseName": "Chest Press (Machine)",
         "reps": 8,
-        "weight": 180,
+        "weight": 180.0,
         "notes": ""
       },
       {
         "exerciseName": "Chest Press (Machine)",
         "reps": 6,
-        "weight": 180,
+        "weight": 180.0,
         "notes": ""
       },
       {
         "exerciseName": "Chest Press (Machine)",
         "reps": 10,
-        "weight": 150,
+        "weight": 150.0,
         "notes": ""
       },
       {
         "exerciseName": "Lat Pulldown (Cable)",
         "reps": 8,
-        "weight": 105,
+        "weight": 105.0,
         "notes": ""
       },
       {
         "exerciseName": "Lat Pulldown (Cable)",
         "reps": 8,
-        "weight": 135,
+        "weight": 135.0,
         "notes": ""
       },
       {
         "exerciseName": "Lat Pulldown (Cable)",
         "reps": 8,
-        "weight": 150,
+        "weight": 150.0,
         "notes": ""
       },
       {
         "exerciseName": "Lat Pulldown (Cable)",
         "reps": 6,
-        "weight": 150,
+        "weight": 150.0,
         "notes": ""
       },
       {
         "exerciseName": "Lat Pulldown (Cable)",
         "reps": 8,
-        "weight": 120,
+        "weight": 120.0,
         "notes": ""
       },
       {
         "exerciseName": "Seated Row (Cable)",
         "reps": 8,
-        "weight": 105,
+        "weight": 105.0,
         "notes": ""
       },
       {
         "exerciseName": "Seated Row (Cable)",
         "reps": 8,
-        "weight": 135,
+        "weight": 135.0,
         "notes": ""
       },
       {
         "exerciseName": "Seated Row (Cable)",
         "reps": 8,
-        "weight": 150,
+        "weight": 150.0,
         "notes": ""
       },
       {
         "exerciseName": "Seated Row (Cable)",
         "reps": 8,
-        "weight": 135,
+        "weight": 135.0,
         "notes": ""
       },
       {
         "exerciseName": "Seated Row (Cable)",
         "reps": 12,
-        "weight": 105,
+        "weight": 105.0,
         "notes": ""
       },
       {
         "exerciseName": "Shoulder Press (Machine)",
         "reps": 8,
-        "weight": 30,
+        "weight": 30.0,
         "notes": ""
       },
       {
         "exerciseName": "Shoulder Press (Machine)",
         "reps": 8,
-        "weight": 60,
+        "weight": 60.0,
         "notes": ""
       },
       {
         "exerciseName": "Shoulder Press (Machine)",
         "reps": 7,
-        "weight": 90,
+        "weight": 90.0,
         "notes": ""
       },
       {
         "exerciseName": "Shoulder Press (Machine)",
         "reps": 4,
-        "weight": 90,
+        "weight": 90.0,
         "notes": ""
       },
       {
         "exerciseName": "Shoulder Press (Machine)",
         "reps": 8,
-        "weight": 45,
+        "weight": 45.0,
         "notes": ""
       },
       {
         "exerciseName": "Bicep Curl (Dumbbell)",
         "reps": 8,
-        "weight": 40,
+        "weight": 40.0,
         "notes": ""
       },
       {
         "exerciseName": "Bicep Curl (Dumbbell)",
         "reps": 6,
-        "weight": 40,
+        "weight": 40.0,
         "notes": ""
       },
       {
         "exerciseName": "Bicep Curl (Dumbbell)",
         "reps": 6,
-        "weight": 35,
+        "weight": 35.0,
         "notes": ""
       },
       {
@@ -2324,97 +2324,97 @@ export const strongSeedWorkouts: SeedWorkout[] = [
       {
         "exerciseName": "Chest Press (Machine)",
         "reps": 8,
-        "weight": 135,
+        "weight": 135.0,
         "notes": ""
       },
       {
         "exerciseName": "Chest Press (Machine)",
         "reps": 8,
-        "weight": 180,
+        "weight": 180.0,
         "notes": ""
       },
       {
         "exerciseName": "Chest Press (Machine)",
         "reps": 7,
-        "weight": 195,
+        "weight": 195.0,
         "notes": ""
       },
       {
         "exerciseName": "Chest Press (Machine)",
         "reps": 10,
-        "weight": 150,
+        "weight": 150.0,
         "notes": ""
       },
       {
         "exerciseName": "Lat Pulldown (Cable)",
         "reps": 8,
-        "weight": 120,
+        "weight": 120.0,
         "notes": ""
       },
       {
         "exerciseName": "Lat Pulldown (Cable)",
         "reps": 8,
-        "weight": 150,
+        "weight": 150.0,
         "notes": ""
       },
       {
         "exerciseName": "Lat Pulldown (Cable)",
         "reps": 7,
-        "weight": 150,
+        "weight": 150.0,
         "notes": ""
       },
       {
         "exerciseName": "Lat Pulldown (Cable)",
         "reps": 10,
-        "weight": 120,
+        "weight": 120.0,
         "notes": ""
       },
       {
         "exerciseName": "Seated Row (Cable)",
         "reps": 8,
-        "weight": 120,
+        "weight": 120.0,
         "notes": ""
       },
       {
         "exerciseName": "Seated Row (Cable)",
         "reps": 8,
-        "weight": 150,
+        "weight": 150.0,
         "notes": ""
       },
       {
         "exerciseName": "Seated Row (Cable)",
         "reps": 6,
-        "weight": 150,
+        "weight": 150.0,
         "notes": ""
       },
       {
         "exerciseName": "Seated Row (Cable)",
         "reps": 10,
-        "weight": 120,
+        "weight": 120.0,
         "notes": ""
       },
       {
         "exerciseName": "Seated Overhead Press (Dumbbell)",
         "reps": 8,
-        "weight": 20,
+        "weight": 20.0,
         "notes": ""
       },
       {
         "exerciseName": "Seated Overhead Press (Dumbbell)",
         "reps": 10,
-        "weight": 40,
+        "weight": 40.0,
         "notes": ""
       },
       {
         "exerciseName": "Seated Overhead Press (Dumbbell)",
         "reps": 8,
-        "weight": 40,
+        "weight": 40.0,
         "notes": ""
       },
       {
         "exerciseName": "Seated Overhead Press (Dumbbell)",
         "reps": 10,
-        "weight": 25,
+        "weight": 25.0,
         "notes": ""
       },
       {
@@ -2510,121 +2510,121 @@ export const strongSeedWorkouts: SeedWorkout[] = [
       {
         "exerciseName": "Chest Press (Machine)",
         "reps": 8,
-        "weight": 135,
+        "weight": 135.0,
         "notes": ""
       },
       {
         "exerciseName": "Chest Press (Machine)",
         "reps": 8,
-        "weight": 195,
+        "weight": 195.0,
         "notes": ""
       },
       {
         "exerciseName": "Chest Press (Machine)",
         "reps": 5,
-        "weight": 200,
+        "weight": 200.0,
         "notes": ""
       },
       {
         "exerciseName": "Chest Press (Machine)",
         "reps": 12,
-        "weight": 150,
+        "weight": 150.0,
         "notes": ""
       },
       {
         "exerciseName": "Lat Pulldown (Cable)",
         "reps": 8,
-        "weight": 120,
+        "weight": 120.0,
         "notes": ""
       },
       {
         "exerciseName": "Lat Pulldown (Cable)",
         "reps": 8,
-        "weight": 150,
+        "weight": 150.0,
         "notes": ""
       },
       {
         "exerciseName": "Lat Pulldown (Cable)",
         "reps": 8,
-        "weight": 135,
+        "weight": 135.0,
         "notes": ""
       },
       {
         "exerciseName": "Lat Pulldown (Cable)",
         "reps": 11,
-        "weight": 120,
+        "weight": 120.0,
         "notes": ""
       },
       {
         "exerciseName": "Seated Row (Cable)",
         "reps": 8,
-        "weight": 120,
+        "weight": 120.0,
         "notes": ""
       },
       {
         "exerciseName": "Seated Row (Cable)",
         "reps": 8,
-        "weight": 150,
+        "weight": 150.0,
         "notes": ""
       },
       {
         "exerciseName": "Seated Row (Cable)",
         "reps": 8,
-        "weight": 150,
+        "weight": 150.0,
         "notes": ""
       },
       {
         "exerciseName": "Seated Row (Cable)",
         "reps": 12,
-        "weight": 120,
+        "weight": 120.0,
         "notes": ""
       },
       {
         "exerciseName": "Shoulder Press (Machine)",
         "reps": 8,
-        "weight": 45,
+        "weight": 45.0,
         "notes": ""
       },
       {
         "exerciseName": "Shoulder Press (Machine)",
         "reps": 8,
-        "weight": 90,
+        "weight": 90.0,
         "notes": ""
       },
       {
         "exerciseName": "Shoulder Press (Machine)",
         "reps": 6,
-        "weight": 90,
+        "weight": 90.0,
         "notes": ""
       },
       {
         "exerciseName": "Shoulder Press (Machine)",
         "reps": 8,
-        "weight": 60,
+        "weight": 60.0,
         "notes": ""
       },
       {
         "exerciseName": "Bicep Curl (Dumbbell)",
         "reps": 8,
-        "weight": 40,
+        "weight": 40.0,
         "notes": ""
       },
       {
         "exerciseName": "Bicep Curl (Dumbbell)",
         "reps": 8,
-        "weight": 40,
+        "weight": 40.0,
         "notes": ""
       },
       {
         "exerciseName": "Bicep Curl (Dumbbell)",
         "reps": 6,
-        "weight": 40,
+        "weight": 40.0,
         "notes": ""
       },
       {
         "exerciseName": "Triceps Pushdown (Cable - Straight Bar)",
         "reps": 8,
-        "weight": 70,
+        "weight": 70.0,
         "notes": ""
       },
       {
@@ -2660,19 +2660,19 @@ export const strongSeedWorkouts: SeedWorkout[] = [
       {
         "exerciseName": "Lateral Raise (Dumbbell)",
         "reps": 10,
-        "weight": 10,
+        "weight": 10.0,
         "notes": ""
       },
       {
         "exerciseName": "Lateral Raise (Dumbbell)",
         "reps": 10,
-        "weight": 10,
+        "weight": 10.0,
         "notes": ""
       },
       {
         "exerciseName": "Lateral Raise (Dumbbell)",
         "reps": 10,
-        "weight": 10,
+        "weight": 10.0,
         "notes": ""
       }
     ]
@@ -2684,55 +2684,55 @@ export const strongSeedWorkouts: SeedWorkout[] = [
       {
         "exerciseName": "Chest Press (Machine)",
         "reps": 8,
-        "weight": 105,
+        "weight": 105.0,
         "notes": ""
       },
       {
         "exerciseName": "Chest Press (Machine)",
         "reps": 8,
-        "weight": 135,
+        "weight": 135.0,
         "notes": ""
       },
       {
         "exerciseName": "Chest Press (Machine)",
         "reps": 6,
-        "weight": 195,
+        "weight": 195.0,
         "notes": ""
       },
       {
         "exerciseName": "Chest Press (Machine)",
         "reps": 6,
-        "weight": 195,
+        "weight": 195.0,
         "notes": ""
       },
       {
         "exerciseName": "Chest Press (Machine)",
         "reps": 4,
-        "weight": 195,
+        "weight": 195.0,
         "notes": ""
       },
       {
         "exerciseName": "Chest Press (Machine)",
         "reps": 7,
-        "weight": 165,
+        "weight": 165.0,
         "notes": ""
       },
       {
         "exerciseName": "Incline Bench Press (Dumbbell)",
         "reps": 10,
-        "weight": 40,
+        "weight": 40.0,
         "notes": ""
       },
       {
         "exerciseName": "Incline Bench Press (Dumbbell)",
         "reps": 10,
-        "weight": 40,
+        "weight": 40.0,
         "notes": ""
       },
       {
         "exerciseName": "Incline Bench Press (Dumbbell)",
         "reps": 10,
-        "weight": 40,
+        "weight": 40.0,
         "notes": ""
       },
       {
@@ -2756,61 +2756,61 @@ export const strongSeedWorkouts: SeedWorkout[] = [
       {
         "exerciseName": "Lat Pulldown (Cable)",
         "reps": 10,
-        "weight": 135,
+        "weight": 135.0,
         "notes": ""
       },
       {
         "exerciseName": "Lat Pulldown (Cable)",
         "reps": 10,
-        "weight": 120,
+        "weight": 120.0,
         "notes": ""
       },
       {
         "exerciseName": "Lat Pulldown (Cable)",
         "reps": 10,
-        "weight": 120,
+        "weight": 120.0,
         "notes": ""
       },
       {
         "exerciseName": "Lat Pulldown (Cable)",
         "reps": 10,
-        "weight": 120,
+        "weight": 120.0,
         "notes": ""
       },
       {
         "exerciseName": "Seated Row (Cable)",
         "reps": 10,
-        "weight": 120,
+        "weight": 120.0,
         "notes": ""
       },
       {
         "exerciseName": "Seated Row (Cable)",
         "reps": 10,
-        "weight": 120,
+        "weight": 120.0,
         "notes": ""
       },
       {
         "exerciseName": "Seated Row (Cable)",
         "reps": 10,
-        "weight": 120,
+        "weight": 120.0,
         "notes": ""
       },
       {
         "exerciseName": "Shoulder Press (Machine)",
         "reps": 8,
-        "weight": 75,
+        "weight": 75.0,
         "notes": ""
       },
       {
         "exerciseName": "Shoulder Press (Machine)",
         "reps": 8,
-        "weight": 75,
+        "weight": 75.0,
         "notes": ""
       },
       {
         "exerciseName": "Shoulder Press (Machine)",
         "reps": 5,
-        "weight": 75,
+        "weight": 75.0,
         "notes": ""
       },
       {
@@ -2852,21 +2852,568 @@ export const strongSeedWorkouts: SeedWorkout[] = [
       {
         "exerciseName": "Bicep Curl (Dumbbell)",
         "reps": 12,
-        "weight": 30,
+        "weight": 30.0,
         "notes": ""
       },
       {
         "exerciseName": "Bicep Curl (Dumbbell)",
         "reps": 10,
-        "weight": 30,
+        "weight": 30.0,
         "notes": ""
       },
       {
         "exerciseName": "Bicep Curl (Dumbbell)",
         "reps": 10,
-        "weight": 30,
+        "weight": 30.0,
+        "notes": ""
+      }
+    ]
+  },
+  {
+    "workoutNumber": "22",
+    "datetime": "2026-03-31T16:52:39",
+    "sets": [
+      {
+        "exerciseName": "Chest Press (Machine)",
+        "reps": 8,
+        "weight": 105.0,
+        "notes": ""
+      },
+      {
+        "exerciseName": "Chest Press (Machine)",
+        "reps": 8,
+        "weight": 135.0,
+        "notes": ""
+      },
+      {
+        "exerciseName": "Chest Press (Machine)",
+        "reps": 6,
+        "weight": 195.0,
+        "notes": ""
+      },
+      {
+        "exerciseName": "Chest Press (Machine)",
+        "reps": 6,
+        "weight": 195.0,
+        "notes": ""
+      },
+      {
+        "exerciseName": "Chest Press (Machine)",
+        "reps": 6,
+        "weight": 195.0,
+        "notes": ""
+      },
+      {
+        "exerciseName": "Chest Press (Machine)",
+        "reps": 8,
+        "weight": 165.0,
+        "notes": ""
+      },
+      {
+        "exerciseName": "Incline Bench Press (Dumbbell)",
+        "reps": 10,
+        "weight": 40.0,
+        "notes": ""
+      },
+      {
+        "exerciseName": "Incline Bench Press (Dumbbell)",
+        "reps": 10,
+        "weight": 40.0,
+        "notes": ""
+      },
+      {
+        "exerciseName": "Incline Bench Press (Dumbbell)",
+        "reps": 12,
+        "weight": 40.0,
+        "notes": ""
+      },
+      {
+        "exerciseName": "Incline Cable Fly",
+        "reps": 12,
+        "weight": 17.5,
+        "notes": ""
+      },
+      {
+        "exerciseName": "Incline Cable Fly",
+        "reps": 12,
+        "weight": 17.5,
+        "notes": ""
+      },
+      {
+        "exerciseName": "Incline Cable Fly",
+        "reps": 12,
+        "weight": 17.5,
+        "notes": ""
+      },
+      {
+        "exerciseName": "Lat Pulldown (Cable)",
+        "reps": 10,
+        "weight": 135.0,
+        "notes": ""
+      },
+      {
+        "exerciseName": "Lat Pulldown (Cable)",
+        "reps": 10,
+        "weight": 135.0,
+        "notes": ""
+      },
+      {
+        "exerciseName": "Lat Pulldown (Cable)",
+        "reps": 10,
+        "weight": 120.0,
+        "notes": ""
+      },
+      {
+        "exerciseName": "Lat Pulldown (Cable)",
+        "reps": 10,
+        "weight": 120.0,
+        "notes": ""
+      },
+      {
+        "exerciseName": "Single Arm Cable Row",
+        "reps": 8,
+        "weight": 60.0,
+        "notes": ""
+      },
+      {
+        "exerciseName": "Single Arm Cable Row",
+        "reps": 8,
+        "weight": 60.0,
+        "notes": ""
+      },
+      {
+        "exerciseName": "Single Arm Cable Row",
+        "reps": 8,
+        "weight": 75.0,
+        "notes": ""
+      },
+      {
+        "exerciseName": "Shoulder Press (Machine)",
+        "reps": 8,
+        "weight": 75.0,
+        "notes": ""
+      },
+      {
+        "exerciseName": "Shoulder Press (Machine)",
+        "reps": 8,
+        "weight": 75.0,
+        "notes": ""
+      },
+      {
+        "exerciseName": "Shoulder Press (Machine)",
+        "reps": 8,
+        "weight": 75.0,
+        "notes": ""
+      },
+      {
+        "exerciseName": "Lateral Raise (Cable)",
+        "reps": 12,
+        "weight": 7.5,
+        "notes": ""
+      },
+      {
+        "exerciseName": "Lateral Raise (Cable)",
+        "reps": 12,
+        "weight": 7.5,
+        "notes": ""
+      },
+      {
+        "exerciseName": "Lateral Raise (Cable)",
+        "reps": 12,
+        "weight": 7.5,
+        "notes": ""
+      },
+      {
+        "exerciseName": "Triceps Pushdown (Cable - Straight Bar)",
+        "reps": 12,
+        "weight": 62.5,
+        "notes": ""
+      },
+      {
+        "exerciseName": "Triceps Pushdown (Cable - Straight Bar)",
+        "reps": 12,
+        "weight": 62.5,
+        "notes": ""
+      },
+      {
+        "exerciseName": "Triceps Pushdown (Cable - Straight Bar)",
+        "reps": 12,
+        "weight": 62.5,
+        "notes": ""
+      },
+      {
+        "exerciseName": "Bicep Curl (Dumbbell)",
+        "reps": 12,
+        "weight": 30.0,
+        "notes": ""
+      },
+      {
+        "exerciseName": "Bicep Curl (Dumbbell)",
+        "reps": 12,
+        "weight": 30.0,
+        "notes": ""
+      },
+      {
+        "exerciseName": "Bicep Curl (Dumbbell)",
+        "reps": 10,
+        "weight": 30.0,
+        "notes": ""
+      }
+    ]
+  },
+  {
+    "workoutNumber": "23",
+    "datetime": "2026-04-02T21:08:08",
+    "sets": [
+      {
+        "exerciseName": "Calf Press on Seated Leg Press",
+        "reps": 20,
+        "weight": 125.0,
+        "notes": ""
+      },
+      {
+        "exerciseName": "Calf Press on Seated Leg Press",
+        "reps": 20,
+        "weight": 140.0,
+        "notes": ""
+      },
+      {
+        "exerciseName": "Calf Press on Seated Leg Press",
+        "reps": 20,
+        "weight": 140.0,
+        "notes": ""
+      },
+      {
+        "exerciseName": "Seated Leg Press (Machine)",
+        "reps": 10,
+        "weight": 95.0,
+        "notes": ""
+      },
+      {
+        "exerciseName": "Seated Leg Press (Machine)",
+        "reps": 8,
+        "weight": 140.0,
+        "notes": ""
+      },
+      {
+        "exerciseName": "Seated Leg Press (Machine)",
+        "reps": 8,
+        "weight": 200.0,
+        "notes": ""
+      },
+      {
+        "exerciseName": "Seated Leg Press (Machine)",
+        "reps": 8,
+        "weight": 200.0,
+        "notes": ""
+      },
+      {
+        "exerciseName": "Seated Leg Press (Machine)",
+        "reps": 8,
+        "weight": 200.0,
+        "notes": ""
+      },
+      {
+        "exerciseName": "Seated Leg Press (Machine)",
+        "reps": 16,
+        "weight": 155.0,
+        "notes": ""
+      },
+      {
+        "exerciseName": "Seated Deadlift (Cable)",
+        "reps": 10,
+        "weight": 105.0,
+        "notes": ""
+      },
+      {
+        "exerciseName": "Seated Deadlift (Cable)",
+        "reps": 8,
+        "weight": 150.0,
+        "notes": ""
+      },
+      {
+        "exerciseName": "Seated Deadlift (Cable)",
+        "reps": 8,
+        "weight": 180.0,
+        "notes": ""
+      },
+      {
+        "exerciseName": "Seated Deadlift (Cable)",
+        "reps": 10,
+        "weight": 200.0,
+        "notes": ""
+      },
+      {
+        "exerciseName": "Leg Extension (Machine)",
+        "reps": 8,
+        "weight": 135.0,
+        "notes": ""
+      },
+      {
+        "exerciseName": "Leg Extension (Machine)",
+        "reps": 8,
+        "weight": 150.0,
+        "notes": ""
+      },
+      {
+        "exerciseName": "Leg Extension (Machine)",
+        "reps": 8,
+        "weight": 150.0,
+        "notes": ""
+      },
+      {
+        "exerciseName": "Lying Leg Curl (Machine)",
+        "reps": 8,
+        "weight": 90.0,
+        "notes": ""
+      },
+      {
+        "exerciseName": "Lying Leg Curl (Machine)",
+        "reps": 8,
+        "weight": 90.0,
+        "notes": ""
+      },
+      {
+        "exerciseName": "Lying Leg Curl (Machine)",
+        "reps": 8,
+        "weight": 90.0,
+        "notes": ""
+      },
+      {
+        "exerciseName": "Bulgarian Split Squat",
+        "reps": 8,
+        "weight": 45.0,
+        "notes": ""
+      },
+      {
+        "exerciseName": "Bulgarian Split Squat",
+        "reps": 8,
+        "weight": 45.0,
+        "notes": ""
+      },
+      {
+        "exerciseName": "Bulgarian Split Squat",
+        "reps": 8,
+        "weight": 45.0,
+        "notes": ""
+      },
+      {
+        "exerciseName": "Deadlift (Smith Machine)",
+        "reps": 8,
+        "weight": 165.0,
+        "notes": ""
+      },
+      {
+        "exerciseName": "Deadlift (Smith Machine)",
+        "reps": 8,
+        "weight": 165.0,
+        "notes": ""
+      },
+      {
+        "exerciseName": "Deadlift (Smith Machine)",
+        "reps": 8,
+        "weight": 175.0,
+        "notes": ""
+      }
+    ]
+  },
+  {
+    "workoutNumber": "24",
+    "datetime": "2026-04-03T18:14:16",
+    "sets": [
+      {
+        "exerciseName": "Chest Press (Machine)",
+        "reps": 8,
+        "weight": 105.0,
+        "notes": ""
+      },
+      {
+        "exerciseName": "Chest Press (Machine)",
+        "reps": 8,
+        "weight": 135.0,
+        "notes": ""
+      },
+      {
+        "exerciseName": "Chest Press (Machine)",
+        "reps": 8,
+        "weight": 195.0,
+        "notes": ""
+      },
+      {
+        "exerciseName": "Chest Press (Machine)",
+        "reps": 8,
+        "weight": 195.0,
+        "notes": ""
+      },
+      {
+        "exerciseName": "Chest Press (Machine)",
+        "reps": 7,
+        "weight": 195.0,
+        "notes": ""
+      },
+      {
+        "exerciseName": "Chest Press (Machine)",
+        "reps": 8,
+        "weight": 165.0,
+        "notes": ""
+      },
+      {
+        "exerciseName": "Incline Cable Fly",
+        "reps": 12,
+        "weight": 17.5,
+        "notes": ""
+      },
+      {
+        "exerciseName": "Incline Cable Fly",
+        "reps": 12,
+        "weight": 17.5,
+        "notes": ""
+      },
+      {
+        "exerciseName": "Incline Cable Fly",
+        "reps": 14,
+        "weight": 17.5,
+        "notes": ""
+      },
+      {
+        "exerciseName": "Incline Bench Press (Dumbbell)",
+        "reps": 10,
+        "weight": 45.0,
+        "notes": ""
+      },
+      {
+        "exerciseName": "Incline Bench Press (Dumbbell)",
+        "reps": 10,
+        "weight": 45.0,
+        "notes": ""
+      },
+      {
+        "exerciseName": "Incline Bench Press (Dumbbell)",
+        "reps": 10,
+        "weight": 45.0,
+        "notes": ""
+      },
+      {
+        "exerciseName": "Lat Pulldown (Cable)",
+        "reps": 10,
+        "weight": 135.0,
+        "notes": ""
+      },
+      {
+        "exerciseName": "Lat Pulldown (Cable)",
+        "reps": 10,
+        "weight": 135.0,
+        "notes": ""
+      },
+      {
+        "exerciseName": "Lat Pulldown (Cable)",
+        "reps": 10,
+        "weight": 120.0,
+        "notes": ""
+      },
+      {
+        "exerciseName": "Lat Pulldown (Cable)",
+        "reps": 10,
+        "weight": 120.0,
+        "notes": ""
+      },
+      {
+        "exerciseName": "Single Arm Cable Row",
+        "reps": 8,
+        "weight": 75.0,
+        "notes": ""
+      },
+      {
+        "exerciseName": "Single Arm Cable Row",
+        "reps": 8,
+        "weight": 60.0,
+        "notes": ""
+      },
+      {
+        "exerciseName": "Single Arm Cable Row",
+        "reps": 12,
+        "weight": 60.0,
+        "notes": ""
+      },
+      {
+        "exerciseName": "Shoulder Press (Machine)",
+        "reps": 8,
+        "weight": 90.0,
+        "notes": ""
+      },
+      {
+        "exerciseName": "Shoulder Press (Machine)",
+        "reps": 6,
+        "weight": 90.0,
+        "notes": ""
+      },
+      {
+        "exerciseName": "Shoulder Press (Machine)",
+        "reps": 8,
+        "weight": 75.0,
+        "notes": ""
+      },
+      {
+        "exerciseName": "Shoulder Press (Machine)",
+        "reps": 10,
+        "weight": 45.0,
+        "notes": ""
+      },
+      {
+        "exerciseName": "Lateral Raise (Cable)",
+        "reps": 12,
+        "weight": 7.5,
+        "notes": ""
+      },
+      {
+        "exerciseName": "Lateral Raise (Cable)",
+        "reps": 12,
+        "weight": 7.5,
+        "notes": ""
+      },
+      {
+        "exerciseName": "Lateral Raise (Cable)",
+        "reps": 12,
+        "weight": 7.5,
+        "notes": ""
+      },
+      {
+        "exerciseName": "Triceps Pushdown (Cable - Straight Bar)",
+        "reps": 12,
+        "weight": 62.5,
+        "notes": ""
+      },
+      {
+        "exerciseName": "Triceps Pushdown (Cable - Straight Bar)",
+        "reps": 12,
+        "weight": 62.5,
+        "notes": ""
+      },
+      {
+        "exerciseName": "Triceps Pushdown (Cable - Straight Bar)",
+        "reps": 12,
+        "weight": 62.5,
+        "notes": ""
+      },
+      {
+        "exerciseName": "Bicep Curl (Dumbbell)",
+        "reps": 10,
+        "weight": 35.0,
+        "notes": ""
+      },
+      {
+        "exerciseName": "Bicep Curl (Dumbbell)",
+        "reps": 10,
+        "weight": 35.0,
+        "notes": ""
+      },
+      {
+        "exerciseName": "Bicep Curl (Dumbbell)",
+        "reps": 12,
+        "weight": 30.0,
         "notes": ""
       }
     ]
   }
-] as const;
+];
+
