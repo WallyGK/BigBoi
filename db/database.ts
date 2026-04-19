@@ -1,7 +1,7 @@
 import { type SQLiteDatabase } from "expo-sqlite";
 
 export async function migrateDbIfNeeded(db: SQLiteDatabase) {
-  const DATABASE_VERSION = 2; // start with 1, increment as you add migrations
+  const DATABASE_VERSION = 4; // start with 1, increment as you add migrations
 
   const result = await db.getFirstAsync<{ user_version: number }>(
     "PRAGMA user_version",
@@ -134,6 +134,24 @@ export async function migrateDbIfNeeded(db: SQLiteDatabase) {
     `);
 
     currentDbVersion = 2;
+  }
+
+  // Add sticky_note column to exercises
+  if (currentDbVersion === 2) {
+    console.log("Migrating to version 3");
+    await db.execAsync(
+      `ALTER TABLE exercises ADD COLUMN sticky_note TEXT DEFAULT '';`,
+    );
+    currentDbVersion = 3;
+  }
+
+  // Add duration_seconds column to workout_logs
+  if (currentDbVersion === 3) {
+    console.log("Migrating to version 4");
+    await db.execAsync(
+      `ALTER TABLE workout_logs ADD COLUMN duration_seconds INTEGER DEFAULT NULL;`,
+    );
+    currentDbVersion = 4;
   }
 
   await db.execAsync(`PRAGMA user_version = ${DATABASE_VERSION}`);

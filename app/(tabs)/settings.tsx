@@ -2,6 +2,7 @@ import Button from "@/components/Button";
 import ScreenTitle from "@/components/ScreenTitle";
 import TabScreenContainer from "@/components/TabScreenContainer";
 import { SPACING, ThemeContext } from "@/constants/Theme";
+import { exportAllDataToCsv } from "@/db/exportBackupCsv";
 import { resetAndSeedStrongData } from "@/db/seed/resetAndSeedStrong";
 import { useContext, useState } from "react";
 import { Alert, Text, View } from "react-native";
@@ -9,6 +10,7 @@ import { Alert, Text, View } from "react-native";
 export default function Settings() {
   const { colors } = useContext(ThemeContext);
   const [isSeeding, setIsSeeding] = useState(false);
+  const [isExporting, setIsExporting] = useState(false);
 
   const handleResetAndSeed = () => {
     Alert.alert(
@@ -40,6 +42,22 @@ export default function Settings() {
     );
   };
 
+  const handleExportCsv = async () => {
+    setIsExporting(true);
+    try {
+      const result = await exportAllDataToCsv();
+      Alert.alert(
+        "Export Complete",
+        `Exported ${result.totalRows} rows to CSV. Use the share sheet to save it for backup/reimport.`,
+      );
+    } catch (error) {
+      const message = error instanceof Error ? error.message : "Unknown error";
+      Alert.alert("Export Failed", message);
+    } finally {
+      setIsExporting(false);
+    }
+  };
+
   return (
     <TabScreenContainer>
       <ScreenTitle>Settings</ScreenTitle>
@@ -61,8 +79,14 @@ export default function Settings() {
         <Button
           title={isSeeding ? "Importing..." : "Reset + Import Seed Workouts"}
           onPress={handleResetAndSeed}
-          disabled={isSeeding}
+          disabled={isSeeding || isExporting}
           style={{ backgroundColor: colors.error }}
+        />
+        <Button
+          title={isExporting ? "Exporting..." : "Export Full Backup CSV"}
+          onPress={handleExportCsv}
+          disabled={isSeeding || isExporting}
+          style={{ marginTop: SPACING.sm }}
         />
       </View>
     </TabScreenContainer>

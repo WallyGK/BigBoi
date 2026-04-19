@@ -1,4 +1,5 @@
 // components/TabScreenContainer.tsx
+import ActiveWorkoutBanner from "@/components/ActiveWorkoutBanner";
 import { ThemeContext } from "@/constants/Theme";
 import { useContext } from "react";
 import { View } from "react-native";
@@ -23,6 +24,7 @@ export default function TabScreenContainer({
       >
         {children}
       </View>
+      <ActiveWorkoutBanner />
     </SafeAreaView>
   );
 }

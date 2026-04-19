@@ -4,6 +4,7 @@ export interface Exercise {
   name: string;
   muscleGroup?: string;
   description?: string;
+  sticky_note?: string;
   is_deleted?: boolean;
 }
 
@@ -63,6 +64,7 @@ export interface WorkoutExerciseEntry {
   datetime: string;
   exercise_name: string;
   muscle_group?: string;
+  duration_seconds?: number | null;
 }
 
 export interface WorkoutLogSummary {
@@ -70,12 +72,15 @@ export interface WorkoutLogSummary {
   datetime: string;
   exercise_count: number;
   total_weight: number;
+  duration_seconds?: number | null;
+  notes_preview?: string | null;
 }
 
 export interface WorkoutExerciseDetail {
   id: string;
   workout_id: string;
   datetime: string;
+  duration_seconds?: number | null;
   exercise_id: string;
   exercise_name: string;
   reps: number;

@@ -15,6 +15,7 @@ const STRONG_EXERCISE_MUSCLE_GROUPS: Record<string, string> = {
   "Lateral Raise (Dumbbell)": "Shoulders",
   "Lateral Raise (Cable)": "Shoulders",
   "Triceps Extension": "Arms",
+  "Triceps Extension (Cable)": "Arms",
   "Triceps Pushdown (Cable - Straight Bar)": "Arms",
   "Bicep Curl (Dumbbell)": "Arms",
   "Bicep Curl (Cable)": "Arms",

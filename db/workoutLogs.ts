@@ -17,14 +17,15 @@ export async function addWorkoutLog(
     weight: number;
     notes?: string;
   }[],
+  durationSeconds?: number,
 ): Promise<string> {
   const db = await getDb();
   const workoutId = uuid.v4().toString();
 
   await db.withTransactionAsync(async () => {
     await db.runAsync(
-      `INSERT INTO workout_logs (id, datetime, is_deleted) VALUES (?, ?, 0)`,
-      [workoutId, datetime],
+      `INSERT INTO workout_logs (id, datetime, duration_seconds, is_deleted) VALUES (?, ?, ?, 0)`,
+      [workoutId, datetime, durationSeconds ?? null],
     );
 
     for (const ex of exercises) {
@@ -67,12 +68,20 @@ export async function getWorkoutLogSummaries(): Promise<WorkoutLogSummary[]> {
       SELECT
         wl.id,
         wl.datetime,
+        wl.duration_seconds,
         COUNT(we.id) AS exercise_count,
-        COALESCE(SUM(we.reps * we.weight), 0) AS total_weight
+        COALESCE(SUM(we.reps * we.weight), 0) AS total_weight,
+        GROUP_CONCAT(
+          CASE
+            WHEN TRIM(COALESCE(we.notes, '')) <> '' THEN TRIM(we.notes)
+            ELSE NULL
+          END,
+          ' | '
+        ) AS notes_preview
       FROM workout_logs wl
       LEFT JOIN workout_exercises we ON we.workout_id = wl.id
       WHERE wl.is_deleted = 0
-      GROUP BY wl.id, wl.datetime
+      GROUP BY wl.id, wl.datetime, wl.duration_seconds
       ORDER BY wl.datetime DESC
     `,
   );
@@ -100,6 +109,7 @@ export async function getWorkoutExercisesWithNames(
         we.workout_id,
         we.rowid AS execution_order,
         wl.datetime,
+        wl.duration_seconds,
         we.exercise_id,
         ex.name AS exercise_name,
         we.reps,
@@ -129,7 +139,7 @@ export async function getWorkoutExerciseEntries(
 ): Promise<WorkoutExerciseEntry[]> {
   const db = await getDb();
   let query = `
-    SELECT wl.datetime, we.*, ex.name as exercise_name, ex.muscleGroup as muscle_group
+    SELECT wl.datetime, wl.duration_seconds, we.*, ex.name as exercise_name, ex.muscleGroup as muscle_group
     FROM workout_exercises we
     JOIN workout_logs wl ON we.workout_id = wl.id
     JOIN exercises ex ON we.exercise_id = ex.id

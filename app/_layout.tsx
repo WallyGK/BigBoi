@@ -1,5 +1,6 @@
 // app/_layout.tsx
 import { ThemeContext, ThemeProvider } from "@/constants/Theme";
+import { ActiveWorkoutProvider } from "@/context/ActiveWorkoutContext";
 import { Ionicons } from "@expo/vector-icons";
 import { Stack, useRouter } from "expo-router";
 import { StatusBar } from "expo-status-bar";
@@ -52,7 +53,9 @@ export default function RootLayout() {
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>
       <ThemeProvider>
-        <RootNavigator />
+        <ActiveWorkoutProvider>
+          <RootNavigator />
+        </ActiveWorkoutProvider>
       </ThemeProvider>
     </GestureHandlerRootView>
   );

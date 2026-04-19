@@ -12,6 +12,7 @@ interface ButtonProps {
   onPress: () => void;
   disabled?: boolean;
   style?: object;
+  textStyle?: object;
 }
 
 export default function Button({
@@ -19,6 +20,7 @@ export default function Button({
   onPress,
   disabled = false,
   style,
+  textStyle,
 }: ButtonProps) {
   const { colors } = useContext(ThemeContext);
 
@@ -39,6 +41,7 @@ export default function Button({
         style={[
           styles.text,
           { color: disabled ? colors.textSecondary : colors.text },
+          textStyle,
         ]}
       >
         {title}

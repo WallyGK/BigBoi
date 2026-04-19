@@ -36,6 +36,7 @@ type DaySummary = {
   } | null;
   heaviestSet: DayMetricSet | null;
   topMuscleGroups: string;
+  duration_seconds: number | null;
 };
 
 type TableRow = {
@@ -45,6 +46,7 @@ type TableRow = {
   heaviestRep?: string;
   templateName?: string;
   topMuscleGroups?: string;
+  duration?: string;
 };
 
 const TABLE_COLUMN_WIDTH = 96;
@@ -63,6 +65,16 @@ function formatChartDateLabel(dateKey: string): string {
     return `${parts[1]}/${parts[2]}`;
   }
   return dateKey;
+}
+
+function formatDuration(seconds: number | null | undefined): string {
+  if (seconds == null || seconds <= 0) return "-";
+  const h = Math.floor(seconds / 3600);
+  const m = Math.floor((seconds % 3600) / 60);
+  const s = seconds % 60;
+  if (h > 0) return `${h}h ${m}m`;
+  if (m > 0) return s > 0 ? `${m}m ${s}s` : `${m}m`;
+  return `${s}s`;
 }
 
 export default function Performance() {
@@ -265,6 +277,7 @@ export default function Performance() {
           bestEstimated1RM,
           heaviestSet,
           topMuscleGroups,
+          duration_seconds: dayEntries[0]?.duration_seconds ?? null,
         };
       })
       .sort((a, b) => b.date.localeCompare(a.date));
@@ -278,6 +291,7 @@ export default function Performance() {
           totalWeight: Math.round(summary.totalWeight).toString(),
           templateName: "Custom",
           topMuscleGroups: summary.topMuscleGroups,
+          duration: formatDuration(summary.duration_seconds),
         });
         return rows;
       }
@@ -506,6 +520,16 @@ export default function Performance() {
                       >
                         Muscle Grp
                       </Text>
+                      <Text
+                        style={{
+                          width: TABLE_COLUMN_WIDTH,
+                          fontWeight: "bold",
+                          color: colors.text,
+                          textAlign: "center",
+                        }}
+                      >
+                        Duration
+                      </Text>
                     </>
                   )}
                 </View>
@@ -578,6 +602,15 @@ export default function Performance() {
                           }}
                         >
                           {row.topMuscleGroups || "-"}
+                        </Text>
+                        <Text
+                          style={{
+                            width: TABLE_COLUMN_WIDTH,
+                            color: colors.text,
+                            textAlign: "center",
+                          }}
+                        >
+                          {row.duration || "-"}
                         </Text>
                       </>
                     )}

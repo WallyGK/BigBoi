@@ -5,7 +5,7 @@ import SwipeDeleteRightAction from "@/components/SwipeDeleteRightAction";
 import { FONT_SIZE, SPACING, ThemeContext } from "@/constants/Theme";
 import { Ionicons } from "@expo/vector-icons";
 import { useContext } from "react";
-import { Pressable, View } from "react-native";
+import { Pressable, Text, View } from "react-native";
 import ReanimatedSwipeable from "react-native-gesture-handler/ReanimatedSwipeable";
 
 export type ExerciseSetField = "reps" | "weight" | "notes";
@@ -27,6 +27,8 @@ type ExerciseSetSectionProps = {
   onRequestDeleteSet: (setIdx: number) => void;
   onAddSet: () => void;
   onRemoveExercise?: () => void;
+  stickyNote?: string;
+  onEditStickyNote?: () => void;
 };
 
 export default function ExerciseSetSection({
@@ -39,6 +41,8 @@ export default function ExerciseSetSection({
   onRequestDeleteSet,
   onAddSet,
   onRemoveExercise,
+  stickyNote,
+  onEditStickyNote,
 }: ExerciseSetSectionProps) {
   const { colors } = useContext(ThemeContext);
 
@@ -72,6 +76,49 @@ export default function ExerciseSetSection({
           </>
         ) : null}
       </View>
+      {onEditStickyNote ? (
+        <Pressable
+          onPress={onEditStickyNote}
+          style={{
+            flexDirection: "row",
+            alignItems: "flex-start",
+            backgroundColor: stickyNote?.trim()
+              ? "rgba(255, 220, 80, 0.15)"
+              : "transparent",
+            borderWidth: 1,
+            borderColor: stickyNote?.trim()
+              ? "rgba(255, 220, 80, 0.5)"
+              : colors.border,
+            borderRadius: 6,
+            paddingHorizontal: SPACING.sm,
+            paddingVertical: SPACING.xs,
+            marginBottom: SPACING.sm,
+          }}
+        >
+          <Ionicons
+            name="document-text-outline"
+            size={15}
+            color={stickyNote?.trim() ? "#c8a800" : colors.textSecondary}
+            style={{ marginTop: 2, marginRight: 6 }}
+          />
+          <Text
+            style={{
+              flex: 1,
+              fontSize: FONT_SIZE.sm,
+              color: stickyNote?.trim() ? "#c8a800" : colors.textSecondary,
+              fontStyle: stickyNote?.trim() ? "normal" : "italic",
+            }}
+          >
+            {stickyNote?.trim() || "Add a sticky note…"}
+          </Text>
+          <Ionicons
+            name="create-outline"
+            size={14}
+            color={colors.textSecondary}
+            style={{ marginTop: 2, marginLeft: 4 }}
+          />
+        </Pressable>
+      ) : null}
       {sets.map((set, setIdx) => (
         <ReanimatedSwipeable
           key={`${exerciseId}-set-${setIdx}`}

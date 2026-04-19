@@ -10,6 +10,16 @@ import { useRouter } from "expo-router";
 import React, { useCallback, useContext, useState } from "react";
 import { ActivityIndicator, FlatList, Text } from "react-native";
 
+function formatDuration(seconds: number | null | undefined): string {
+  if (seconds == null || seconds <= 0) return "-";
+  const h = Math.floor(seconds / 3600);
+  const m = Math.floor((seconds % 3600) / 60);
+  const s = seconds % 60;
+  if (h > 0) return `${h}h ${m}m`;
+  if (m > 0) return s > 0 ? `${m}m ${s}s` : `${m}m`;
+  return `${s}s`;
+}
+
 export default function HistoryScreen() {
   const { colors } = useContext(ThemeContext);
   const router = useRouter();
@@ -53,8 +63,13 @@ export default function HistoryScreen() {
           renderItem={({ item }) => (
             <ListItem
               title={toLocalDateKey(item.datetime) || item.datetime}
-              subtitle={`${item.exercise_count} entries`}
+              subtitle={`${item.exercise_count} entries · ${formatDuration(item.duration_seconds)}`}
               description={`Total weight moved: ${Math.round(item.total_weight)} lb`}
+              notes={
+                item.notes_preview && item.notes_preview.trim()
+                  ? `Notes: ${item.notes_preview}`
+                  : undefined
+              }
               onPress={() =>
                 router.push({
                   pathname: "/history/[workoutId]",

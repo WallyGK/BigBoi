@@ -10,29 +10,49 @@ import TemplateSelectForm from "@/components/TemplateSelectForm";
 import ThemedModal from "@/components/ThemedModal";
 import ThemedTextInput from "@/components/ThemedTextInput";
 import { SPACING, ThemeContext } from "@/constants/Theme";
+import { useActiveWorkout } from "@/context/ActiveWorkoutContext";
+import { updateExerciseStickyNote } from "@/db/exercises";
 import { getExercisesForTemplate, searchTemplatesAsync } from "@/db/templates";
 import { Exercise, Template } from "@/types";
+import { Ionicons } from "@expo/vector-icons";
 import { useLocalSearchParams, useRouter } from "expo-router";
-import React, { useContext, useEffect, useState } from "react";
-import { ScrollView, View } from "react-native";
+import React, { useContext, useEffect, useRef, useState } from "react";
+import { Pressable, ScrollView, View } from "react-native";
 
 export default function WorkoutScreen() {
   const { colors } = useContext(ThemeContext);
   const router = useRouter();
-  const { mode } = useLocalSearchParams<{ mode?: string }>();
+  const { mode: modeParam } = useLocalSearchParams<{ mode?: string }>();
 
-  // Shared state
-  const [sections, setSections] = useState<
-    {
-      exercise: Exercise;
-      sets: { reps: string; weight: string; notes: string; done: boolean }[];
-    }[]
-  >([]);
+  // Persistent workout state lives in context
+  const {
+    sections,
+    setSections,
+    mode,
+    setMode,
+    workoutTitle,
+    setWorkoutTitle,
+    startedAt,
+    setStartedAt,
+    clearWorkout,
+  } = useActiveWorkout();
+
+  // On first mount, if no active workout yet, initialise mode from URL param
+  const initialised = useRef(false);
+  useEffect(() => {
+    if (!initialised.current) {
+      initialised.current = true;
+      if (sections.length === 0 && modeParam) {
+        setMode(modeParam);
+      }
+    }
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+
   const [modalVisible, setModalVisible] = useState(false);
 
   // Template mode state
   const [templateModalVisible, setTemplateModalVisible] = useState(
-    mode === "template",
+    mode === "template" && sections.length === 0,
   );
   const [templates, setTemplates] = useState<Template[]>([]);
   const [selectedTemplate, setSelectedTemplate] = useState<Template | null>(
@@ -49,6 +69,16 @@ export default function WorkoutScreen() {
     setIdx: number;
   } | null>(null);
   const [noteDraft, setNoteDraft] = useState("");
+
+  // Sticky note state
+  const [stickyNoteModalVisible, setStickyNoteModalVisible] = useState(false);
+  const [pendingStickyNoteSection, setPendingStickyNoteSection] = useState<
+    number | null
+  >(null);
+  const [stickyNoteDraft, setStickyNoteDraft] = useState("");
+
+  // Discard confirm
+  const [discardConfirmVisible, setDiscardConfirmVisible] = useState(false);
 
   // Load templates for template mode
   useEffect(() => {
@@ -81,6 +111,10 @@ export default function WorkoutScreen() {
             })),
     }));
     setSections(newSections);
+    setWorkoutTitle(selectedTemplate.name);
+    if (sections.length === 0) {
+      setStartedAt(new Date());
+    }
     setTemplateModalVisible(false);
   };
 
@@ -90,6 +124,9 @@ export default function WorkoutScreen() {
       if (prev.some((section) => section.exercise.id === exercise.id)) {
         setModalVisible(false);
         return prev;
+      }
+      if (prev.length === 0) {
+        setStartedAt(new Date());
       }
       return [
         ...prev,
@@ -213,6 +250,42 @@ export default function WorkoutScreen() {
     setPendingNotesTarget(null);
   };
 
+  const openStickyNoteEditor = (sectionIdx: number) => {
+    const current = sections[sectionIdx]?.exercise?.sticky_note || "";
+    setPendingStickyNoteSection(sectionIdx);
+    setStickyNoteDraft(current);
+    setStickyNoteModalVisible(true);
+  };
+
+  const handleSaveStickyNote = async () => {
+    if (pendingStickyNoteSection === null) {
+      setStickyNoteModalVisible(false);
+      return;
+    }
+    const exercise = sections[pendingStickyNoteSection]?.exercise;
+    if (exercise) {
+      await updateExerciseStickyNote(exercise.id, stickyNoteDraft);
+      setSections((prev) => {
+        const updated = [...prev];
+        updated[pendingStickyNoteSection] = {
+          ...updated[pendingStickyNoteSection],
+          exercise: {
+            ...updated[pendingStickyNoteSection].exercise,
+            sticky_note: stickyNoteDraft,
+          },
+        };
+        return updated;
+      });
+    }
+    setStickyNoteModalVisible(false);
+    setPendingStickyNoteSection(null);
+  };
+
+  const handleCancelStickyNote = () => {
+    setStickyNoteModalVisible(false);
+    setPendingStickyNoteSection(null);
+  };
+
   return (
     <ScreenContainer>
       {mode === "template" && (
@@ -230,11 +303,20 @@ export default function WorkoutScreen() {
           />
         </ThemedModal>
       )}
-      <ScreenTitle>
-        {mode === "template"
-          ? selectedTemplate?.name || "Workout from Template"
-          : "Workout"}
-      </ScreenTitle>
+      <View
+        style={{
+          flexDirection: "row",
+          alignItems: "center",
+        }}
+      >
+        <ScreenTitle style={{ flex: 1 }}>{workoutTitle}</ScreenTitle>
+        <Pressable
+          onPress={() => setDiscardConfirmVisible(true)}
+          hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
+        >
+          <Ionicons name="trash-outline" size={24} color={colors.error} />
+        </Pressable>
+      </View>
       <ScrollView contentContainerStyle={{ paddingVertical: SPACING.sm }}>
         {sections.map((section, sectionIdx) => (
           <ExerciseSetSection
@@ -253,6 +335,8 @@ export default function WorkoutScreen() {
               requestDeleteSet(sectionIdx, setIdx)
             }
             onAddSet={() => handleAddSet(sectionIdx)}
+            stickyNote={section.exercise.sticky_note}
+            onEditStickyNote={() => openStickyNoteEditor(sectionIdx)}
           />
         ))}
       </ScrollView>
@@ -291,8 +375,25 @@ export default function WorkoutScreen() {
               notes: set.notes,
             })),
           )}
+          durationSeconds={
+            startedAt
+              ? Math.round((Date.now() - startedAt.getTime()) / 1000)
+              : undefined
+          }
+          onSaved={clearWorkout}
         />
       </View>
+      <ConfirmDeleteModal
+        visible={discardConfirmVisible}
+        onConfirm={() => {
+          setDiscardConfirmVisible(false);
+          clearWorkout();
+          router.back();
+        }}
+        onCancel={() => setDiscardConfirmVisible(false)}
+        title="Discard workout?"
+        message="All progress will be lost."
+      />
       <ConfirmDeleteModal
         visible={deleteSetConfirmVisible}
         onConfirm={handleConfirmDeleteSet}
@@ -317,6 +418,29 @@ export default function WorkoutScreen() {
         <Button
           title="Cancel"
           onPress={handleCancelNotes}
+          style={{ marginTop: SPACING.sm, backgroundColor: colors.error }}
+        />
+      </ThemedModal>
+      <ThemedModal
+        visible={stickyNoteModalVisible}
+        onClose={handleCancelStickyNote}
+      >
+        <SectionTitle>Sticky Note</SectionTitle>
+        <ThemedTextInput
+          value={stickyNoteDraft}
+          onChangeText={setStickyNoteDraft}
+          placeholder="e.g. Seat at position 3, grip just outside shoulder width"
+          multiline
+          style={{
+            minHeight: 110,
+            marginBottom: SPACING.md,
+            paddingHorizontal: 10,
+          }}
+        />
+        <Button title="Save" onPress={handleSaveStickyNote} />
+        <Button
+          title="Cancel"
+          onPress={handleCancelStickyNote}
           style={{ marginTop: SPACING.sm, backgroundColor: colors.error }}
         />
       </ThemedModal>

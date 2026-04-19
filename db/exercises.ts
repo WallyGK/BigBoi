@@ -27,7 +27,7 @@ export async function addExercise(
     );
 
     const newExercise = await db.getFirstAsync<Exercise>(
-      `SELECT id, name, muscleGroup, description, is_deleted FROM exercises WHERE id = ?`,
+      `SELECT id, name, muscleGroup, description, sticky_note, is_deleted FROM exercises WHERE id = ?`,
       [exerciseId],
     );
 
@@ -45,7 +45,7 @@ export async function searchExercisesAsync(
   const db = await getDb();
   try {
     const query = `
-      SELECT id, name, muscleGroup, description FROM exercises 
+      SELECT id, name, muscleGroup, description, sticky_note FROM exercises 
       WHERE is_deleted = 0
       AND (name LIKE ? OR muscleGroup LIKE ?)
       ORDER BY name ASC
@@ -66,7 +66,7 @@ export async function getExerciseById(id: string): Promise<Exercise | null> {
   const db = await getDb();
   try {
     return await db.getFirstAsync<Exercise>(
-      `SELECT id, name, muscleGroup, description FROM exercises WHERE id = ? AND is_deleted = 0`,
+      `SELECT id, name, muscleGroup, description, sticky_note FROM exercises WHERE id = ? AND is_deleted = 0`,
       [id],
     );
   } catch (error) {
@@ -95,6 +95,18 @@ export async function updateExerciseAsync(exercise: Exercise): Promise<void> {
       exercise.id,
     ],
   );
+}
+
+// UPDATE: Save sticky note for an exercise
+export async function updateExerciseStickyNote(
+  id: string,
+  note: string,
+): Promise<void> {
+  const db = await getDb();
+  await db.runAsync(`UPDATE exercises SET sticky_note = ? WHERE id = ?;`, [
+    note,
+    id,
+  ]);
 }
 
 // DELETE: Soft delete

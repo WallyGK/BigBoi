@@ -16,6 +16,7 @@ interface ExerciseSet {
 interface SaveWorkoutButtonProps {
   workoutDate?: string;
   exercises: ExerciseSet[];
+  durationSeconds?: number;
   style?: ViewStyle;
   onSaved?: () => void;
 }
@@ -23,6 +24,7 @@ interface SaveWorkoutButtonProps {
 export default function SaveWorkoutButton({
   workoutDate,
   exercises,
+  durationSeconds,
   style,
   onSaved,
 }: SaveWorkoutButtonProps) {
@@ -60,6 +62,7 @@ export default function SaveWorkoutButton({
           exercise_id: exerciseId,
           ...rest,
         })),
+        durationSeconds,
       );
       Alert.alert("Workout Saved", "Your workout has been logged.", [
         {

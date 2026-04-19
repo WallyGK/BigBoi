@@ -29,8 +29,8 @@ export async function resetAndSeedStrongData(): Promise<ResetSeedResult> {
       const workoutId = uuid.v4().toString();
 
       await db.runAsync(
-        `INSERT INTO workout_logs (id, datetime, is_deleted) VALUES (?, ?, 0)`,
-        [workoutId, workout.datetime],
+        `INSERT INTO workout_logs (id, datetime, duration_seconds, is_deleted) VALUES (?, ?, ?, 0)`,
+        [workoutId, workout.datetime, workout.duration_seconds ?? null],
       );
 
       for (const set of workout.sets) {

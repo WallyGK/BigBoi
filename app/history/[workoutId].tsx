@@ -10,9 +10,79 @@ import { SPACING, ThemeContext } from "@/constants/Theme";
 import { addExerciseToTemplate, addTemplate } from "@/db/templates";
 import { getWorkoutExercisesWithNames } from "@/db/workoutLogs";
 import { type WorkoutExerciseDetail } from "@/types";
+import { Ionicons } from "@expo/vector-icons";
+import * as Clipboard from "expo-clipboard";
 import { useLocalSearchParams } from "expo-router";
 import React, { useContext, useEffect, useMemo, useState } from "react";
-import { ActivityIndicator, Alert, ScrollView, Text, View } from "react-native";
+import {
+  ActivityIndicator,
+  Alert,
+  Pressable,
+  ScrollView,
+  Text,
+  View,
+} from "react-native";
+
+function formatDuration(seconds: number | null | undefined): string {
+  if (seconds == null || seconds <= 0) return "-";
+  const h = Math.floor(seconds / 3600);
+  const m = Math.floor((seconds % 3600) / 60);
+  const s = seconds % 60;
+  if (h > 0) return `${h}h ${m}m`;
+  if (m > 0) return s > 0 ? `${m}m ${s}s` : `${m}m`;
+  return `${s}s`;
+}
+
+function toCsvCell(value: unknown): string {
+  if (value == null) return "";
+
+  const raw = String(value);
+  if (
+    raw.includes(",") ||
+    raw.includes("\n") ||
+    raw.includes("\r") ||
+    raw.includes('"')
+  ) {
+    return `"${raw.replace(/"/g, '""')}"`;
+  }
+
+  return raw;
+}
+
+function buildWorkoutCsv(entries: WorkoutExerciseDetail[]): string {
+  const header = [
+    "datetime",
+    "duration_seconds",
+    "exercise_name",
+    "set_number",
+    "reps",
+    "weight_lb",
+    "notes",
+  ].join(",");
+
+  const ordered = [...entries].sort(
+    (a, b) => a.execution_order - b.execution_order,
+  );
+
+  const setCounterByExercise = new Map<string, number>();
+
+  const lines = ordered.map((entry) => {
+    const currentSet = (setCounterByExercise.get(entry.exercise_id) ?? 0) + 1;
+    setCounterByExercise.set(entry.exercise_id, currentSet);
+
+    return [
+      toCsvCell(entry.datetime),
+      toCsvCell(entry.duration_seconds ?? ""),
+      toCsvCell(entry.exercise_name),
+      toCsvCell(currentSet),
+      toCsvCell(entry.reps),
+      toCsvCell(entry.weight),
+      toCsvCell(entry.notes ?? ""),
+    ].join(",");
+  });
+
+  return [header, ...lines].join("\n");
+}
 
 export default function WorkoutHistoryDetailScreen() {
   const { colors } = useContext(ThemeContext);
@@ -61,9 +131,20 @@ export default function WorkoutHistoryDetailScreen() {
     );
     const dateText =
       entries.length > 0 ? toLocalDateKey(entries[0].datetime) : "";
+    const durationText =
+      entries.length > 0 ? formatDuration(entries[0].duration_seconds) : "-";
+    const notes = Array.from(
+      new Set(
+        entries
+          .map((item) => (item.notes || "").trim())
+          .filter((note) => note.length > 0),
+      ),
+    );
     return {
       totalWeight,
       dateText,
+      durationText,
+      notes,
     };
   }, [entries]);
 
@@ -162,9 +243,51 @@ export default function WorkoutHistoryDetailScreen() {
     }
   };
 
+  const handleCopyWorkoutData = async () => {
+    if (entries.length === 0) {
+      Alert.alert("Nothing to Copy", "This workout has no sets to copy.");
+      return;
+    }
+
+    const csv = buildWorkoutCsv(entries);
+    await Clipboard.setStringAsync(csv);
+    Alert.alert("Copied", "Workout data was copied to your clipboard.");
+  };
+
   return (
     <ScreenContainer>
-      <ScreenTitle>Workout Details</ScreenTitle>
+      <View
+        style={{
+          flexDirection: "row",
+          justifyContent: "space-between",
+          alignItems: "center",
+        }}
+      >
+        <ScreenTitle>Workout Details</ScreenTitle>
+        <Pressable
+          accessibilityRole="button"
+          accessibilityLabel="Copy workout data"
+          onPress={handleCopyWorkoutData}
+          style={{
+            flexDirection: "row",
+            alignItems: "center",
+            paddingVertical: SPACING.xs,
+            paddingHorizontal: SPACING.sm,
+            borderRadius: 8,
+            backgroundColor: colors.card,
+            borderWidth: 1,
+            borderColor: colors.border,
+          }}
+        >
+          <Ionicons
+            name="copy-outline"
+            size={16}
+            color={colors.text}
+            style={{ marginRight: 6 }}
+          />
+          <Text style={{ color: colors.text, fontWeight: "600" }}>Copy</Text>
+        </Pressable>
+      </View>
 
       {summary.dateText ? (
         <Text style={{ color: colors.textSecondary, marginBottom: SPACING.xs }}>
@@ -175,6 +298,16 @@ export default function WorkoutHistoryDetailScreen() {
       <Text style={{ color: colors.textSecondary, marginBottom: SPACING.md }}>
         Total weight moved: {Math.round(summary.totalWeight)} lb
       </Text>
+
+      <Text style={{ color: colors.textSecondary, marginBottom: SPACING.md }}>
+        Duration: {summary.durationText}
+      </Text>
+
+      {summary.notes.length > 0 ? (
+        <Text style={{ color: colors.textSecondary, marginBottom: SPACING.md }}>
+          Notes: {summary.notes.join(" | ")}
+        </Text>
+      ) : null}
 
       {groupedEntries.length > 0 && (
         <Button

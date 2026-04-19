@@ -1,3419 +1,899 @@
 // Auto-generated from db/seed/strong.csv
-export interface SeedWorkoutSet {
-  exerciseName: string;
-  reps: number;
-  weight: number;
-  notes?: string;
-}
-
-export interface SeedWorkout {
-  workoutNumber: string;
-  datetime: string;
-  sets: SeedWorkoutSet[];
-}
-
+export interface SeedWorkoutSet { exerciseName: string; reps: number; weight: number; notes?: string; }
+export interface SeedWorkout { workoutNumber: string; duration_seconds?: number; datetime: string; sets: SeedWorkoutSet[]; }
 export const strongSeedWorkouts: SeedWorkout[] = [
   {
-    "workoutNumber": "1",
-    "datetime": "2025-12-01T17:52:29",
-    "sets": [
-      {
-        "exerciseName": "Bench Press (Dumbbell)",
-        "reps": 8,
-        "weight": 40.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Bench Press (Dumbbell)",
-        "reps": 8,
-        "weight": 40.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Bench Press (Dumbbell)",
-        "reps": 8,
-        "weight": 40.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Triceps Extension",
-        "reps": 10,
-        "weight": 32.5,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Triceps Extension",
-        "reps": 10,
-        "weight": 32.5,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Triceps Extension",
-        "reps": 10,
-        "weight": 32.5,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Lat Pulldown (Cable)",
-        "reps": 10,
-        "weight": 105.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Lat Pulldown (Cable)",
-        "reps": 10,
-        "weight": 105.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Lat Pulldown (Cable)",
-        "reps": 8,
-        "weight": 105.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Lateral Raise (Dumbbell)",
-        "reps": 8,
-        "weight": 10.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Lateral Raise (Dumbbell)",
-        "reps": 8,
-        "weight": 10.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Bicep Curl (Dumbbell)",
-        "reps": 8,
-        "weight": 25.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Bicep Curl (Dumbbell)",
-        "reps": 8,
-        "weight": 25.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Bicep Curl (Dumbbell)",
-        "reps": 8,
-        "weight": 25.0,
-        "notes": ""
-      }
-    ]
+    workoutNumber: "1",
+    duration_seconds: 1134,
+    datetime: "2025-12-01T17:52:29",
+    sets: [
+      { exerciseName: "Bench Press (Dumbbell)", reps: 8, weight: 40 },
+      { exerciseName: "Bench Press (Dumbbell)", reps: 8, weight: 40 },
+      { exerciseName: "Bench Press (Dumbbell)", reps: 8, weight: 40 },
+      { exerciseName: "Triceps Extension", reps: 10, weight: 32.5 },
+      { exerciseName: "Triceps Extension", reps: 10, weight: 32.5 },
+      { exerciseName: "Triceps Extension", reps: 10, weight: 32.5 },
+      { exerciseName: "Lat Pulldown (Cable)", reps: 10, weight: 105 },
+      { exerciseName: "Lat Pulldown (Cable)", reps: 10, weight: 105 },
+      { exerciseName: "Lat Pulldown (Cable)", reps: 8, weight: 105 },
+      { exerciseName: "Lateral Raise (Dumbbell)", reps: 8, weight: 10 },
+      { exerciseName: "Lateral Raise (Dumbbell)", reps: 8, weight: 10 },
+      { exerciseName: "Bicep Curl (Dumbbell)", reps: 8, weight: 25 },
+      { exerciseName: "Bicep Curl (Dumbbell)", reps: 8, weight: 25 },
+      { exerciseName: "Bicep Curl (Dumbbell)", reps: 8, weight: 25 },
+    ],
   },
   {
-    "workoutNumber": "2",
-    "datetime": "2025-12-02T17:02:50",
-    "sets": [
-      {
-        "exerciseName": "Goblet Squat (Kettlebell)",
-        "reps": 8,
-        "weight": 50.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Goblet Squat (Kettlebell)",
-        "reps": 8,
-        "weight": 50.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Goblet Squat (Kettlebell)",
-        "reps": 8,
-        "weight": 50.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Seated Leg Press (Machine)",
-        "reps": 6,
-        "weight": 185.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Seated Leg Press (Machine)",
-        "reps": 6,
-        "weight": 185.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Seated Leg Press (Machine)",
-        "reps": 6,
-        "weight": 170.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Lying Leg Curl (Machine)",
-        "reps": 8,
-        "weight": 60.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Lying Leg Curl (Machine)",
-        "reps": 8,
-        "weight": 60.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Lying Leg Curl (Machine)",
-        "reps": 8,
-        "weight": 60.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Leg Extension (Machine)",
-        "reps": 8,
-        "weight": 75.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Leg Extension (Machine)",
-        "reps": 8,
-        "weight": 75.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Leg Extension (Machine)",
-        "reps": 8,
-        "weight": 75.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Calf Press on Seated Leg Press",
-        "reps": 20,
-        "weight": 80.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Calf Press on Seated Leg Press",
-        "reps": 15,
-        "weight": 95.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Calf Press on Seated Leg Press",
-        "reps": 20,
-        "weight": 110.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Bulgarian Split Squat",
-        "reps": 8,
-        "weight": 45.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Bulgarian Split Squat",
-        "reps": 8,
-        "weight": 45.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Bulgarian Split Squat",
-        "reps": 8,
-        "weight": 45.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Deadlift (Smith Machine)",
-        "reps": 8,
-        "weight": 135.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Deadlift (Smith Machine)",
-        "reps": 8,
-        "weight": 135.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Deadlift (Smith Machine)",
-        "reps": 8,
-        "weight": 135.0,
-        "notes": ""
-      }
-    ]
+    workoutNumber: "2",
+    duration_seconds: 2418,
+    datetime: "2025-12-02T17:02:50",
+    sets: [
+      { exerciseName: "Goblet Squat (Kettlebell)", reps: 8, weight: 50 },
+      { exerciseName: "Goblet Squat (Kettlebell)", reps: 8, weight: 50 },
+      { exerciseName: "Goblet Squat (Kettlebell)", reps: 8, weight: 50 },
+      { exerciseName: "Seated Leg Press (Machine)", reps: 6, weight: 185 },
+      { exerciseName: "Seated Leg Press (Machine)", reps: 6, weight: 185 },
+      { exerciseName: "Seated Leg Press (Machine)", reps: 6, weight: 170 },
+      { exerciseName: "Lying Leg Curl (Machine)", reps: 8, weight: 60 },
+      { exerciseName: "Lying Leg Curl (Machine)", reps: 8, weight: 60 },
+      { exerciseName: "Lying Leg Curl (Machine)", reps: 8, weight: 60 },
+      { exerciseName: "Leg Extension (Machine)", reps: 8, weight: 75 },
+      { exerciseName: "Leg Extension (Machine)", reps: 8, weight: 75 },
+      { exerciseName: "Leg Extension (Machine)", reps: 8, weight: 75 },
+      { exerciseName: "Calf Press on Seated Leg Press", reps: 20, weight: 80 },
+      { exerciseName: "Calf Press on Seated Leg Press", reps: 15, weight: 95 },
+      { exerciseName: "Calf Press on Seated Leg Press", reps: 20, weight: 110 },
+      { exerciseName: "Bulgarian Split Squat", reps: 8, weight: 45 },
+      { exerciseName: "Bulgarian Split Squat", reps: 8, weight: 45 },
+      { exerciseName: "Bulgarian Split Squat", reps: 8, weight: 45 },
+      { exerciseName: "Deadlift (Smith Machine)", reps: 8, weight: 135 },
+      { exerciseName: "Deadlift (Smith Machine)", reps: 8, weight: 135 },
+      { exerciseName: "Deadlift (Smith Machine)", reps: 8, weight: 135 },
+    ],
   },
   {
-    "workoutNumber": "3",
-    "datetime": "2025-12-08T19:15:12",
-    "sets": [
-      {
-        "exerciseName": "Seated Leg Press (Machine)",
-        "reps": 8,
-        "weight": 185.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Seated Leg Press (Machine)",
-        "reps": 8,
-        "weight": 185.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Seated Leg Press (Machine)",
-        "reps": 8,
-        "weight": 200.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Lying Leg Curl (Machine)",
-        "reps": 8,
-        "weight": 75.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Lying Leg Curl (Machine)",
-        "reps": 8,
-        "weight": 90.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Lying Leg Curl (Machine)",
-        "reps": 8,
-        "weight": 90.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Leg Extension (Machine)",
-        "reps": 8,
-        "weight": 75.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Leg Extension (Machine)",
-        "reps": 8,
-        "weight": 90.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Leg Extension (Machine)",
-        "reps": 10,
-        "weight": 105.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Calf Press on Seated Leg Press",
-        "reps": 20,
-        "weight": 110.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Calf Press on Seated Leg Press",
-        "reps": 20,
-        "weight": 125.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Calf Press on Seated Leg Press",
-        "reps": 20,
-        "weight": 125.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Bulgarian Split Squat",
-        "reps": 8,
-        "weight": 45.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Bulgarian Split Squat",
-        "reps": 8,
-        "weight": 45.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Bulgarian Split Squat",
-        "reps": 8,
-        "weight": 45.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Romanian Deadlift (Dumbbell)",
-        "reps": 8,
-        "weight": 35.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Romanian Deadlift (Dumbbell)",
-        "reps": 8,
-        "weight": 40.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Romanian Deadlift (Dumbbell)",
-        "reps": 8,
-        "weight": 45.0,
-        "notes": ""
-      }
-    ]
+    workoutNumber: "3",
+    duration_seconds: 3213,
+    datetime: "2025-12-08T19:15:12",
+    sets: [
+      { exerciseName: "Seated Leg Press (Machine)", reps: 8, weight: 185 },
+      { exerciseName: "Seated Leg Press (Machine)", reps: 8, weight: 185 },
+      { exerciseName: "Seated Leg Press (Machine)", reps: 8, weight: 200 },
+      { exerciseName: "Lying Leg Curl (Machine)", reps: 8, weight: 75 },
+      { exerciseName: "Lying Leg Curl (Machine)", reps: 8, weight: 90 },
+      { exerciseName: "Lying Leg Curl (Machine)", reps: 8, weight: 90 },
+      { exerciseName: "Leg Extension (Machine)", reps: 8, weight: 75 },
+      { exerciseName: "Leg Extension (Machine)", reps: 8, weight: 90 },
+      { exerciseName: "Leg Extension (Machine)", reps: 10, weight: 105 },
+      { exerciseName: "Calf Press on Seated Leg Press", reps: 20, weight: 110 },
+      { exerciseName: "Calf Press on Seated Leg Press", reps: 20, weight: 125 },
+      { exerciseName: "Calf Press on Seated Leg Press", reps: 20, weight: 125 },
+      { exerciseName: "Bulgarian Split Squat", reps: 8, weight: 45 },
+      { exerciseName: "Bulgarian Split Squat", reps: 8, weight: 45 },
+      { exerciseName: "Bulgarian Split Squat", reps: 8, weight: 45 },
+      { exerciseName: "Romanian Deadlift (Dumbbell)", reps: 8, weight: 35 },
+      { exerciseName: "Romanian Deadlift (Dumbbell)", reps: 8, weight: 40 },
+      { exerciseName: "Romanian Deadlift (Dumbbell)", reps: 8, weight: 45 },
+    ],
   },
   {
-    "workoutNumber": "4",
-    "datetime": "2025-12-10T21:20:28",
-    "sets": [
-      {
-        "exerciseName": "Bench Press (Dumbbell)",
-        "reps": 8,
-        "weight": 40.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Bench Press (Dumbbell)",
-        "reps": 8,
-        "weight": 45.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Bench Press (Dumbbell)",
-        "reps": 8,
-        "weight": 45.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Seated Row (Cable)",
-        "reps": 8,
-        "weight": 75.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Seated Row (Cable)",
-        "reps": 8,
-        "weight": 75.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Seated Row (Cable)",
-        "reps": 8,
-        "weight": 75.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Triceps Extension",
-        "reps": 10,
-        "weight": 37.5,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Triceps Extension",
-        "reps": 10,
-        "weight": 37.5,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Triceps Extension",
-        "reps": 10,
-        "weight": 37.5,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Lat Pulldown (Cable)",
-        "reps": 8,
-        "weight": 105.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Lat Pulldown (Cable)",
-        "reps": 8,
-        "weight": 120.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Lat Pulldown (Cable)",
-        "reps": 8,
-        "weight": 120.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Seated Overhead Press (Dumbbell)",
-        "reps": 8,
-        "weight": 25.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Seated Overhead Press (Dumbbell)",
-        "reps": 8,
-        "weight": 25.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Seated Overhead Press (Dumbbell)",
-        "reps": 8,
-        "weight": 25.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Bicep Curl (Dumbbell)",
-        "reps": 8,
-        "weight": 30.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Bicep Curl (Dumbbell)",
-        "reps": 8,
-        "weight": 30.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Bicep Curl (Dumbbell)",
-        "reps": 8,
-        "weight": 30.0,
-        "notes": ""
-      }
-    ]
+    workoutNumber: "4",
+    duration_seconds: 1750,
+    datetime: "2025-12-10T21:20:28",
+    sets: [
+      { exerciseName: "Bench Press (Dumbbell)", reps: 8, weight: 40 },
+      { exerciseName: "Bench Press (Dumbbell)", reps: 8, weight: 45 },
+      { exerciseName: "Bench Press (Dumbbell)", reps: 8, weight: 45 },
+      { exerciseName: "Seated Row (Cable)", reps: 8, weight: 75 },
+      { exerciseName: "Seated Row (Cable)", reps: 8, weight: 75 },
+      { exerciseName: "Seated Row (Cable)", reps: 8, weight: 75 },
+      { exerciseName: "Triceps Extension", reps: 10, weight: 37.5 },
+      { exerciseName: "Triceps Extension", reps: 10, weight: 37.5 },
+      { exerciseName: "Triceps Extension", reps: 10, weight: 37.5 },
+      { exerciseName: "Lat Pulldown (Cable)", reps: 8, weight: 105 },
+      { exerciseName: "Lat Pulldown (Cable)", reps: 8, weight: 120 },
+      { exerciseName: "Lat Pulldown (Cable)", reps: 8, weight: 120 },
+      { exerciseName: "Seated Overhead Press (Dumbbell)", reps: 8, weight: 25 },
+      { exerciseName: "Seated Overhead Press (Dumbbell)", reps: 8, weight: 25 },
+      { exerciseName: "Seated Overhead Press (Dumbbell)", reps: 8, weight: 25 },
+      { exerciseName: "Bicep Curl (Dumbbell)", reps: 8, weight: 30 },
+      { exerciseName: "Bicep Curl (Dumbbell)", reps: 8, weight: 30 },
+      { exerciseName: "Bicep Curl (Dumbbell)", reps: 8, weight: 30 },
+    ],
   },
   {
-    "workoutNumber": "5",
-    "datetime": "2025-12-15T19:38:42",
-    "sets": [
-      {
-        "exerciseName": "Bench Press (Dumbbell)",
-        "reps": 8,
-        "weight": 50.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Bench Press (Dumbbell)",
-        "reps": 9,
-        "weight": 50.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Bench Press (Dumbbell)",
-        "reps": 8,
-        "weight": 50.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Bicep Curl (Cable)",
-        "reps": 8,
-        "weight": 37.5,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Bicep Curl (Cable)",
-        "reps": 8,
-        "weight": 42.5,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Bicep Curl (Cable)",
-        "reps": 8,
-        "weight": 42.5,
-        "notes": ""
-      }
-    ]
+    workoutNumber: "5",
+    duration_seconds: 945,
+    datetime: "2025-12-15T19:38:42",
+    sets: [
+      { exerciseName: "Bench Press (Dumbbell)", reps: 8, weight: 50 },
+      { exerciseName: "Bench Press (Dumbbell)", reps: 9, weight: 50 },
+      { exerciseName: "Bench Press (Dumbbell)", reps: 8, weight: 50 },
+      { exerciseName: "Bicep Curl (Cable)", reps: 8, weight: 37.5 },
+      { exerciseName: "Bicep Curl (Cable)", reps: 8, weight: 42.5 },
+      { exerciseName: "Bicep Curl (Cable)", reps: 8, weight: 42.5 },
+    ],
   },
   {
-    "workoutNumber": "6",
-    "datetime": "2025-12-16T19:26:32",
-    "sets": [
-      {
-        "exerciseName": "Seated Leg Press (Machine)",
-        "reps": 8,
-        "weight": 200.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Seated Leg Press (Machine)",
-        "reps": 8,
-        "weight": 200.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Seated Leg Press (Machine)",
-        "reps": 8,
-        "weight": 200.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Lying Leg Curl (Machine)",
-        "reps": 8,
-        "weight": 90.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Lying Leg Curl (Machine)",
-        "reps": 8,
-        "weight": 75.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Lying Leg Curl (Machine)",
-        "reps": 8,
-        "weight": 75.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Leg Extension (Machine)",
-        "reps": 8,
-        "weight": 105.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Leg Extension (Machine)",
-        "reps": 8,
-        "weight": 105.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Leg Extension (Machine)",
-        "reps": 8,
-        "weight": 120.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Bulgarian Split Squat",
-        "reps": 8,
-        "weight": 45.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Bulgarian Split Squat",
-        "reps": 8,
-        "weight": 45.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Bulgarian Split Squat",
-        "reps": 8,
-        "weight": 45.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Romanian Deadlift (Dumbbell)",
-        "reps": 8,
-        "weight": 45.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Romanian Deadlift (Dumbbell)",
-        "reps": 8,
-        "weight": 45.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Romanian Deadlift (Dumbbell)",
-        "reps": 8,
-        "weight": 45.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Calf Press on Seated Leg Press",
-        "reps": 20,
-        "weight": 125.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Calf Press on Seated Leg Press",
-        "reps": 20,
-        "weight": 125.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Calf Press on Seated Leg Press",
-        "reps": 20,
-        "weight": 125.0,
-        "notes": ""
-      }
-    ]
+    workoutNumber: "6",
+    duration_seconds: 2534,
+    datetime: "2025-12-16T19:26:32",
+    sets: [
+      { exerciseName: "Seated Leg Press (Machine)", reps: 8, weight: 200 },
+      { exerciseName: "Seated Leg Press (Machine)", reps: 8, weight: 200 },
+      { exerciseName: "Seated Leg Press (Machine)", reps: 8, weight: 200 },
+      { exerciseName: "Lying Leg Curl (Machine)", reps: 8, weight: 90 },
+      { exerciseName: "Lying Leg Curl (Machine)", reps: 8, weight: 75 },
+      { exerciseName: "Lying Leg Curl (Machine)", reps: 8, weight: 75 },
+      { exerciseName: "Leg Extension (Machine)", reps: 8, weight: 105 },
+      { exerciseName: "Leg Extension (Machine)", reps: 8, weight: 105 },
+      { exerciseName: "Leg Extension (Machine)", reps: 8, weight: 120 },
+      { exerciseName: "Bulgarian Split Squat", reps: 8, weight: 45 },
+      { exerciseName: "Bulgarian Split Squat", reps: 8, weight: 45 },
+      { exerciseName: "Bulgarian Split Squat", reps: 8, weight: 45 },
+      { exerciseName: "Romanian Deadlift (Dumbbell)", reps: 8, weight: 45 },
+      { exerciseName: "Romanian Deadlift (Dumbbell)", reps: 8, weight: 45 },
+      { exerciseName: "Romanian Deadlift (Dumbbell)", reps: 8, weight: 45 },
+      { exerciseName: "Calf Press on Seated Leg Press", reps: 20, weight: 125 },
+      { exerciseName: "Calf Press on Seated Leg Press", reps: 20, weight: 125 },
+      { exerciseName: "Calf Press on Seated Leg Press", reps: 20, weight: 125 },
+    ],
   },
   {
-    "workoutNumber": "7",
-    "datetime": "2025-12-21T19:05:52",
-    "sets": [
-      {
-        "exerciseName": "Bulgarian Split Squat",
-        "reps": 8,
-        "weight": 45.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Bulgarian Split Squat",
-        "reps": 8,
-        "weight": 45.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Bulgarian Split Squat",
-        "reps": 8,
-        "weight": 50.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Calf Press on Seated Leg Press",
-        "reps": 20,
-        "weight": 125.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Calf Press on Seated Leg Press",
-        "reps": 20,
-        "weight": 125.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Calf Press on Seated Leg Press",
-        "reps": 20,
-        "weight": 140.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Seated Leg Press (Machine)",
-        "reps": 8,
-        "weight": 200.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Seated Leg Press (Machine)",
-        "reps": 8,
-        "weight": 200.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Seated Leg Press (Machine)",
-        "reps": 8,
-        "weight": 215.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Romanian Deadlift (Dumbbell)",
-        "reps": 8,
-        "weight": 50.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Romanian Deadlift (Dumbbell)",
-        "reps": 8,
-        "weight": 50.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Romanian Deadlift (Dumbbell)",
-        "reps": 8,
-        "weight": 50.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Lying Leg Curl (Machine)",
-        "reps": 8,
-        "weight": 90.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Lying Leg Curl (Machine)",
-        "reps": 8,
-        "weight": 90.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Lying Leg Curl (Machine)",
-        "reps": 8,
-        "weight": 75.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Leg Extension (Machine)",
-        "reps": 8,
-        "weight": 120.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Leg Extension (Machine)",
-        "reps": 8,
-        "weight": 120.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Leg Extension (Machine)",
-        "reps": 9,
-        "weight": 135.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Triceps Extension",
-        "reps": 10,
-        "weight": 42.5,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Triceps Extension",
-        "reps": 10,
-        "weight": 42.5,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Triceps Extension",
-        "reps": 10,
-        "weight": 42.5,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Lat Pulldown (Cable)",
-        "reps": 8,
-        "weight": 120.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Lat Pulldown (Cable)",
-        "reps": 8,
-        "weight": 120.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Lat Pulldown (Cable)",
-        "reps": 8,
-        "weight": 120.0,
-        "notes": ""
-      }
-    ]
+    workoutNumber: "7",
+    duration_seconds: 2798,
+    datetime: "2025-12-21T19:05:52",
+    sets: [
+      { exerciseName: "Bulgarian Split Squat", reps: 8, weight: 45 },
+      { exerciseName: "Bulgarian Split Squat", reps: 8, weight: 45 },
+      { exerciseName: "Bulgarian Split Squat", reps: 8, weight: 50 },
+      { exerciseName: "Calf Press on Seated Leg Press", reps: 20, weight: 125 },
+      { exerciseName: "Calf Press on Seated Leg Press", reps: 20, weight: 125 },
+      { exerciseName: "Calf Press on Seated Leg Press", reps: 20, weight: 140 },
+      { exerciseName: "Seated Leg Press (Machine)", reps: 8, weight: 200 },
+      { exerciseName: "Seated Leg Press (Machine)", reps: 8, weight: 200 },
+      { exerciseName: "Seated Leg Press (Machine)", reps: 8, weight: 215 },
+      { exerciseName: "Romanian Deadlift (Dumbbell)", reps: 8, weight: 50 },
+      { exerciseName: "Romanian Deadlift (Dumbbell)", reps: 8, weight: 50 },
+      { exerciseName: "Romanian Deadlift (Dumbbell)", reps: 8, weight: 50 },
+      { exerciseName: "Lying Leg Curl (Machine)", reps: 8, weight: 90 },
+      { exerciseName: "Lying Leg Curl (Machine)", reps: 8, weight: 90 },
+      { exerciseName: "Lying Leg Curl (Machine)", reps: 8, weight: 75 },
+      { exerciseName: "Leg Extension (Machine)", reps: 8, weight: 120 },
+      { exerciseName: "Leg Extension (Machine)", reps: 8, weight: 120 },
+      { exerciseName: "Leg Extension (Machine)", reps: 9, weight: 135 },
+      { exerciseName: "Triceps Extension", reps: 10, weight: 42.5 },
+      { exerciseName: "Triceps Extension", reps: 10, weight: 42.5 },
+      { exerciseName: "Triceps Extension", reps: 10, weight: 42.5 },
+      { exerciseName: "Lat Pulldown (Cable)", reps: 8, weight: 120 },
+      { exerciseName: "Lat Pulldown (Cable)", reps: 8, weight: 120 },
+      { exerciseName: "Lat Pulldown (Cable)", reps: 8, weight: 120 },
+    ],
   },
   {
-    "workoutNumber": "8",
-    "datetime": "2025-12-29T18:39:53",
-    "sets": [
-      {
-        "exerciseName": "Bench Press (Dumbbell)",
-        "reps": 8,
-        "weight": 50.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Bench Press (Dumbbell)",
-        "reps": 8,
-        "weight": 50.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Bench Press (Dumbbell)",
-        "reps": 10,
-        "weight": 50.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Seated Row (Cable)",
-        "reps": 8,
-        "weight": 90.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Seated Row (Cable)",
-        "reps": 8,
-        "weight": 105.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Seated Row (Cable)",
-        "reps": 8,
-        "weight": 120.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Triceps Extension",
-        "reps": 8,
-        "weight": 42.5,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Triceps Extension",
-        "reps": 8,
-        "weight": 47.5,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Triceps Extension",
-        "reps": 8,
-        "weight": 52.5,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Seated Overhead Press (Dumbbell)",
-        "reps": 8,
-        "weight": 30.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Seated Overhead Press (Dumbbell)",
-        "reps": 8,
-        "weight": 30.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Seated Overhead Press (Dumbbell)",
-        "reps": 8,
-        "weight": 30.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Bicep Curl (Dumbbell)",
-        "reps": 8,
-        "weight": 35.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Bicep Curl (Dumbbell)",
-        "reps": 6,
-        "weight": 35.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Bicep Curl (Dumbbell)",
-        "reps": 6,
-        "weight": 35.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Lat Pulldown - Wide Grip (Cable)",
-        "reps": 8,
-        "weight": 90.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Lat Pulldown - Wide Grip (Cable)",
-        "reps": 8,
-        "weight": 105.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Lat Pulldown - Wide Grip (Cable)",
-        "reps": 10,
-        "weight": 105.0,
-        "notes": ""
-      }
-    ]
+    workoutNumber: "8",
+    duration_seconds: 2735,
+    datetime: "2025-12-29T18:39:53",
+    sets: [
+      { exerciseName: "Bench Press (Dumbbell)", reps: 8, weight: 50 },
+      { exerciseName: "Bench Press (Dumbbell)", reps: 8, weight: 50 },
+      { exerciseName: "Bench Press (Dumbbell)", reps: 10, weight: 50 },
+      { exerciseName: "Seated Row (Cable)", reps: 8, weight: 90 },
+      { exerciseName: "Seated Row (Cable)", reps: 8, weight: 105 },
+      { exerciseName: "Seated Row (Cable)", reps: 8, weight: 120 },
+      { exerciseName: "Triceps Extension", reps: 8, weight: 42.5 },
+      { exerciseName: "Triceps Extension", reps: 8, weight: 47.5 },
+      { exerciseName: "Triceps Extension", reps: 8, weight: 52.5 },
+      { exerciseName: "Seated Overhead Press (Dumbbell)", reps: 8, weight: 30 },
+      { exerciseName: "Seated Overhead Press (Dumbbell)", reps: 8, weight: 30 },
+      { exerciseName: "Seated Overhead Press (Dumbbell)", reps: 8, weight: 30 },
+      { exerciseName: "Bicep Curl (Dumbbell)", reps: 8, weight: 35 },
+      { exerciseName: "Bicep Curl (Dumbbell)", reps: 6, weight: 35 },
+      { exerciseName: "Bicep Curl (Dumbbell)", reps: 6, weight: 35 },
+      { exerciseName: "Lat Pulldown - Wide Grip (Cable)", reps: 8, weight: 90 },
+      { exerciseName: "Lat Pulldown - Wide Grip (Cable)", reps: 8, weight: 105 },
+      { exerciseName: "Lat Pulldown - Wide Grip (Cable)", reps: 10, weight: 105 },
+    ],
   },
   {
-    "workoutNumber": "9",
-    "datetime": "2026-01-07T20:43:02",
-    "sets": [
-      {
-        "exerciseName": "Bench Press (Dumbbell)",
-        "reps": 8,
-        "weight": 50.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Bench Press (Dumbbell)",
-        "reps": 8,
-        "weight": 50.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Bench Press (Dumbbell)",
-        "reps": 8,
-        "weight": 50.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Lat Pulldown (Cable)",
-        "reps": 8,
-        "weight": 120.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Lat Pulldown (Cable)",
-        "reps": 8,
-        "weight": 120.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Lat Pulldown (Cable)",
-        "reps": 8,
-        "weight": 120.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Triceps Extension",
-        "reps": 8,
-        "weight": 52.5,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Triceps Extension",
-        "reps": 8,
-        "weight": 52.5,
-        "notes": ""
-      }
-    ]
+    workoutNumber: "9",
+    duration_seconds: 825,
+    datetime: "2026-01-07T20:43:02",
+    sets: [
+      { exerciseName: "Bench Press (Dumbbell)", reps: 8, weight: 50 },
+      { exerciseName: "Bench Press (Dumbbell)", reps: 8, weight: 50 },
+      { exerciseName: "Bench Press (Dumbbell)", reps: 8, weight: 50 },
+      { exerciseName: "Lat Pulldown (Cable)", reps: 8, weight: 120 },
+      { exerciseName: "Lat Pulldown (Cable)", reps: 8, weight: 120 },
+      { exerciseName: "Lat Pulldown (Cable)", reps: 8, weight: 120 },
+      { exerciseName: "Triceps Extension", reps: 8, weight: 52.5 },
+      { exerciseName: "Triceps Extension", reps: 8, weight: 52.5 },
+    ],
   },
   {
-    "workoutNumber": "10",
-    "datetime": "2026-01-28T18:38:11",
-    "sets": [
-      {
-        "exerciseName": "Bench Press (Dumbbell)",
-        "reps": 8,
-        "weight": 50.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Bench Press (Dumbbell)",
-        "reps": 8,
-        "weight": 50.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Bench Press (Dumbbell)",
-        "reps": 8,
-        "weight": 50.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Seated Overhead Press (Dumbbell)",
-        "reps": 8,
-        "weight": 30.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Seated Overhead Press (Dumbbell)",
-        "reps": 8,
-        "weight": 30.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Seated Overhead Press (Dumbbell)",
-        "reps": 8,
-        "weight": 30.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Lat Pulldown (Cable)",
-        "reps": 8,
-        "weight": 135.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Lat Pulldown (Cable)",
-        "reps": 6,
-        "weight": 135.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Lat Pulldown (Cable)",
-        "reps": 8,
-        "weight": 120.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Seated Row (Cable)",
-        "reps": 8,
-        "weight": 120.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Seated Row (Cable)",
-        "reps": 8,
-        "weight": 105.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Seated Row (Cable)",
-        "reps": 8,
-        "weight": 105.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Bicep Curl (Dumbbell)",
-        "reps": 6,
-        "weight": 35.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Bicep Curl (Dumbbell)",
-        "reps": 6,
-        "weight": 30.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Bicep Curl (Dumbbell)",
-        "reps": 6,
-        "weight": 25.0,
-        "notes": ""
-      }
-    ]
+    workoutNumber: "10",
+    duration_seconds: 2068,
+    datetime: "2026-01-28T18:38:11",
+    sets: [
+      { exerciseName: "Bench Press (Dumbbell)", reps: 8, weight: 50 },
+      { exerciseName: "Bench Press (Dumbbell)", reps: 8, weight: 50 },
+      { exerciseName: "Bench Press (Dumbbell)", reps: 8, weight: 50 },
+      { exerciseName: "Seated Overhead Press (Dumbbell)", reps: 8, weight: 30 },
+      { exerciseName: "Seated Overhead Press (Dumbbell)", reps: 8, weight: 30 },
+      { exerciseName: "Seated Overhead Press (Dumbbell)", reps: 8, weight: 30 },
+      { exerciseName: "Lat Pulldown (Cable)", reps: 8, weight: 135 },
+      { exerciseName: "Lat Pulldown (Cable)", reps: 6, weight: 135 },
+      { exerciseName: "Lat Pulldown (Cable)", reps: 8, weight: 120 },
+      { exerciseName: "Seated Row (Cable)", reps: 8, weight: 120 },
+      { exerciseName: "Seated Row (Cable)", reps: 8, weight: 105 },
+      { exerciseName: "Seated Row (Cable)", reps: 8, weight: 105 },
+      { exerciseName: "Bicep Curl (Dumbbell)", reps: 6, weight: 35 },
+      { exerciseName: "Bicep Curl (Dumbbell)", reps: 6, weight: 30 },
+      { exerciseName: "Bicep Curl (Dumbbell)", reps: 6, weight: 25 },
+    ],
   },
   {
-    "workoutNumber": "11",
-    "datetime": "2026-02-01T15:44:48",
-    "sets": [
-      {
-        "exerciseName": "Bench Press (Dumbbell)",
-        "reps": 8,
-        "weight": 50.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Bench Press (Dumbbell)",
-        "reps": 8,
-        "weight": 50.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Bench Press (Dumbbell)",
-        "reps": 12,
-        "weight": 50.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Lat Pulldown - Wide Grip (Cable)",
-        "reps": 8,
-        "weight": 105.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Lat Pulldown - Wide Grip (Cable)",
-        "reps": 8,
-        "weight": 120.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Lat Pulldown - Wide Grip (Cable)",
-        "reps": 10,
-        "weight": 120.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Incline Bench Press (Dumbbell)",
-        "reps": 8,
-        "weight": 45.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Incline Bench Press (Dumbbell)",
-        "reps": 8,
-        "weight": 45.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Incline Bench Press (Dumbbell)",
-        "reps": 8,
-        "weight": 45.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Seated Row (Cable)",
-        "reps": 8,
-        "weight": 105.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Seated Row (Cable)",
-        "reps": 8,
-        "weight": 105.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Seated Row (Cable)",
-        "reps": 8,
-        "weight": 105.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Lateral Raise (Dumbbell)",
-        "reps": 8,
-        "weight": 10.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Lateral Raise (Dumbbell)",
-        "reps": 8,
-        "weight": 10.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Lateral Raise (Dumbbell)",
-        "reps": 8,
-        "weight": 10.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Face Pull (Cable)",
-        "reps": 10,
-        "weight": 22.5,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Face Pull (Cable)",
-        "reps": 10,
-        "weight": 27.5,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Face Pull (Cable)",
-        "reps": 10,
-        "weight": 27.5,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Triceps Extension",
-        "reps": 10,
-        "weight": 42.5,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Triceps Extension",
-        "reps": 10,
-        "weight": 47.5,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Triceps Extension",
-        "reps": 10,
-        "weight": 42.5,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Bicep Curl (Dumbbell)",
-        "reps": 8,
-        "weight": 30.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Bicep Curl (Dumbbell)",
-        "reps": 8,
-        "weight": 30.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Bicep Curl (Dumbbell)",
-        "reps": 8,
-        "weight": 30.0,
-        "notes": ""
-      }
-    ]
+    workoutNumber: "11",
+    duration_seconds: 2508,
+    datetime: "2026-02-01T15:44:48",
+    sets: [
+      { exerciseName: "Bench Press (Dumbbell)", reps: 8, weight: 50 },
+      { exerciseName: "Bench Press (Dumbbell)", reps: 8, weight: 50 },
+      { exerciseName: "Bench Press (Dumbbell)", reps: 12, weight: 50 },
+      { exerciseName: "Lat Pulldown - Wide Grip (Cable)", reps: 8, weight: 105 },
+      { exerciseName: "Lat Pulldown - Wide Grip (Cable)", reps: 8, weight: 120 },
+      { exerciseName: "Lat Pulldown - Wide Grip (Cable)", reps: 10, weight: 120 },
+      { exerciseName: "Incline Bench Press (Dumbbell)", reps: 8, weight: 45 },
+      { exerciseName: "Incline Bench Press (Dumbbell)", reps: 8, weight: 45 },
+      { exerciseName: "Incline Bench Press (Dumbbell)", reps: 8, weight: 45 },
+      { exerciseName: "Seated Row (Cable)", reps: 8, weight: 105 },
+      { exerciseName: "Seated Row (Cable)", reps: 8, weight: 105 },
+      { exerciseName: "Seated Row (Cable)", reps: 8, weight: 105 },
+      { exerciseName: "Lateral Raise (Dumbbell)", reps: 8, weight: 10 },
+      { exerciseName: "Lateral Raise (Dumbbell)", reps: 8, weight: 10 },
+      { exerciseName: "Lateral Raise (Dumbbell)", reps: 8, weight: 10 },
+      { exerciseName: "Face Pull (Cable)", reps: 10, weight: 22.5 },
+      { exerciseName: "Face Pull (Cable)", reps: 10, weight: 27.5 },
+      { exerciseName: "Face Pull (Cable)", reps: 10, weight: 27.5 },
+      { exerciseName: "Triceps Extension", reps: 10, weight: 42.5 },
+      { exerciseName: "Triceps Extension", reps: 10, weight: 47.5 },
+      { exerciseName: "Triceps Extension", reps: 10, weight: 42.5 },
+      { exerciseName: "Bicep Curl (Dumbbell)", reps: 8, weight: 30 },
+      { exerciseName: "Bicep Curl (Dumbbell)", reps: 8, weight: 30 },
+      { exerciseName: "Bicep Curl (Dumbbell)", reps: 8, weight: 30 },
+    ],
   },
   {
-    "workoutNumber": "12",
-    "datetime": "2026-02-04T19:25:33",
-    "sets": [
-      {
-        "exerciseName": "Bench Press (Dumbbell)",
-        "reps": 8,
-        "weight": 50.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Bench Press (Dumbbell)",
-        "reps": 8,
-        "weight": 50.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Bench Press (Dumbbell)",
-        "reps": 14,
-        "weight": 50.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Lat Pulldown - Wide Grip (Cable)",
-        "reps": 8,
-        "weight": 120.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Lat Pulldown - Wide Grip (Cable)",
-        "reps": 8,
-        "weight": 105.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Lat Pulldown - Wide Grip (Cable)",
-        "reps": 10,
-        "weight": 105.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Chest Press (Machine)",
-        "reps": 8,
-        "weight": 105.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Chest Press (Machine)",
-        "reps": 8,
-        "weight": 135.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Chest Press (Machine)",
-        "reps": 8,
-        "weight": 150.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Seated Row (Cable)",
-        "reps": 8,
-        "weight": 120.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Seated Row (Cable)",
-        "reps": 8,
-        "weight": 120.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Seated Row (Cable)",
-        "reps": 8,
-        "weight": 120.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Triceps Extension",
-        "reps": 12,
-        "weight": 42.5,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Triceps Extension",
-        "reps": 12,
-        "weight": 42.5,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Triceps Extension",
-        "reps": 10,
-        "weight": 42.5,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Bicep Curl (Dumbbell)",
-        "reps": 8,
-        "weight": 30.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Bicep Curl (Dumbbell)",
-        "reps": 8,
-        "weight": 30.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Bicep Curl (Dumbbell)",
-        "reps": 8,
-        "weight": 30.0,
-        "notes": ""
-      }
-    ]
+    workoutNumber: "12",
+    duration_seconds: 2004,
+    datetime: "2026-02-04T19:25:33",
+    sets: [
+      { exerciseName: "Bench Press (Dumbbell)", reps: 8, weight: 50 },
+      { exerciseName: "Bench Press (Dumbbell)", reps: 8, weight: 50 },
+      { exerciseName: "Bench Press (Dumbbell)", reps: 14, weight: 50 },
+      { exerciseName: "Lat Pulldown - Wide Grip (Cable)", reps: 8, weight: 120 },
+      { exerciseName: "Lat Pulldown - Wide Grip (Cable)", reps: 8, weight: 105 },
+      { exerciseName: "Lat Pulldown - Wide Grip (Cable)", reps: 10, weight: 105 },
+      { exerciseName: "Chest Press (Machine)", reps: 8, weight: 105 },
+      { exerciseName: "Chest Press (Machine)", reps: 8, weight: 135 },
+      { exerciseName: "Chest Press (Machine)", reps: 8, weight: 150 },
+      { exerciseName: "Seated Row (Cable)", reps: 8, weight: 120 },
+      { exerciseName: "Seated Row (Cable)", reps: 8, weight: 120 },
+      { exerciseName: "Seated Row (Cable)", reps: 8, weight: 120 },
+      { exerciseName: "Triceps Extension", reps: 12, weight: 42.5 },
+      { exerciseName: "Triceps Extension", reps: 12, weight: 42.5 },
+      { exerciseName: "Triceps Extension", reps: 10, weight: 42.5 },
+      { exerciseName: "Bicep Curl (Dumbbell)", reps: 8, weight: 30 },
+      { exerciseName: "Bicep Curl (Dumbbell)", reps: 8, weight: 30 },
+      { exerciseName: "Bicep Curl (Dumbbell)", reps: 8, weight: 30 },
+    ],
   },
   {
-    "workoutNumber": "13",
-    "datetime": "2026-02-09T20:45:33",
-    "sets": [
-      {
-        "exerciseName": "Seated Leg Press (Machine)",
-        "reps": 8,
-        "weight": 200.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Seated Leg Press (Machine)",
-        "reps": 8,
-        "weight": 200.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Seated Leg Press (Machine)",
-        "reps": 8,
-        "weight": 200.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Chest Press (Machine)",
-        "reps": 8,
-        "weight": 150.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Chest Press (Machine)",
-        "reps": 8,
-        "weight": 165.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Chest Press (Machine)",
-        "reps": 8,
-        "weight": 157.5,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Chest Press (Machine)",
-        "reps": 10,
-        "weight": 120.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Lat Pulldown - Wide Grip (Cable)",
-        "reps": 8,
-        "weight": 120.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Lat Pulldown - Wide Grip (Cable)",
-        "reps": 8,
-        "weight": 120.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Lat Pulldown - Wide Grip (Cable)",
-        "reps": 8,
-        "weight": 105.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Lat Pulldown - Wide Grip (Cable)",
-        "reps": 8,
-        "weight": 105.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Lying Leg Curl (Machine)",
-        "reps": 8,
-        "weight": 90.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Lying Leg Curl (Machine)",
-        "reps": 8,
-        "weight": 90.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Lying Leg Curl (Machine)",
-        "reps": 8,
-        "weight": 90.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Shoulder Press (Machine)",
-        "reps": 8,
-        "weight": 60.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Shoulder Press (Machine)",
-        "reps": 8,
-        "weight": 75.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Shoulder Press (Machine)",
-        "reps": 8,
-        "weight": 60.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Shoulder Press (Machine)",
-        "reps": 4,
-        "weight": 45.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Seated Row (Cable)",
-        "reps": 8,
-        "weight": 120.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Seated Row (Cable)",
-        "reps": 8,
-        "weight": 120.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Seated Row (Cable)",
-        "reps": 8,
-        "weight": 135.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Seated Row (Cable)",
-        "reps": 8,
-        "weight": 105.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Romanian Deadlift (Dumbbell)",
-        "reps": 8,
-        "weight": 50.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Romanian Deadlift (Dumbbell)",
-        "reps": 8,
-        "weight": 50.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Romanian Deadlift (Dumbbell)",
-        "reps": 8,
-        "weight": 50.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Bicep Curl (Dumbbell)",
-        "reps": 8,
-        "weight": 25.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Bicep Curl (Dumbbell)",
-        "reps": 8,
-        "weight": 30.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Bicep Curl (Dumbbell)",
-        "reps": 6,
-        "weight": 35.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Triceps Extension",
-        "reps": 10,
-        "weight": 42.5,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Triceps Extension",
-        "reps": 10,
-        "weight": 42.5,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Triceps Extension",
-        "reps": 10,
-        "weight": 42.5,
-        "notes": ""
-      }
-    ]
+    workoutNumber: "13",
+    duration_seconds: 3647,
+    datetime: "2026-02-09T20:45:33",
+    sets: [
+      { exerciseName: "Seated Leg Press (Machine)", reps: 8, weight: 200 },
+      { exerciseName: "Seated Leg Press (Machine)", reps: 8, weight: 200 },
+      { exerciseName: "Seated Leg Press (Machine)", reps: 8, weight: 200 },
+      { exerciseName: "Chest Press (Machine)", reps: 8, weight: 150 },
+      { exerciseName: "Chest Press (Machine)", reps: 8, weight: 165 },
+      { exerciseName: "Chest Press (Machine)", reps: 8, weight: 157.5 },
+      { exerciseName: "Chest Press (Machine)", reps: 10, weight: 120 },
+      { exerciseName: "Lat Pulldown - Wide Grip (Cable)", reps: 8, weight: 120 },
+      { exerciseName: "Lat Pulldown - Wide Grip (Cable)", reps: 8, weight: 120 },
+      { exerciseName: "Lat Pulldown - Wide Grip (Cable)", reps: 8, weight: 105 },
+      { exerciseName: "Lat Pulldown - Wide Grip (Cable)", reps: 8, weight: 105 },
+      { exerciseName: "Lying Leg Curl (Machine)", reps: 8, weight: 90 },
+      { exerciseName: "Lying Leg Curl (Machine)", reps: 8, weight: 90 },
+      { exerciseName: "Lying Leg Curl (Machine)", reps: 8, weight: 90 },
+      { exerciseName: "Shoulder Press (Machine)", reps: 8, weight: 60 },
+      { exerciseName: "Shoulder Press (Machine)", reps: 8, weight: 75 },
+      { exerciseName: "Shoulder Press (Machine)", reps: 8, weight: 60 },
+      { exerciseName: "Shoulder Press (Machine)", reps: 4, weight: 45 },
+      { exerciseName: "Seated Row (Cable)", reps: 8, weight: 120 },
+      { exerciseName: "Seated Row (Cable)", reps: 8, weight: 120 },
+      { exerciseName: "Seated Row (Cable)", reps: 8, weight: 135 },
+      { exerciseName: "Seated Row (Cable)", reps: 8, weight: 105 },
+      { exerciseName: "Romanian Deadlift (Dumbbell)", reps: 8, weight: 50 },
+      { exerciseName: "Romanian Deadlift (Dumbbell)", reps: 8, weight: 50 },
+      { exerciseName: "Romanian Deadlift (Dumbbell)", reps: 8, weight: 50 },
+      { exerciseName: "Bicep Curl (Dumbbell)", reps: 8, weight: 25 },
+      { exerciseName: "Bicep Curl (Dumbbell)", reps: 8, weight: 30 },
+      { exerciseName: "Bicep Curl (Dumbbell)", reps: 6, weight: 35 },
+      { exerciseName: "Triceps Extension", reps: 10, weight: 42.5 },
+      { exerciseName: "Triceps Extension", reps: 10, weight: 42.5 },
+      { exerciseName: "Triceps Extension", reps: 10, weight: 42.5 },
+    ],
   },
   {
-    "workoutNumber": "14",
-    "datetime": "2026-02-17T19:39:45",
-    "sets": [
-      {
-        "exerciseName": "Chest Press (Machine)",
-        "reps": 8,
-        "weight": 150.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Chest Press (Machine)",
-        "reps": 8,
-        "weight": 165.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Chest Press (Machine)",
-        "reps": 8,
-        "weight": 165.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Chest Press (Machine)",
-        "reps": 4,
-        "weight": 165.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Lat Pulldown - Wide Grip (Cable)",
-        "reps": 8,
-        "weight": 120.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Lat Pulldown - Wide Grip (Cable)",
-        "reps": 8,
-        "weight": 120.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Lat Pulldown - Wide Grip (Cable)",
-        "reps": 8,
-        "weight": 120.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Lat Pulldown - Wide Grip (Cable)",
-        "reps": 8,
-        "weight": 105.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Shoulder Press (Machine)",
-        "reps": 8,
-        "weight": 60.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Shoulder Press (Machine)",
-        "reps": 8,
-        "weight": 60.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Shoulder Press (Machine)",
-        "reps": 8,
-        "weight": 60.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Shoulder Press (Machine)",
-        "reps": 5,
-        "weight": 45.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Seated Row (Cable)",
-        "reps": 8,
-        "weight": 135.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Seated Row (Cable)",
-        "reps": 8,
-        "weight": 135.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Seated Row (Cable)",
-        "reps": 8,
-        "weight": 135.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Seated Row (Cable)",
-        "reps": 8,
-        "weight": 120.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Bicep Curl (Dumbbell)",
-        "reps": 8,
-        "weight": 35.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Bicep Curl (Dumbbell)",
-        "reps": 6,
-        "weight": 35.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Bicep Curl (Dumbbell)",
-        "reps": 5,
-        "weight": 35.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Bicep Curl (Dumbbell)",
-        "reps": 10,
-        "weight": 25.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Triceps Extension",
-        "reps": 8,
-        "weight": 52.5,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Triceps Extension",
-        "reps": 8,
-        "weight": 52.5,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Triceps Extension",
-        "reps": 8,
-        "weight": 47.5,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Triceps Extension",
-        "reps": 8,
-        "weight": 42.5,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Pullover (Machine)",
-        "reps": 8,
-        "weight": 32.5,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Pullover (Machine)",
-        "reps": 8,
-        "weight": 42.5,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Pullover (Machine)",
-        "reps": 8,
-        "weight": 52.5,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Pullover (Machine)",
-        "reps": 8,
-        "weight": 57.5,
-        "notes": ""
-      }
-    ]
+    workoutNumber: "14",
+    duration_seconds: 3368,
+    datetime: "2026-02-17T19:39:45",
+    sets: [
+      { exerciseName: "Chest Press (Machine)", reps: 8, weight: 150 },
+      { exerciseName: "Chest Press (Machine)", reps: 8, weight: 165 },
+      { exerciseName: "Chest Press (Machine)", reps: 8, weight: 165 },
+      { exerciseName: "Chest Press (Machine)", reps: 4, weight: 165 },
+      { exerciseName: "Lat Pulldown - Wide Grip (Cable)", reps: 8, weight: 120 },
+      { exerciseName: "Lat Pulldown - Wide Grip (Cable)", reps: 8, weight: 120 },
+      { exerciseName: "Lat Pulldown - Wide Grip (Cable)", reps: 8, weight: 120 },
+      { exerciseName: "Lat Pulldown - Wide Grip (Cable)", reps: 8, weight: 105 },
+      { exerciseName: "Shoulder Press (Machine)", reps: 8, weight: 60 },
+      { exerciseName: "Shoulder Press (Machine)", reps: 8, weight: 60 },
+      { exerciseName: "Shoulder Press (Machine)", reps: 8, weight: 60 },
+      { exerciseName: "Shoulder Press (Machine)", reps: 5, weight: 45 },
+      { exerciseName: "Seated Row (Cable)", reps: 8, weight: 135 },
+      { exerciseName: "Seated Row (Cable)", reps: 8, weight: 135 },
+      { exerciseName: "Seated Row (Cable)", reps: 8, weight: 135 },
+      { exerciseName: "Seated Row (Cable)", reps: 8, weight: 120 },
+      { exerciseName: "Bicep Curl (Dumbbell)", reps: 8, weight: 35 },
+      { exerciseName: "Bicep Curl (Dumbbell)", reps: 6, weight: 35 },
+      { exerciseName: "Bicep Curl (Dumbbell)", reps: 5, weight: 35 },
+      { exerciseName: "Bicep Curl (Dumbbell)", reps: 10, weight: 25 },
+      { exerciseName: "Triceps Extension", reps: 8, weight: 52.5 },
+      { exerciseName: "Triceps Extension", reps: 8, weight: 52.5 },
+      { exerciseName: "Triceps Extension", reps: 8, weight: 47.5 },
+      { exerciseName: "Triceps Extension", reps: 8, weight: 42.5 },
+      { exerciseName: "Pullover (Machine)", reps: 8, weight: 32.5 },
+      { exerciseName: "Pullover (Machine)", reps: 8, weight: 42.5 },
+      { exerciseName: "Pullover (Machine)", reps: 8, weight: 52.5 },
+      { exerciseName: "Pullover (Machine)", reps: 8, weight: 57.5 },
+    ],
   },
   {
-    "workoutNumber": "15",
-    "datetime": "2026-02-26T20:12:18",
-    "sets": [
-      {
-        "exerciseName": "Chest Press (Machine)",
-        "reps": 8,
-        "weight": 165.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Chest Press (Machine)",
-        "reps": 8,
-        "weight": 165.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Chest Press (Machine)",
-        "reps": 8,
-        "weight": 165.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Chest Press (Machine)",
-        "reps": 4,
-        "weight": 135.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Lat Pulldown - Wide Grip (Cable)",
-        "reps": 8,
-        "weight": 120.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Lat Pulldown - Wide Grip (Cable)",
-        "reps": 8,
-        "weight": 120.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Lat Pulldown - Wide Grip (Cable)",
-        "reps": 8,
-        "weight": 120.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Lat Pulldown - Wide Grip (Cable)",
-        "reps": 8,
-        "weight": 105.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Shoulder Press (Machine)",
-        "reps": 8,
-        "weight": 60.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Shoulder Press (Machine)",
-        "reps": 8,
-        "weight": 60.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Shoulder Press (Machine)",
-        "reps": 8,
-        "weight": 60.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Shoulder Press (Machine)",
-        "reps": 6,
-        "weight": 45.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Seated Row (Cable)",
-        "reps": 8,
-        "weight": 135.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Seated Row (Cable)",
-        "reps": 8,
-        "weight": 135.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Seated Row (Cable)",
-        "reps": 8,
-        "weight": 135.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Seated Row (Cable)",
-        "reps": 8,
-        "weight": 120.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Bicep Curl (Dumbbell)",
-        "reps": 8,
-        "weight": 25.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Bicep Curl (Dumbbell)",
-        "reps": 6,
-        "weight": 30.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Bicep Curl (Dumbbell)",
-        "reps": 6,
-        "weight": 30.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Pullover (Machine)",
-        "reps": 8,
-        "weight": 52.5,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Pullover (Machine)",
-        "reps": 8,
-        "weight": 52.5,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Pullover (Machine)",
-        "reps": 10,
-        "weight": 52.5,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Pullover (Machine)",
-        "reps": 6,
-        "weight": 57.5,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Triceps Pushdown (Cable - Straight Bar)",
-        "reps": 8,
-        "weight": 52.5,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Triceps Pushdown (Cable - Straight Bar)",
-        "reps": 8,
-        "weight": 57.5,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Triceps Pushdown (Cable - Straight Bar)",
-        "reps": 8,
-        "weight": 62.5,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Triceps Pushdown (Cable - Straight Bar)",
-        "reps": 6,
-        "weight": 67.5,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Bicep Curl (Cable)",
-        "reps": 8,
-        "weight": 47.5,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Bicep Curl (Cable)",
-        "reps": 8,
-        "weight": 47.5,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Bicep Curl (Cable)",
-        "reps": 8,
-        "weight": 52.5,
-        "notes": ""
-      }
-    ]
+    workoutNumber: "15",
+    duration_seconds: 3689,
+    datetime: "2026-02-26T20:12:18",
+    sets: [
+      { exerciseName: "Chest Press (Machine)", reps: 8, weight: 165 },
+      { exerciseName: "Chest Press (Machine)", reps: 8, weight: 165 },
+      { exerciseName: "Chest Press (Machine)", reps: 8, weight: 165 },
+      { exerciseName: "Chest Press (Machine)", reps: 4, weight: 135 },
+      { exerciseName: "Lat Pulldown - Wide Grip (Cable)", reps: 8, weight: 120 },
+      { exerciseName: "Lat Pulldown - Wide Grip (Cable)", reps: 8, weight: 120 },
+      { exerciseName: "Lat Pulldown - Wide Grip (Cable)", reps: 8, weight: 120 },
+      { exerciseName: "Lat Pulldown - Wide Grip (Cable)", reps: 8, weight: 105 },
+      { exerciseName: "Shoulder Press (Machine)", reps: 8, weight: 60 },
+      { exerciseName: "Shoulder Press (Machine)", reps: 8, weight: 60 },
+      { exerciseName: "Shoulder Press (Machine)", reps: 8, weight: 60 },
+      { exerciseName: "Shoulder Press (Machine)", reps: 6, weight: 45 },
+      { exerciseName: "Seated Row (Cable)", reps: 8, weight: 135 },
+      { exerciseName: "Seated Row (Cable)", reps: 8, weight: 135 },
+      { exerciseName: "Seated Row (Cable)", reps: 8, weight: 135 },
+      { exerciseName: "Seated Row (Cable)", reps: 8, weight: 120 },
+      { exerciseName: "Bicep Curl (Dumbbell)", reps: 8, weight: 25 },
+      { exerciseName: "Bicep Curl (Dumbbell)", reps: 6, weight: 30 },
+      { exerciseName: "Bicep Curl (Dumbbell)", reps: 6, weight: 30 },
+      { exerciseName: "Pullover (Machine)", reps: 8, weight: 52.5 },
+      { exerciseName: "Pullover (Machine)", reps: 8, weight: 52.5 },
+      { exerciseName: "Pullover (Machine)", reps: 10, weight: 52.5 },
+      { exerciseName: "Pullover (Machine)", reps: 6, weight: 57.5 },
+      { exerciseName: "Triceps Pushdown (Cable - Straight Bar)", reps: 8, weight: 52.5 },
+      { exerciseName: "Triceps Pushdown (Cable - Straight Bar)", reps: 8, weight: 57.5 },
+      { exerciseName: "Triceps Pushdown (Cable - Straight Bar)", reps: 8, weight: 62.5 },
+      { exerciseName: "Triceps Pushdown (Cable - Straight Bar)", reps: 6, weight: 67.5 },
+      { exerciseName: "Bicep Curl (Cable)", reps: 8, weight: 47.5 },
+      { exerciseName: "Bicep Curl (Cable)", reps: 8, weight: 47.5 },
+      { exerciseName: "Bicep Curl (Cable)", reps: 8, weight: 52.5 },
+    ],
   },
   {
-    "workoutNumber": "16",
-    "datetime": "2026-03-01T15:08:32",
-    "sets": [
-      {
-        "exerciseName": "Bulgarian Split Squat",
-        "reps": 8,
-        "weight": 45.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Bulgarian Split Squat",
-        "reps": 8,
-        "weight": 45.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Bulgarian Split Squat",
-        "reps": 8,
-        "weight": 50.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Calf Press on Seated Leg Press",
-        "reps": 20,
-        "weight": 125.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Calf Press on Seated Leg Press",
-        "reps": 20,
-        "weight": 125.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Calf Press on Seated Leg Press",
-        "reps": 20,
-        "weight": 125.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Seated Leg Press (Machine)",
-        "reps": 8,
-        "weight": 200.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Seated Leg Press (Machine)",
-        "reps": 8,
-        "weight": 200.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Seated Leg Press (Machine)",
-        "reps": 8,
-        "weight": 200.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Romanian Deadlift (Dumbbell)",
-        "reps": 8,
-        "weight": 50.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Romanian Deadlift (Dumbbell)",
-        "reps": 8,
-        "weight": 50.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Romanian Deadlift (Dumbbell)",
-        "reps": 8,
-        "weight": 50.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Lying Leg Curl (Machine)",
-        "reps": 8,
-        "weight": 90.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Lying Leg Curl (Machine)",
-        "reps": 8,
-        "weight": 90.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Lying Leg Curl (Machine)",
-        "reps": 8,
-        "weight": 90.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Leg Extension (Machine)",
-        "reps": 8,
-        "weight": 120.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Leg Extension (Machine)",
-        "reps": 8,
-        "weight": 135.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Leg Extension (Machine)",
-        "reps": 8,
-        "weight": 135.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Lat Pulldown - Wide Grip (Cable)",
-        "reps": 8,
-        "weight": 105.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Lat Pulldown - Wide Grip (Cable)",
-        "reps": 8,
-        "weight": 105.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Lat Pulldown - Wide Grip (Cable)",
-        "reps": 8,
-        "weight": 105.0,
-        "notes": ""
-      }
-    ]
+    workoutNumber: "16",
+    duration_seconds: 2762,
+    datetime: "2026-03-01T15:08:32",
+    sets: [
+      { exerciseName: "Bulgarian Split Squat", reps: 8, weight: 45 },
+      { exerciseName: "Bulgarian Split Squat", reps: 8, weight: 45 },
+      { exerciseName: "Bulgarian Split Squat", reps: 8, weight: 50 },
+      { exerciseName: "Calf Press on Seated Leg Press", reps: 20, weight: 125 },
+      { exerciseName: "Calf Press on Seated Leg Press", reps: 20, weight: 125 },
+      { exerciseName: "Calf Press on Seated Leg Press", reps: 20, weight: 125 },
+      { exerciseName: "Seated Leg Press (Machine)", reps: 8, weight: 200 },
+      { exerciseName: "Seated Leg Press (Machine)", reps: 8, weight: 200 },
+      { exerciseName: "Seated Leg Press (Machine)", reps: 8, weight: 200 },
+      { exerciseName: "Romanian Deadlift (Dumbbell)", reps: 8, weight: 50 },
+      { exerciseName: "Romanian Deadlift (Dumbbell)", reps: 8, weight: 50 },
+      { exerciseName: "Romanian Deadlift (Dumbbell)", reps: 8, weight: 50 },
+      { exerciseName: "Lying Leg Curl (Machine)", reps: 8, weight: 90 },
+      { exerciseName: "Lying Leg Curl (Machine)", reps: 8, weight: 90 },
+      { exerciseName: "Lying Leg Curl (Machine)", reps: 8, weight: 90 },
+      { exerciseName: "Leg Extension (Machine)", reps: 8, weight: 120 },
+      { exerciseName: "Leg Extension (Machine)", reps: 8, weight: 135 },
+      { exerciseName: "Leg Extension (Machine)", reps: 8, weight: 135 },
+      { exerciseName: "Lat Pulldown - Wide Grip (Cable)", reps: 8, weight: 105 },
+      { exerciseName: "Lat Pulldown - Wide Grip (Cable)", reps: 8, weight: 105 },
+      { exerciseName: "Lat Pulldown - Wide Grip (Cable)", reps: 8, weight: 105 },
+    ],
   },
   {
-    "workoutNumber": "17",
-    "datetime": "2026-03-08T12:25:51",
-    "sets": [
-      {
-        "exerciseName": "Chest Press (Machine)",
-        "reps": 8,
-        "weight": 135.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Chest Press (Machine)",
-        "reps": 8,
-        "weight": 165.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Chest Press (Machine)",
-        "reps": 8,
-        "weight": 170.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Chest Press (Machine)",
-        "reps": 6,
-        "weight": 180.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Chest Press (Machine)",
-        "reps": 10,
-        "weight": 150.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Lat Pulldown (Cable)",
-        "reps": 8,
-        "weight": 105.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Lat Pulldown (Cable)",
-        "reps": 8,
-        "weight": 135.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Lat Pulldown (Cable)",
-        "reps": 6,
-        "weight": 150.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Lat Pulldown (Cable)",
-        "reps": 8,
-        "weight": 150.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Lat Pulldown (Cable)",
-        "reps": 10,
-        "weight": 105.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Seated Row (Cable)",
-        "reps": 8,
-        "weight": 105.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Seated Row (Cable)",
-        "reps": 8,
-        "weight": 135.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Seated Row (Cable)",
-        "reps": 8,
-        "weight": 150.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Seated Row (Cable)",
-        "reps": 9,
-        "weight": 150.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Seated Row (Cable)",
-        "reps": 12,
-        "weight": 105.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Shoulder Press (Machine)",
-        "reps": 8,
-        "weight": 30.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Shoulder Press (Machine)",
-        "reps": 8,
-        "weight": 60.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Shoulder Press (Machine)",
-        "reps": 8,
-        "weight": 75.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Shoulder Press (Machine)",
-        "reps": 8,
-        "weight": 75.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Shoulder Press (Machine)",
-        "reps": 10,
-        "weight": 45.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Pullover (Machine)",
-        "reps": 8,
-        "weight": 57.5,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Pullover (Machine)",
-        "reps": 8,
-        "weight": 57.5,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Pullover (Machine)",
-        "reps": 8,
-        "weight": 62.5,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Pullover (Machine)",
-        "reps": 8,
-        "weight": 62.5,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Bicep Curl (Dumbbell)",
-        "reps": 9,
-        "weight": 35.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Bicep Curl (Dumbbell)",
-        "reps": 7,
-        "weight": 35.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Triceps Pushdown (Cable - Straight Bar)",
-        "reps": 12,
-        "weight": 62.5,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Triceps Pushdown (Cable - Straight Bar)",
-        "reps": 9,
-        "weight": 62.5,
-        "notes": ""
-      }
-    ]
+    workoutNumber: "17",
+    duration_seconds: 4152,
+    datetime: "2026-03-08T12:25:51",
+    sets: [
+      { exerciseName: "Chest Press (Machine)", reps: 8, weight: 135 },
+      { exerciseName: "Chest Press (Machine)", reps: 8, weight: 165 },
+      { exerciseName: "Chest Press (Machine)", reps: 8, weight: 170 },
+      { exerciseName: "Chest Press (Machine)", reps: 6, weight: 180 },
+      { exerciseName: "Chest Press (Machine)", reps: 10, weight: 150 },
+      { exerciseName: "Lat Pulldown (Cable)", reps: 8, weight: 105 },
+      { exerciseName: "Lat Pulldown (Cable)", reps: 8, weight: 135 },
+      { exerciseName: "Lat Pulldown (Cable)", reps: 6, weight: 150 },
+      { exerciseName: "Lat Pulldown (Cable)", reps: 8, weight: 150 },
+      { exerciseName: "Lat Pulldown (Cable)", reps: 10, weight: 105 },
+      { exerciseName: "Seated Row (Cable)", reps: 8, weight: 105 },
+      { exerciseName: "Seated Row (Cable)", reps: 8, weight: 135 },
+      { exerciseName: "Seated Row (Cable)", reps: 8, weight: 150 },
+      { exerciseName: "Seated Row (Cable)", reps: 9, weight: 150 },
+      { exerciseName: "Seated Row (Cable)", reps: 12, weight: 105 },
+      { exerciseName: "Shoulder Press (Machine)", reps: 8, weight: 30 },
+      { exerciseName: "Shoulder Press (Machine)", reps: 8, weight: 60 },
+      { exerciseName: "Shoulder Press (Machine)", reps: 8, weight: 75 },
+      { exerciseName: "Shoulder Press (Machine)", reps: 8, weight: 75 },
+      { exerciseName: "Shoulder Press (Machine)", reps: 10, weight: 45 },
+      { exerciseName: "Pullover (Machine)", reps: 8, weight: 57.5 },
+      { exerciseName: "Pullover (Machine)", reps: 8, weight: 57.5 },
+      { exerciseName: "Pullover (Machine)", reps: 8, weight: 62.5 },
+      { exerciseName: "Pullover (Machine)", reps: 8, weight: 62.5 },
+      { exerciseName: "Bicep Curl (Dumbbell)", reps: 9, weight: 35 },
+      { exerciseName: "Bicep Curl (Dumbbell)", reps: 7, weight: 35 },
+      { exerciseName: "Triceps Pushdown (Cable - Straight Bar)", reps: 12, weight: 62.5 },
+      { exerciseName: "Triceps Pushdown (Cable - Straight Bar)", reps: 9, weight: 62.5 },
+    ],
   },
   {
-    "workoutNumber": "18",
-    "datetime": "2026-03-13T17:47:29",
-    "sets": [
-      {
-        "exerciseName": "Chest Press (Machine)",
-        "reps": 8,
-        "weight": 135.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Chest Press (Machine)",
-        "reps": 8,
-        "weight": 165.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Chest Press (Machine)",
-        "reps": 8,
-        "weight": 180.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Chest Press (Machine)",
-        "reps": 6,
-        "weight": 180.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Chest Press (Machine)",
-        "reps": 10,
-        "weight": 150.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Lat Pulldown (Cable)",
-        "reps": 8,
-        "weight": 105.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Lat Pulldown (Cable)",
-        "reps": 8,
-        "weight": 135.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Lat Pulldown (Cable)",
-        "reps": 8,
-        "weight": 150.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Lat Pulldown (Cable)",
-        "reps": 6,
-        "weight": 150.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Lat Pulldown (Cable)",
-        "reps": 8,
-        "weight": 120.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Seated Row (Cable)",
-        "reps": 8,
-        "weight": 105.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Seated Row (Cable)",
-        "reps": 8,
-        "weight": 135.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Seated Row (Cable)",
-        "reps": 8,
-        "weight": 150.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Seated Row (Cable)",
-        "reps": 8,
-        "weight": 135.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Seated Row (Cable)",
-        "reps": 12,
-        "weight": 105.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Shoulder Press (Machine)",
-        "reps": 8,
-        "weight": 30.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Shoulder Press (Machine)",
-        "reps": 8,
-        "weight": 60.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Shoulder Press (Machine)",
-        "reps": 7,
-        "weight": 90.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Shoulder Press (Machine)",
-        "reps": 4,
-        "weight": 90.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Shoulder Press (Machine)",
-        "reps": 8,
-        "weight": 45.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Bicep Curl (Dumbbell)",
-        "reps": 8,
-        "weight": 40.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Bicep Curl (Dumbbell)",
-        "reps": 6,
-        "weight": 40.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Bicep Curl (Dumbbell)",
-        "reps": 6,
-        "weight": 35.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Triceps Pushdown (Cable - Straight Bar)",
-        "reps": 8,
-        "weight": 67.5,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Triceps Pushdown (Cable - Straight Bar)",
-        "reps": 7,
-        "weight": 67.5,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Triceps Pushdown (Cable - Straight Bar)",
-        "reps": 10,
-        "weight": 62.5,
-        "notes": ""
-      }
-    ]
+    workoutNumber: "18",
+    duration_seconds: 3344,
+    datetime: "2026-03-13T17:47:29",
+    sets: [
+      { exerciseName: "Chest Press (Machine)", reps: 8, weight: 135 },
+      { exerciseName: "Chest Press (Machine)", reps: 8, weight: 165 },
+      { exerciseName: "Chest Press (Machine)", reps: 8, weight: 180 },
+      { exerciseName: "Chest Press (Machine)", reps: 6, weight: 180 },
+      { exerciseName: "Chest Press (Machine)", reps: 10, weight: 150 },
+      { exerciseName: "Lat Pulldown (Cable)", reps: 8, weight: 105 },
+      { exerciseName: "Lat Pulldown (Cable)", reps: 8, weight: 135 },
+      { exerciseName: "Lat Pulldown (Cable)", reps: 8, weight: 150 },
+      { exerciseName: "Lat Pulldown (Cable)", reps: 6, weight: 150 },
+      { exerciseName: "Lat Pulldown (Cable)", reps: 8, weight: 120 },
+      { exerciseName: "Seated Row (Cable)", reps: 8, weight: 105 },
+      { exerciseName: "Seated Row (Cable)", reps: 8, weight: 135 },
+      { exerciseName: "Seated Row (Cable)", reps: 8, weight: 150 },
+      { exerciseName: "Seated Row (Cable)", reps: 8, weight: 135 },
+      { exerciseName: "Seated Row (Cable)", reps: 12, weight: 105 },
+      { exerciseName: "Shoulder Press (Machine)", reps: 8, weight: 30 },
+      { exerciseName: "Shoulder Press (Machine)", reps: 8, weight: 60 },
+      { exerciseName: "Shoulder Press (Machine)", reps: 7, weight: 90 },
+      { exerciseName: "Shoulder Press (Machine)", reps: 4, weight: 90 },
+      { exerciseName: "Shoulder Press (Machine)", reps: 8, weight: 45 },
+      { exerciseName: "Bicep Curl (Dumbbell)", reps: 8, weight: 40 },
+      { exerciseName: "Bicep Curl (Dumbbell)", reps: 6, weight: 40 },
+      { exerciseName: "Bicep Curl (Dumbbell)", reps: 6, weight: 35 },
+      { exerciseName: "Triceps Pushdown (Cable - Straight Bar)", reps: 8, weight: 67.5 },
+      { exerciseName: "Triceps Pushdown (Cable - Straight Bar)", reps: 7, weight: 67.5 },
+      { exerciseName: "Triceps Pushdown (Cable - Straight Bar)", reps: 10, weight: 62.5 },
+    ],
   },
   {
-    "workoutNumber": "19",
-    "datetime": "2026-03-17T16:23:44",
-    "sets": [
-      {
-        "exerciseName": "Chest Press (Machine)",
-        "reps": 8,
-        "weight": 135.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Chest Press (Machine)",
-        "reps": 8,
-        "weight": 180.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Chest Press (Machine)",
-        "reps": 7,
-        "weight": 195.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Chest Press (Machine)",
-        "reps": 10,
-        "weight": 150.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Lat Pulldown (Cable)",
-        "reps": 8,
-        "weight": 120.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Lat Pulldown (Cable)",
-        "reps": 8,
-        "weight": 150.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Lat Pulldown (Cable)",
-        "reps": 7,
-        "weight": 150.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Lat Pulldown (Cable)",
-        "reps": 10,
-        "weight": 120.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Seated Row (Cable)",
-        "reps": 8,
-        "weight": 120.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Seated Row (Cable)",
-        "reps": 8,
-        "weight": 150.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Seated Row (Cable)",
-        "reps": 6,
-        "weight": 150.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Seated Row (Cable)",
-        "reps": 10,
-        "weight": 120.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Seated Overhead Press (Dumbbell)",
-        "reps": 8,
-        "weight": 20.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Seated Overhead Press (Dumbbell)",
-        "reps": 10,
-        "weight": 40.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Seated Overhead Press (Dumbbell)",
-        "reps": 8,
-        "weight": 40.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Seated Overhead Press (Dumbbell)",
-        "reps": 10,
-        "weight": 25.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Bicep Curl (Cable)",
-        "reps": 8,
-        "weight": 47.5,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Bicep Curl (Cable)",
-        "reps": 8,
-        "weight": 57.5,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Bicep Curl (Cable)",
-        "reps": 7,
-        "weight": 57.5,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Bicep Curl (Cable)",
-        "reps": 10,
-        "weight": 42.5,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Triceps Pushdown (Cable - Straight Bar)",
-        "reps": 8,
-        "weight": 42.5,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Triceps Pushdown (Cable - Straight Bar)",
-        "reps": 9,
-        "weight": 72.5,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Triceps Pushdown (Cable - Straight Bar)",
-        "reps": 8,
-        "weight": 67.5,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Triceps Pushdown (Cable - Straight Bar)",
-        "reps": 14,
-        "weight": 52.5,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Pullover (Machine)",
-        "reps": 8,
-        "weight": 52.5,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Pullover (Machine)",
-        "reps": 8,
-        "weight": 57.5,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Pullover (Machine)",
-        "reps": 8,
-        "weight": 62.5,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Lateral Raise (Cable)",
-        "reps": 8,
-        "weight": 12.5,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Lateral Raise (Cable)",
-        "reps": 10,
-        "weight": 7.5,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Lateral Raise (Cable)",
-        "reps": 12,
-        "weight": 7.5,
-        "notes": ""
-      }
-    ]
+    workoutNumber: "19",
+    duration_seconds: 4523,
+    datetime: "2026-03-17T16:23:44",
+    sets: [
+      { exerciseName: "Chest Press (Machine)", reps: 8, weight: 135 },
+      { exerciseName: "Chest Press (Machine)", reps: 8, weight: 180 },
+      { exerciseName: "Chest Press (Machine)", reps: 7, weight: 195 },
+      { exerciseName: "Chest Press (Machine)", reps: 10, weight: 150 },
+      { exerciseName: "Lat Pulldown (Cable)", reps: 8, weight: 120 },
+      { exerciseName: "Lat Pulldown (Cable)", reps: 8, weight: 150 },
+      { exerciseName: "Lat Pulldown (Cable)", reps: 7, weight: 150 },
+      { exerciseName: "Lat Pulldown (Cable)", reps: 10, weight: 120 },
+      { exerciseName: "Seated Row (Cable)", reps: 8, weight: 120 },
+      { exerciseName: "Seated Row (Cable)", reps: 8, weight: 150 },
+      { exerciseName: "Seated Row (Cable)", reps: 6, weight: 150 },
+      { exerciseName: "Seated Row (Cable)", reps: 10, weight: 120 },
+      { exerciseName: "Seated Overhead Press (Dumbbell)", reps: 8, weight: 20 },
+      { exerciseName: "Seated Overhead Press (Dumbbell)", reps: 10, weight: 40 },
+      { exerciseName: "Seated Overhead Press (Dumbbell)", reps: 8, weight: 40 },
+      { exerciseName: "Seated Overhead Press (Dumbbell)", reps: 10, weight: 25 },
+      { exerciseName: "Bicep Curl (Cable)", reps: 8, weight: 47.5 },
+      { exerciseName: "Bicep Curl (Cable)", reps: 8, weight: 57.5 },
+      { exerciseName: "Bicep Curl (Cable)", reps: 7, weight: 57.5 },
+      { exerciseName: "Bicep Curl (Cable)", reps: 10, weight: 42.5 },
+      { exerciseName: "Triceps Pushdown (Cable - Straight Bar)", reps: 8, weight: 42.5 },
+      { exerciseName: "Triceps Pushdown (Cable - Straight Bar)", reps: 9, weight: 72.5 },
+      { exerciseName: "Triceps Pushdown (Cable - Straight Bar)", reps: 8, weight: 67.5 },
+      { exerciseName: "Triceps Pushdown (Cable - Straight Bar)", reps: 14, weight: 52.5 },
+      { exerciseName: "Pullover (Machine)", reps: 8, weight: 52.5 },
+      { exerciseName: "Pullover (Machine)", reps: 8, weight: 57.5 },
+      { exerciseName: "Pullover (Machine)", reps: 8, weight: 62.5 },
+      { exerciseName: "Lateral Raise (Cable)", reps: 8, weight: 12.5 },
+      { exerciseName: "Lateral Raise (Cable)", reps: 10, weight: 7.5 },
+      { exerciseName: "Lateral Raise (Cable)", reps: 12, weight: 7.5 },
+    ],
   },
   {
-    "workoutNumber": "20",
-    "datetime": "2026-03-23T17:39:51",
-    "sets": [
-      {
-        "exerciseName": "Chest Press (Machine)",
-        "reps": 8,
-        "weight": 135.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Chest Press (Machine)",
-        "reps": 8,
-        "weight": 195.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Chest Press (Machine)",
-        "reps": 5,
-        "weight": 200.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Chest Press (Machine)",
-        "reps": 12,
-        "weight": 150.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Lat Pulldown (Cable)",
-        "reps": 8,
-        "weight": 120.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Lat Pulldown (Cable)",
-        "reps": 8,
-        "weight": 150.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Lat Pulldown (Cable)",
-        "reps": 8,
-        "weight": 135.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Lat Pulldown (Cable)",
-        "reps": 11,
-        "weight": 120.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Seated Row (Cable)",
-        "reps": 8,
-        "weight": 120.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Seated Row (Cable)",
-        "reps": 8,
-        "weight": 150.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Seated Row (Cable)",
-        "reps": 8,
-        "weight": 150.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Seated Row (Cable)",
-        "reps": 12,
-        "weight": 120.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Shoulder Press (Machine)",
-        "reps": 8,
-        "weight": 45.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Shoulder Press (Machine)",
-        "reps": 8,
-        "weight": 90.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Shoulder Press (Machine)",
-        "reps": 6,
-        "weight": 90.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Shoulder Press (Machine)",
-        "reps": 8,
-        "weight": 60.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Bicep Curl (Dumbbell)",
-        "reps": 8,
-        "weight": 40.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Bicep Curl (Dumbbell)",
-        "reps": 8,
-        "weight": 40.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Bicep Curl (Dumbbell)",
-        "reps": 6,
-        "weight": 40.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Triceps Pushdown (Cable - Straight Bar)",
-        "reps": 8,
-        "weight": 70.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Triceps Pushdown (Cable - Straight Bar)",
-        "reps": 8,
-        "weight": 67.5,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Triceps Pushdown (Cable - Straight Bar)",
-        "reps": 8,
-        "weight": 72.5,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Pullover (Machine)",
-        "reps": 8,
-        "weight": 57.5,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Pullover (Machine)",
-        "reps": 8,
-        "weight": 57.5,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Pullover (Machine)",
-        "reps": 8,
-        "weight": 57.5,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Lateral Raise (Dumbbell)",
-        "reps": 10,
-        "weight": 10.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Lateral Raise (Dumbbell)",
-        "reps": 10,
-        "weight": 10.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Lateral Raise (Dumbbell)",
-        "reps": 10,
-        "weight": 10.0,
-        "notes": ""
-      }
-    ]
+    workoutNumber: "20",
+    duration_seconds: 3568,
+    datetime: "2026-03-23T17:39:51",
+    sets: [
+      { exerciseName: "Chest Press (Machine)", reps: 8, weight: 135 },
+      { exerciseName: "Chest Press (Machine)", reps: 8, weight: 195 },
+      { exerciseName: "Chest Press (Machine)", reps: 5, weight: 200 },
+      { exerciseName: "Chest Press (Machine)", reps: 12, weight: 150 },
+      { exerciseName: "Lat Pulldown (Cable)", reps: 8, weight: 120 },
+      { exerciseName: "Lat Pulldown (Cable)", reps: 8, weight: 150 },
+      { exerciseName: "Lat Pulldown (Cable)", reps: 8, weight: 135 },
+      { exerciseName: "Lat Pulldown (Cable)", reps: 11, weight: 120 },
+      { exerciseName: "Seated Row (Cable)", reps: 8, weight: 120 },
+      { exerciseName: "Seated Row (Cable)", reps: 8, weight: 150 },
+      { exerciseName: "Seated Row (Cable)", reps: 8, weight: 150 },
+      { exerciseName: "Seated Row (Cable)", reps: 12, weight: 120 },
+      { exerciseName: "Shoulder Press (Machine)", reps: 8, weight: 45 },
+      { exerciseName: "Shoulder Press (Machine)", reps: 8, weight: 90 },
+      { exerciseName: "Shoulder Press (Machine)", reps: 6, weight: 90 },
+      { exerciseName: "Shoulder Press (Machine)", reps: 8, weight: 60 },
+      { exerciseName: "Bicep Curl (Dumbbell)", reps: 8, weight: 40 },
+      { exerciseName: "Bicep Curl (Dumbbell)", reps: 8, weight: 40 },
+      { exerciseName: "Bicep Curl (Dumbbell)", reps: 6, weight: 40 },
+      { exerciseName: "Triceps Pushdown (Cable - Straight Bar)", reps: 8, weight: 70 },
+      { exerciseName: "Triceps Pushdown (Cable - Straight Bar)", reps: 8, weight: 67.5 },
+      { exerciseName: "Triceps Pushdown (Cable - Straight Bar)", reps: 8, weight: 72.5 },
+      { exerciseName: "Pullover (Machine)", reps: 8, weight: 57.5 },
+      { exerciseName: "Pullover (Machine)", reps: 8, weight: 57.5 },
+      { exerciseName: "Pullover (Machine)", reps: 8, weight: 57.5 },
+      { exerciseName: "Lateral Raise (Dumbbell)", reps: 10, weight: 10 },
+      { exerciseName: "Lateral Raise (Dumbbell)", reps: 10, weight: 10 },
+      { exerciseName: "Lateral Raise (Dumbbell)", reps: 10, weight: 10 },
+    ],
   },
   {
-    "workoutNumber": "21",
-    "datetime": "2026-03-26T18:24:52",
-    "sets": [
-      {
-        "exerciseName": "Chest Press (Machine)",
-        "reps": 8,
-        "weight": 105.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Chest Press (Machine)",
-        "reps": 8,
-        "weight": 135.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Chest Press (Machine)",
-        "reps": 6,
-        "weight": 195.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Chest Press (Machine)",
-        "reps": 6,
-        "weight": 195.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Chest Press (Machine)",
-        "reps": 4,
-        "weight": 195.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Chest Press (Machine)",
-        "reps": 7,
-        "weight": 165.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Incline Bench Press (Dumbbell)",
-        "reps": 10,
-        "weight": 40.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Incline Bench Press (Dumbbell)",
-        "reps": 10,
-        "weight": 40.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Incline Bench Press (Dumbbell)",
-        "reps": 10,
-        "weight": 40.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Incline Cable Fly",
-        "reps": 10,
-        "weight": 22.5,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Incline Cable Fly",
-        "reps": 12,
-        "weight": 17.5,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Incline Cable Fly",
-        "reps": 15,
-        "weight": 17.5,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Lat Pulldown (Cable)",
-        "reps": 10,
-        "weight": 135.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Lat Pulldown (Cable)",
-        "reps": 10,
-        "weight": 120.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Lat Pulldown (Cable)",
-        "reps": 10,
-        "weight": 120.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Lat Pulldown (Cable)",
-        "reps": 10,
-        "weight": 120.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Seated Row (Cable)",
-        "reps": 10,
-        "weight": 120.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Seated Row (Cable)",
-        "reps": 10,
-        "weight": 120.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Seated Row (Cable)",
-        "reps": 10,
-        "weight": 120.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Shoulder Press (Machine)",
-        "reps": 8,
-        "weight": 75.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Shoulder Press (Machine)",
-        "reps": 8,
-        "weight": 75.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Shoulder Press (Machine)",
-        "reps": 5,
-        "weight": 75.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Lateral Raise (Cable)",
-        "reps": 12,
-        "weight": 7.5,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Lateral Raise (Cable)",
-        "reps": 12,
-        "weight": 7.5,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Lateral Raise (Cable)",
-        "reps": 12,
-        "weight": 7.5,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Triceps Pushdown (Cable - Straight Bar)",
-        "reps": 12,
-        "weight": 67.5,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Triceps Pushdown (Cable - Straight Bar)",
-        "reps": 12,
-        "weight": 62.5,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Triceps Pushdown (Cable - Straight Bar)",
-        "reps": 10,
-        "weight": 57.5,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Bicep Curl (Dumbbell)",
-        "reps": 12,
-        "weight": 30.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Bicep Curl (Dumbbell)",
-        "reps": 10,
-        "weight": 30.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Bicep Curl (Dumbbell)",
-        "reps": 10,
-        "weight": 30.0,
-        "notes": ""
-      }
-    ]
+    workoutNumber: "21",
+    duration_seconds: 4942,
+    datetime: "2026-03-26T18:24:52",
+    sets: [
+      { exerciseName: "Chest Press (Machine)", reps: 8, weight: 105 },
+      { exerciseName: "Chest Press (Machine)", reps: 8, weight: 135 },
+      { exerciseName: "Chest Press (Machine)", reps: 6, weight: 195 },
+      { exerciseName: "Chest Press (Machine)", reps: 6, weight: 195 },
+      { exerciseName: "Chest Press (Machine)", reps: 4, weight: 195 },
+      { exerciseName: "Chest Press (Machine)", reps: 7, weight: 165 },
+      { exerciseName: "Incline Bench Press (Dumbbell)", reps: 10, weight: 40 },
+      { exerciseName: "Incline Bench Press (Dumbbell)", reps: 10, weight: 40 },
+      { exerciseName: "Incline Bench Press (Dumbbell)", reps: 10, weight: 40 },
+      { exerciseName: "Incline Cable Fly", reps: 10, weight: 22.5 },
+      { exerciseName: "Incline Cable Fly", reps: 12, weight: 17.5 },
+      { exerciseName: "Incline Cable Fly", reps: 15, weight: 17.5 },
+      { exerciseName: "Lat Pulldown (Cable)", reps: 10, weight: 135 },
+      { exerciseName: "Lat Pulldown (Cable)", reps: 10, weight: 120 },
+      { exerciseName: "Lat Pulldown (Cable)", reps: 10, weight: 120 },
+      { exerciseName: "Lat Pulldown (Cable)", reps: 10, weight: 120 },
+      { exerciseName: "Seated Row (Cable)", reps: 10, weight: 120 },
+      { exerciseName: "Seated Row (Cable)", reps: 10, weight: 120 },
+      { exerciseName: "Seated Row (Cable)", reps: 10, weight: 120 },
+      { exerciseName: "Shoulder Press (Machine)", reps: 8, weight: 75 },
+      { exerciseName: "Shoulder Press (Machine)", reps: 8, weight: 75 },
+      { exerciseName: "Shoulder Press (Machine)", reps: 5, weight: 75 },
+      { exerciseName: "Lateral Raise (Cable)", reps: 12, weight: 7.5 },
+      { exerciseName: "Lateral Raise (Cable)", reps: 12, weight: 7.5 },
+      { exerciseName: "Lateral Raise (Cable)", reps: 12, weight: 7.5 },
+      { exerciseName: "Triceps Pushdown (Cable - Straight Bar)", reps: 12, weight: 67.5 },
+      { exerciseName: "Triceps Pushdown (Cable - Straight Bar)", reps: 12, weight: 62.5 },
+      { exerciseName: "Triceps Pushdown (Cable - Straight Bar)", reps: 10, weight: 57.5 },
+      { exerciseName: "Bicep Curl (Dumbbell)", reps: 12, weight: 30 },
+      { exerciseName: "Bicep Curl (Dumbbell)", reps: 10, weight: 30 },
+      { exerciseName: "Bicep Curl (Dumbbell)", reps: 10, weight: 30 },
+    ],
   },
   {
-    "workoutNumber": "22",
-    "datetime": "2026-03-31T16:52:39",
-    "sets": [
-      {
-        "exerciseName": "Chest Press (Machine)",
-        "reps": 8,
-        "weight": 105.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Chest Press (Machine)",
-        "reps": 8,
-        "weight": 135.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Chest Press (Machine)",
-        "reps": 6,
-        "weight": 195.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Chest Press (Machine)",
-        "reps": 6,
-        "weight": 195.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Chest Press (Machine)",
-        "reps": 6,
-        "weight": 195.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Chest Press (Machine)",
-        "reps": 8,
-        "weight": 165.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Incline Bench Press (Dumbbell)",
-        "reps": 10,
-        "weight": 40.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Incline Bench Press (Dumbbell)",
-        "reps": 10,
-        "weight": 40.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Incline Bench Press (Dumbbell)",
-        "reps": 12,
-        "weight": 40.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Incline Cable Fly",
-        "reps": 12,
-        "weight": 17.5,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Incline Cable Fly",
-        "reps": 12,
-        "weight": 17.5,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Incline Cable Fly",
-        "reps": 12,
-        "weight": 17.5,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Lat Pulldown (Cable)",
-        "reps": 10,
-        "weight": 135.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Lat Pulldown (Cable)",
-        "reps": 10,
-        "weight": 135.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Lat Pulldown (Cable)",
-        "reps": 10,
-        "weight": 120.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Lat Pulldown (Cable)",
-        "reps": 10,
-        "weight": 120.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Single Arm Cable Row",
-        "reps": 8,
-        "weight": 60.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Single Arm Cable Row",
-        "reps": 8,
-        "weight": 60.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Single Arm Cable Row",
-        "reps": 8,
-        "weight": 75.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Shoulder Press (Machine)",
-        "reps": 8,
-        "weight": 75.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Shoulder Press (Machine)",
-        "reps": 8,
-        "weight": 75.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Shoulder Press (Machine)",
-        "reps": 8,
-        "weight": 75.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Lateral Raise (Cable)",
-        "reps": 12,
-        "weight": 7.5,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Lateral Raise (Cable)",
-        "reps": 12,
-        "weight": 7.5,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Lateral Raise (Cable)",
-        "reps": 12,
-        "weight": 7.5,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Triceps Pushdown (Cable - Straight Bar)",
-        "reps": 12,
-        "weight": 62.5,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Triceps Pushdown (Cable - Straight Bar)",
-        "reps": 12,
-        "weight": 62.5,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Triceps Pushdown (Cable - Straight Bar)",
-        "reps": 12,
-        "weight": 62.5,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Bicep Curl (Dumbbell)",
-        "reps": 12,
-        "weight": 30.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Bicep Curl (Dumbbell)",
-        "reps": 12,
-        "weight": 30.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Bicep Curl (Dumbbell)",
-        "reps": 10,
-        "weight": 30.0,
-        "notes": ""
-      }
-    ]
+    workoutNumber: "22",
+    duration_seconds: 5336,
+    datetime: "2026-03-31T16:52:39",
+    sets: [
+      { exerciseName: "Chest Press (Machine)", reps: 8, weight: 105 },
+      { exerciseName: "Chest Press (Machine)", reps: 8, weight: 135 },
+      { exerciseName: "Chest Press (Machine)", reps: 6, weight: 195 },
+      { exerciseName: "Chest Press (Machine)", reps: 6, weight: 195 },
+      { exerciseName: "Chest Press (Machine)", reps: 6, weight: 195 },
+      { exerciseName: "Chest Press (Machine)", reps: 8, weight: 165 },
+      { exerciseName: "Incline Bench Press (Dumbbell)", reps: 10, weight: 40 },
+      { exerciseName: "Incline Bench Press (Dumbbell)", reps: 10, weight: 40 },
+      { exerciseName: "Incline Bench Press (Dumbbell)", reps: 12, weight: 40 },
+      { exerciseName: "Incline Cable Fly", reps: 12, weight: 17.5 },
+      { exerciseName: "Incline Cable Fly", reps: 12, weight: 17.5 },
+      { exerciseName: "Incline Cable Fly", reps: 12, weight: 17.5 },
+      { exerciseName: "Lat Pulldown (Cable)", reps: 10, weight: 135 },
+      { exerciseName: "Lat Pulldown (Cable)", reps: 10, weight: 135 },
+      { exerciseName: "Lat Pulldown (Cable)", reps: 10, weight: 120 },
+      { exerciseName: "Lat Pulldown (Cable)", reps: 10, weight: 120 },
+      { exerciseName: "Single Arm Cable Row", reps: 8, weight: 60 },
+      { exerciseName: "Single Arm Cable Row", reps: 8, weight: 60 },
+      { exerciseName: "Single Arm Cable Row", reps: 8, weight: 75 },
+      { exerciseName: "Shoulder Press (Machine)", reps: 8, weight: 75 },
+      { exerciseName: "Shoulder Press (Machine)", reps: 8, weight: 75 },
+      { exerciseName: "Shoulder Press (Machine)", reps: 8, weight: 75 },
+      { exerciseName: "Lateral Raise (Cable)", reps: 12, weight: 7.5 },
+      { exerciseName: "Lateral Raise (Cable)", reps: 12, weight: 7.5 },
+      { exerciseName: "Lateral Raise (Cable)", reps: 12, weight: 7.5 },
+      { exerciseName: "Triceps Pushdown (Cable - Straight Bar)", reps: 12, weight: 62.5 },
+      { exerciseName: "Triceps Pushdown (Cable - Straight Bar)", reps: 12, weight: 62.5 },
+      { exerciseName: "Triceps Pushdown (Cable - Straight Bar)", reps: 12, weight: 62.5 },
+      { exerciseName: "Bicep Curl (Dumbbell)", reps: 12, weight: 30 },
+      { exerciseName: "Bicep Curl (Dumbbell)", reps: 12, weight: 30 },
+      { exerciseName: "Bicep Curl (Dumbbell)", reps: 10, weight: 30 },
+    ],
   },
   {
-    "workoutNumber": "23",
-    "datetime": "2026-04-02T21:08:08",
-    "sets": [
-      {
-        "exerciseName": "Calf Press on Seated Leg Press",
-        "reps": 20,
-        "weight": 125.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Calf Press on Seated Leg Press",
-        "reps": 20,
-        "weight": 140.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Calf Press on Seated Leg Press",
-        "reps": 20,
-        "weight": 140.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Seated Leg Press (Machine)",
-        "reps": 10,
-        "weight": 95.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Seated Leg Press (Machine)",
-        "reps": 8,
-        "weight": 140.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Seated Leg Press (Machine)",
-        "reps": 8,
-        "weight": 200.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Seated Leg Press (Machine)",
-        "reps": 8,
-        "weight": 200.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Seated Leg Press (Machine)",
-        "reps": 8,
-        "weight": 200.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Seated Leg Press (Machine)",
-        "reps": 16,
-        "weight": 155.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Seated Deadlift (Cable)",
-        "reps": 10,
-        "weight": 105.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Seated Deadlift (Cable)",
-        "reps": 8,
-        "weight": 150.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Seated Deadlift (Cable)",
-        "reps": 8,
-        "weight": 180.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Seated Deadlift (Cable)",
-        "reps": 10,
-        "weight": 200.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Leg Extension (Machine)",
-        "reps": 8,
-        "weight": 135.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Leg Extension (Machine)",
-        "reps": 8,
-        "weight": 150.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Leg Extension (Machine)",
-        "reps": 8,
-        "weight": 150.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Lying Leg Curl (Machine)",
-        "reps": 8,
-        "weight": 90.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Lying Leg Curl (Machine)",
-        "reps": 8,
-        "weight": 90.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Lying Leg Curl (Machine)",
-        "reps": 8,
-        "weight": 90.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Bulgarian Split Squat",
-        "reps": 8,
-        "weight": 45.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Bulgarian Split Squat",
-        "reps": 8,
-        "weight": 45.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Bulgarian Split Squat",
-        "reps": 8,
-        "weight": 45.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Deadlift (Smith Machine)",
-        "reps": 8,
-        "weight": 165.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Deadlift (Smith Machine)",
-        "reps": 8,
-        "weight": 165.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Deadlift (Smith Machine)",
-        "reps": 8,
-        "weight": 175.0,
-        "notes": ""
-      }
-    ]
+    workoutNumber: "23",
+    duration_seconds: 4017,
+    datetime: "2026-04-02T21:08:08",
+    sets: [
+      { exerciseName: "Calf Press on Seated Leg Press", reps: 20, weight: 125 },
+      { exerciseName: "Calf Press on Seated Leg Press", reps: 20, weight: 140 },
+      { exerciseName: "Calf Press on Seated Leg Press", reps: 20, weight: 140 },
+      { exerciseName: "Seated Leg Press (Machine)", reps: 10, weight: 95 },
+      { exerciseName: "Seated Leg Press (Machine)", reps: 8, weight: 140 },
+      { exerciseName: "Seated Leg Press (Machine)", reps: 8, weight: 200 },
+      { exerciseName: "Seated Leg Press (Machine)", reps: 8, weight: 200 },
+      { exerciseName: "Seated Leg Press (Machine)", reps: 8, weight: 200 },
+      { exerciseName: "Seated Leg Press (Machine)", reps: 16, weight: 155 },
+      { exerciseName: "Seated Deadlift (Cable)", reps: 10, weight: 105 },
+      { exerciseName: "Seated Deadlift (Cable)", reps: 8, weight: 150 },
+      { exerciseName: "Seated Deadlift (Cable)", reps: 8, weight: 180 },
+      { exerciseName: "Seated Deadlift (Cable)", reps: 10, weight: 200 },
+      { exerciseName: "Leg Extension (Machine)", reps: 8, weight: 135 },
+      { exerciseName: "Leg Extension (Machine)", reps: 8, weight: 150 },
+      { exerciseName: "Leg Extension (Machine)", reps: 8, weight: 150 },
+      { exerciseName: "Lying Leg Curl (Machine)", reps: 8, weight: 90 },
+      { exerciseName: "Lying Leg Curl (Machine)", reps: 8, weight: 90 },
+      { exerciseName: "Lying Leg Curl (Machine)", reps: 8, weight: 90 },
+      { exerciseName: "Bulgarian Split Squat", reps: 8, weight: 45 },
+      { exerciseName: "Bulgarian Split Squat", reps: 8, weight: 45 },
+      { exerciseName: "Bulgarian Split Squat", reps: 8, weight: 45 },
+      { exerciseName: "Deadlift (Smith Machine)", reps: 8, weight: 165 },
+      { exerciseName: "Deadlift (Smith Machine)", reps: 8, weight: 165 },
+      { exerciseName: "Deadlift (Smith Machine)", reps: 8, weight: 175 },
+    ],
   },
   {
-    "workoutNumber": "24",
-    "datetime": "2026-04-03T18:14:16",
-    "sets": [
-      {
-        "exerciseName": "Chest Press (Machine)",
-        "reps": 8,
-        "weight": 105.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Chest Press (Machine)",
-        "reps": 8,
-        "weight": 135.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Chest Press (Machine)",
-        "reps": 8,
-        "weight": 195.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Chest Press (Machine)",
-        "reps": 8,
-        "weight": 195.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Chest Press (Machine)",
-        "reps": 7,
-        "weight": 195.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Chest Press (Machine)",
-        "reps": 8,
-        "weight": 165.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Incline Cable Fly",
-        "reps": 12,
-        "weight": 17.5,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Incline Cable Fly",
-        "reps": 12,
-        "weight": 17.5,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Incline Cable Fly",
-        "reps": 14,
-        "weight": 17.5,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Incline Bench Press (Dumbbell)",
-        "reps": 10,
-        "weight": 45.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Incline Bench Press (Dumbbell)",
-        "reps": 10,
-        "weight": 45.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Incline Bench Press (Dumbbell)",
-        "reps": 10,
-        "weight": 45.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Lat Pulldown (Cable)",
-        "reps": 10,
-        "weight": 135.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Lat Pulldown (Cable)",
-        "reps": 10,
-        "weight": 135.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Lat Pulldown (Cable)",
-        "reps": 10,
-        "weight": 120.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Lat Pulldown (Cable)",
-        "reps": 10,
-        "weight": 120.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Single Arm Cable Row",
-        "reps": 8,
-        "weight": 75.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Single Arm Cable Row",
-        "reps": 8,
-        "weight": 60.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Single Arm Cable Row",
-        "reps": 12,
-        "weight": 60.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Shoulder Press (Machine)",
-        "reps": 8,
-        "weight": 90.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Shoulder Press (Machine)",
-        "reps": 6,
-        "weight": 90.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Shoulder Press (Machine)",
-        "reps": 8,
-        "weight": 75.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Shoulder Press (Machine)",
-        "reps": 10,
-        "weight": 45.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Lateral Raise (Cable)",
-        "reps": 12,
-        "weight": 7.5,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Lateral Raise (Cable)",
-        "reps": 12,
-        "weight": 7.5,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Lateral Raise (Cable)",
-        "reps": 12,
-        "weight": 7.5,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Triceps Pushdown (Cable - Straight Bar)",
-        "reps": 12,
-        "weight": 62.5,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Triceps Pushdown (Cable - Straight Bar)",
-        "reps": 12,
-        "weight": 62.5,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Triceps Pushdown (Cable - Straight Bar)",
-        "reps": 12,
-        "weight": 62.5,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Bicep Curl (Dumbbell)",
-        "reps": 10,
-        "weight": 35.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Bicep Curl (Dumbbell)",
-        "reps": 10,
-        "weight": 35.0,
-        "notes": ""
-      },
-      {
-        "exerciseName": "Bicep Curl (Dumbbell)",
-        "reps": 12,
-        "weight": 30.0,
-        "notes": ""
-      }
-    ]
-  }
+    workoutNumber: "24",
+    duration_seconds: 4929,
+    datetime: "2026-04-03T18:14:16",
+    sets: [
+      { exerciseName: "Chest Press (Machine)", reps: 8, weight: 105 },
+      { exerciseName: "Chest Press (Machine)", reps: 8, weight: 135 },
+      { exerciseName: "Chest Press (Machine)", reps: 8, weight: 195 },
+      { exerciseName: "Chest Press (Machine)", reps: 8, weight: 195 },
+      { exerciseName: "Chest Press (Machine)", reps: 7, weight: 195 },
+      { exerciseName: "Chest Press (Machine)", reps: 8, weight: 165 },
+      { exerciseName: "Incline Cable Fly", reps: 12, weight: 17.5 },
+      { exerciseName: "Incline Cable Fly", reps: 12, weight: 17.5 },
+      { exerciseName: "Incline Cable Fly", reps: 14, weight: 17.5 },
+      { exerciseName: "Incline Bench Press (Dumbbell)", reps: 10, weight: 45 },
+      { exerciseName: "Incline Bench Press (Dumbbell)", reps: 10, weight: 45 },
+      { exerciseName: "Incline Bench Press (Dumbbell)", reps: 10, weight: 45 },
+      { exerciseName: "Lat Pulldown (Cable)", reps: 10, weight: 135 },
+      { exerciseName: "Lat Pulldown (Cable)", reps: 10, weight: 135 },
+      { exerciseName: "Lat Pulldown (Cable)", reps: 10, weight: 120 },
+      { exerciseName: "Lat Pulldown (Cable)", reps: 10, weight: 120 },
+      { exerciseName: "Single Arm Cable Row", reps: 8, weight: 75 },
+      { exerciseName: "Single Arm Cable Row", reps: 8, weight: 60 },
+      { exerciseName: "Single Arm Cable Row", reps: 12, weight: 60 },
+      { exerciseName: "Shoulder Press (Machine)", reps: 8, weight: 90 },
+      { exerciseName: "Shoulder Press (Machine)", reps: 6, weight: 90 },
+      { exerciseName: "Shoulder Press (Machine)", reps: 8, weight: 75 },
+      { exerciseName: "Shoulder Press (Machine)", reps: 10, weight: 45 },
+      { exerciseName: "Lateral Raise (Cable)", reps: 12, weight: 7.5 },
+      { exerciseName: "Lateral Raise (Cable)", reps: 12, weight: 7.5 },
+      { exerciseName: "Lateral Raise (Cable)", reps: 12, weight: 7.5 },
+      { exerciseName: "Triceps Pushdown (Cable - Straight Bar)", reps: 12, weight: 62.5 },
+      { exerciseName: "Triceps Pushdown (Cable - Straight Bar)", reps: 12, weight: 62.5 },
+      { exerciseName: "Triceps Pushdown (Cable - Straight Bar)", reps: 12, weight: 62.5 },
+      { exerciseName: "Bicep Curl (Dumbbell)", reps: 10, weight: 35 },
+      { exerciseName: "Bicep Curl (Dumbbell)", reps: 10, weight: 35 },
+      { exerciseName: "Bicep Curl (Dumbbell)", reps: 12, weight: 30 },
+    ],
+  },
+  {
+    workoutNumber: "25",
+    duration_seconds: 4890,
+    datetime: "2026-04-06T16:19:56",
+    sets: [
+      { exerciseName: "Chest Press (Machine)", reps: 8, weight: 105 },
+      { exerciseName: "Chest Press (Machine)", reps: 8, weight: 135 },
+      { exerciseName: "Chest Press (Machine)", reps: 8, weight: 195 },
+      { exerciseName: "Chest Press (Machine)", reps: 8, weight: 195 },
+      { exerciseName: "Chest Press (Machine)", reps: 8, weight: 195 },
+      { exerciseName: "Chest Press (Machine)", reps: 10, weight: 165 },
+      { exerciseName: "Lat Pulldown (Cable)", reps: 10, weight: 135 },
+      { exerciseName: "Lat Pulldown (Cable)", reps: 10, weight: 135 },
+      { exerciseName: "Lat Pulldown (Cable)", reps: 9, weight: 135 },
+      { exerciseName: "Lat Pulldown (Cable)", reps: 12, weight: 105 },
+      { exerciseName: "Incline Bench Press (Dumbbell)", reps: 10, weight: 50 },
+      { exerciseName: "Incline Bench Press (Dumbbell)", reps: 10, weight: 50 },
+      { exerciseName: "Incline Bench Press (Dumbbell)", reps: 10, weight: 50 },
+      { exerciseName: "Single Arm Cable Row", reps: 8, weight: 75 },
+      { exerciseName: "Single Arm Cable Row", reps: 8, weight: 75 },
+      { exerciseName: "Single Arm Cable Row", reps: 14, weight: 60 },
+      { exerciseName: "Shoulder Press (Machine)", reps: 8, weight: 90 },
+      { exerciseName: "Shoulder Press (Machine)", reps: 7, weight: 90 },
+      { exerciseName: "Shoulder Press (Machine)", reps: 7, weight: 75 },
+      { exerciseName: "Incline Cable Fly", reps: 12, weight: 17.5 },
+      { exerciseName: "Incline Cable Fly", reps: 12, weight: 17.5 },
+      { exerciseName: "Incline Cable Fly", reps: 12, weight: 17.5 },
+      { exerciseName: "Incline Cable Fly", reps: 8, weight: 17.5 },
+      { exerciseName: "Lateral Raise (Cable)", reps: 12, weight: 7.5 },
+      { exerciseName: "Lateral Raise (Cable)", reps: 12, weight: 7.5 },
+      { exerciseName: "Lateral Raise (Cable)", reps: 15, weight: 7.5 },
+      { exerciseName: "Triceps Extension", reps: 12, weight: 52.5 },
+      { exerciseName: "Triceps Extension", reps: 12, weight: 52.5 },
+      { exerciseName: "Triceps Extension", reps: 12, weight: 42.5 },
+      { exerciseName: "Bicep Curl (Cable)", reps: 12, weight: 52.5 },
+      { exerciseName: "Bicep Curl (Cable)", reps: 12, weight: 47.5 },
+      { exerciseName: "Bicep Curl (Cable)", reps: 12, weight: 42.5 },
+    ],
+  },
+  {
+    workoutNumber: "26",
+    duration_seconds: 3407,
+    datetime: "2026-04-07T11:46:20",
+    sets: [
+      { exerciseName: "Seated Leg Press (Machine)", reps: 8, weight: 95 },
+      { exerciseName: "Seated Leg Press (Machine)", reps: 8, weight: 140 },
+      { exerciseName: "Seated Leg Press (Machine)", reps: 8, weight: 215 },
+      { exerciseName: "Seated Leg Press (Machine)", reps: 8, weight: 215 },
+      { exerciseName: "Seated Leg Press (Machine)", reps: 8, weight: 215 },
+      { exerciseName: "Seated Leg Press (Machine)", reps: 20, weight: 155 },
+      { exerciseName: "Bulgarian Split Squat", reps: 8, weight: 45 },
+      { exerciseName: "Bulgarian Split Squat", reps: 8, weight: 45 },
+      { exerciseName: "Bulgarian Split Squat", reps: 8, weight: 45 },
+      { exerciseName: "Deadlift (Smith Machine)", reps: 8, weight: 175 },
+      { exerciseName: "Deadlift (Smith Machine)", reps: 8, weight: 175 },
+      { exerciseName: "Deadlift (Smith Machine)", reps: 8, weight: 185 },
+      { exerciseName: "Leg Extension (Machine)", reps: 8, weight: 150 },
+      { exerciseName: "Leg Extension (Machine)", reps: 8, weight: 150 },
+      { exerciseName: "Leg Extension (Machine)", reps: 10, weight: 135 },
+      { exerciseName: "Lying Leg Curl (Machine)", reps: 8, weight: 90 },
+      { exerciseName: "Lying Leg Curl (Machine)", reps: 8, weight: 90 },
+      { exerciseName: "Lying Leg Curl (Machine)", reps: 8, weight: 90 },
+      { exerciseName: "Calf Press on Seated Leg Press", reps: 20, weight: 140 },
+      { exerciseName: "Calf Press on Seated Leg Press", reps: 20, weight: 140 },
+      { exerciseName: "Calf Press on Seated Leg Press", reps: 20, weight: 140 },
+    ],
+  },
+  {
+    workoutNumber: "27",
+    duration_seconds: 4389,
+    datetime: "2026-04-09T18:24:07",
+    sets: [
+      { exerciseName: "Chest Press (Machine)", reps: 8, weight: 105 },
+      { exerciseName: "Chest Press (Machine)", reps: 8, weight: 135 },
+      { exerciseName: "Chest Press (Machine)", reps: 8, weight: 195 },
+      { exerciseName: "Chest Press (Machine)", reps: 8, weight: 195 },
+      { exerciseName: "Chest Press (Machine)", reps: 7, weight: 195 },
+      { exerciseName: "Chest Press (Machine)", reps: 8, weight: 165 },
+      { exerciseName: "Incline Bench Press (Dumbbell)", reps: 10, weight: 50 },
+      { exerciseName: "Incline Bench Press (Dumbbell)", reps: 10, weight: 50 },
+      { exerciseName: "Incline Bench Press (Dumbbell)", reps: 8, weight: 50 },
+      { exerciseName: "Lat Pulldown (Cable)", reps: 10, weight: 135 },
+      { exerciseName: "Lat Pulldown (Cable)", reps: 10, weight: 135 },
+      { exerciseName: "Lat Pulldown (Cable)", reps: 10, weight: 120 },
+      { exerciseName: "Lat Pulldown (Cable)", reps: 10, weight: 120 },
+      { exerciseName: "Incline Cable Fly", reps: 12, weight: 17.5 },
+      { exerciseName: "Incline Cable Fly", reps: 12, weight: 17.5 },
+      { exerciseName: "Incline Cable Fly", reps: 12, weight: 17.5 },
+      { exerciseName: "Incline Cable Fly", reps: 12, weight: 17.5 },
+      { exerciseName: "Single Arm Cable Row", reps: 8, weight: 75 },
+      { exerciseName: "Single Arm Cable Row", reps: 8, weight: 75 },
+      { exerciseName: "Single Arm Cable Row", reps: 8, weight: 75 },
+      { exerciseName: "Shoulder Press (Machine)", reps: 6, weight: 90 },
+      { exerciseName: "Shoulder Press (Machine)", reps: 6, weight: 90 },
+      { exerciseName: "Shoulder Press (Machine)", reps: 5, weight: 90 },
+      { exerciseName: "Shoulder Press (Machine)", reps: 8, weight: 60 },
+      { exerciseName: "Bicep Curl (Dumbbell)", reps: 8, weight: 40 },
+      { exerciseName: "Bicep Curl (Dumbbell)", reps: 8, weight: 40 },
+      { exerciseName: "Bicep Curl (Dumbbell)", reps: 8, weight: 40 },
+      { exerciseName: "Triceps Pushdown (Cable - Straight Bar)", reps: 12, weight: 62.5 },
+      { exerciseName: "Triceps Pushdown (Cable - Straight Bar)", reps: 12, weight: 62.5 },
+      { exerciseName: "Triceps Pushdown (Cable - Straight Bar)", reps: 12, weight: 62.5 },
+      { exerciseName: "Lateral Raise (Cable)", reps: 12, weight: 9 },
+      { exerciseName: "Lateral Raise (Cable)", reps: 10, weight: 9 },
+      { exerciseName: "Lateral Raise (Cable)", reps: 8, weight: 9 },
+    ],
+  },
+  {
+    workoutNumber: "28",
+    duration_seconds: 4238,
+    datetime: "2026-04-14T15:25:47",
+    sets: [
+      { exerciseName: "Chest Press (Machine)", reps: 8, weight: 105 },
+      { exerciseName: "Chest Press (Machine)", reps: 8, weight: 135 },
+      { exerciseName: "Chest Press (Machine)", reps: 8, weight: 195 },
+      { exerciseName: "Chest Press (Machine)", reps: 8, weight: 195 },
+      { exerciseName: "Chest Press (Machine)", reps: 8, weight: 195 },
+      { exerciseName: "Chest Press (Machine)", reps: 10, weight: 165 },
+      { exerciseName: "Lat Pulldown (Cable)", reps: 10, weight: 135 },
+      { exerciseName: "Lat Pulldown (Cable)", reps: 10, weight: 135 },
+      { exerciseName: "Lat Pulldown (Cable)", reps: 9, weight: 135 },
+      { exerciseName: "Lat Pulldown (Cable)", reps: 10, weight: 105 },
+      { exerciseName: "Incline Bench Press (Dumbbell)", reps: 10, weight: 50 },
+      { exerciseName: "Incline Bench Press (Dumbbell)", reps: 10, weight: 50 },
+      { exerciseName: "Incline Bench Press (Dumbbell)", reps: 10, weight: 50 },
+      { exerciseName: "Single Arm Cable Row", reps: 8, weight: 75 },
+      { exerciseName: "Single Arm Cable Row", reps: 8, weight: 75 },
+      { exerciseName: "Single Arm Cable Row", reps: 10, weight: 75 },
+      { exerciseName: "Incline Cable Fly", reps: 12, weight: 17.5 },
+      { exerciseName: "Incline Cable Fly", reps: 12, weight: 22.5 },
+      { exerciseName: "Incline Cable Fly", reps: 10, weight: 22.5 },
+      { exerciseName: "Incline Cable Fly", reps: 8, weight: 22.5 },
+      { exerciseName: "Shoulder Press (Machine)", reps: 8, weight: 82.5 },
+      { exerciseName: "Shoulder Press (Machine)", reps: 10, weight: 60 },
+      { exerciseName: "Shoulder Press (Machine)", reps: 8, weight: 60 },
+      { exerciseName: "Bicep Curl (Dumbbell)", reps: 8, weight: 40 },
+      { exerciseName: "Bicep Curl (Dumbbell)", reps: 8, weight: 40 },
+      { exerciseName: "Bicep Curl (Dumbbell)", reps: 8, weight: 40 },
+      { exerciseName: "Triceps Extension (Cable)", reps: 10, weight: 32.5 },
+      { exerciseName: "Triceps Extension (Cable)", reps: 10, weight: 32.5 },
+      { exerciseName: "Triceps Extension (Cable)", reps: 12, weight: 32.5 },
+    ],
+  },
+  {
+    workoutNumber: "29",
+    duration_seconds: 4828,
+    datetime: "2026-04-18T15:03:35",
+    sets: [
+      { exerciseName: "Chest Press (Machine)", reps: 8, weight: 105 },
+      { exerciseName: "Chest Press (Machine)", reps: 8, weight: 135 },
+      { exerciseName: "Chest Press (Machine)", reps: 8, weight: 200 },
+      { exerciseName: "Chest Press (Machine)", reps: 8, weight: 200 },
+      { exerciseName: "Chest Press (Machine)", reps: 8, weight: 200 },
+      { exerciseName: "Chest Press (Machine)", reps: 10, weight: 165 },
+      { exerciseName: "Lat Pulldown (Cable)", reps: 10, weight: 135 },
+      { exerciseName: "Lat Pulldown (Cable)", reps: 10, weight: 135 },
+      { exerciseName: "Lat Pulldown (Cable)", reps: 10, weight: 135 },
+      { exerciseName: "Lat Pulldown (Cable)", reps: 12, weight: 90 },
+      { exerciseName: "Incline Bench Press (Dumbbell)", reps: 10, weight: 50 },
+      { exerciseName: "Incline Bench Press (Dumbbell)", reps: 10, weight: 50 },
+      { exerciseName: "Incline Bench Press (Dumbbell)", reps: 11, weight: 50 },
+      { exerciseName: "Single Arm Cable Row", reps: 8, weight: 90 },
+      { exerciseName: "Single Arm Cable Row", reps: 10, weight: 75 },
+      { exerciseName: "Single Arm Cable Row", reps: 10, weight: 75 },
+      { exerciseName: "Incline Cable Fly", reps: 12, weight: 22.5 },
+      { exerciseName: "Incline Cable Fly", reps: 12, weight: 20 },
+      { exerciseName: "Incline Cable Fly", reps: 12, weight: 17.5 },
+      { exerciseName: "Incline Cable Fly", reps: 8, weight: 17.5 },
+      { exerciseName: "Shoulder Press (Machine)", reps: 8, weight: 70 },
+      { exerciseName: "Shoulder Press (Machine)", reps: 8, weight: 60 },
+      { exerciseName: "Shoulder Press (Machine)", reps: 8, weight: 60 },
+      { exerciseName: "Bicep Curl (Dumbbell)", reps: 10, weight: 35 },
+      { exerciseName: "Bicep Curl (Dumbbell)", reps: 10, weight: 35 },
+      { exerciseName: "Bicep Curl (Dumbbell)", reps: 10, weight: 35 },
+      { exerciseName: "Triceps Extension (Cable)", reps: 10, weight: 37.5 },
+      { exerciseName: "Triceps Extension (Cable)", reps: 10, weight: 37.5 },
+      { exerciseName: "Triceps Extension (Cable)", reps: 10, weight: 37.5 },
+      { exerciseName: "Lateral Raise (Cable)", reps: 12, weight: 7.5 },
+      { exerciseName: "Lateral Raise (Cable)", reps: 12, weight: 7.5 },
+      { exerciseName: "Lateral Raise (Cable)", reps: 12, weight: 7.5 },
+    ],
+  },
 ];
 
